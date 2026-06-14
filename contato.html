@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contato do Portal da Comunidade para sugestões, histórias e contribuições pedagógicas.">
+  <title>Contato | Portal da Comunidade</title>
+  <link rel="stylesheet" href="css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="css/portal-responsivo.css?v=20260608-2">
+  <style>
+    /* Layout do formulário de contato */
+    .contato-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 2.5rem 0 3rem;
+    }
+    @media (max-width: 860px) {
+      .contato-layout { grid-template-columns: 1fr; }
+    }
+
+    .contato-formulario {
+      background: #fff;
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 2rem 2.25rem;
+    }
+
+    .contato-info {
+      display: grid;
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body data-page="contato">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="index.html" aria-label="Ir para a página inicial">
+        <!-- LOGO ATUALIZADA -->
+        <img src="img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="pages/historia.html" data-page-link="historia">História</a></li>
+          <li><a href="pages/memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="pages/agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="pages/Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="pages/Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="pages/mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="pages/reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="pages/reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="pages/materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero__imagem" data-image-placeholder="img/banner/banner-contato.jpg">
+      <img src="img/banner/banner-contato.jpg" alt="Estudantes e moradores do assentamento colaborando" data-fallback-hidden loading="eager">
+    </div>
+    <div class="hero__conteudo container">
+      <p class="hero__categoria">Participação Comunitária · Portal da Comunidade</p>
+      <h1 class="hero__titulo">Fale Conosco</h1>
+      <p class="hero__subtitulo">Compartilhe sugestões, histórias, fotos, dados agrícolas ou ideias para melhorar o portal. Cada contribuição fortalece a memória coletiva da comunidade.</p>
+    </div>
+  </section>
+
+  <!-- Barra de artigo -->
+  <div class="artigo-barra">
+    <div class="container artigo-barra__conteudo">
+      <nav aria-label="Trilha de navegação">
+        <ol class="trilha">
+          <li><a href="index.html">Início</a></li>
+          <li>Contato</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main class="container" id="conteudo">
+    <div class="contato-layout">
+
+      <!-- Formulário -->
+      <div class="contato-formulario">
+        <p class="selo">Participação da comunidade</p>
+        <h2 id="titulo-contato" style="font-size:1.5rem;margin:0.25rem 0 0.75rem;">Envie uma contribuição</h2>
+        <p style="color:var(--cor-texto-suave);font-size:0.9rem;margin:0 0 1.75rem;line-height:1.6;">
+          Compartilhe sugestões, histórias, fotos, dados agrícolas ou ideias para melhorar o portal.
+        </p>
+
+        <form id="formContato" class="formulario" novalidate aria-labelledby="titulo-contato">
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required>
+            <small class="erro-campo" id="erro-nome"></small>
+          </div>
+
+          <div class="campo">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <small class="erro-campo" id="erro-email"></small>
+          </div>
+
+          <div class="campo">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto" required>
+              <option value="">Selecione...</option>
+              <option value="historia">Contribuição para a história</option>
+              <option value="memoria">Compartilhar memória</option>
+              <option value="agricola">Dados agrícolas</option>
+              <option value="plantacao-nativa">Dados da plantação nativa</option>
+              <option value="plantas-medicinais">Plantas medicinais</option>
+              <option value="sugestao">Sugestão para o portal</option>
+            </select>
+            <small class="erro-campo" id="erro-assunto"></small>
+          </div>
+
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+            <small class="erro-campo" id="erro-mensagem"></small>
+          </div>
+
+          <button type="submit" class="botao">Enviar mensagem</button>
+        </form>
+
+        <div id="mensagemSucesso" class="mensagem-sucesso oculto" role="status" aria-live="polite">
+          Mensagem registrada com sucesso. Obrigado pela sua contribuição!
+        </div>
+      </div>
+
+      <!-- Sidebar de informações -->
+      <aside class="contato-info" aria-label="Informações de contato">
+
+        <div class="card-lateral">
+          <h2>O que podemos receber</h2>
+          <ul>
+            <li>📜 Histórias e depoimentos de moradores</li>
+            <li>📸 Fotos antigas e atuais do assentamento</li>
+            <li>🌿 Informações sobre plantas e saberes</li>
+            <li>🌾 Dados de produção agrícola</li>
+            <li>🎓 Informações sobre a escola e alunos</li>
+            <li>💡 Sugestões de melhoria para o portal</li>
+          </ul>
+        </div>
+
+        <div class="fatos-rapidos">
+          <h2>Sobre o projeto</h2>
+          <ul>
+            <li><strong>Ceará Científico 2026</strong></li>
+            <li>EEMPC Francisco Araújo Barros</li>
+            <li>Itarema, Ceará</li>
+            <li>Curso Técnico em Informática</li>
+            <li>Pedagogia da Alternância</li>
+          </ul>
+        </div>
+
+        <div class="destaque-lateral">
+          <p class="destaque-lateral__label">Portal da Comunidade</p>
+          <p class="destaque-lateral__texto">
+            Este portal é construído colaborativamente por estudantes, professores e moradores do Assentamento Lagoa do Mineiro. Sua participação é fundamental.
+          </p>
+          <a href="pages/historia.html">Conheça nossa história →</a>
+        </div>
+
+        <div class="card-lateral" style="background:linear-gradient(135deg,#174726,#246b3a);color:#fff;border:none;">
+          <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.65);margin:0 0 0.5rem;">Assistente com IA</p>
+          <p style="font-weight:700;font-size:1rem;color:#fff;margin:0 0 0.5rem;">Tem uma dúvida?</p>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.8);margin:0;">Use o botão 🤖 <strong>Assistente IA</strong> no canto inferior direito para perguntas rápidas sobre o portal.</p>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática · EEMPC Francisco Araújo Barros · Itarema, CE</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script type="module" src="js/app.js?v=20260608-2"></script>
+  <script src="js/chat-standalone.js?v=20260526"></script>
+</body>
+</html>
+
+
+

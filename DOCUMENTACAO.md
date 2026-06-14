@@ -1,0 +1,628 @@
+# Documentação Técnica — Portal da Comunidade
+
+Projeto educacional desenvolvido para o Ceará Científico, com foco em memória comunitária, educação do campo, produção agrícola, biodiversidade, plantas medicinais, reportagens escolares e integração futura com inteligência artificial.
+
+O portal é um site estático em HTML, CSS e JavaScript, preparado para publicação no GitHub Pages. Também possui um backend Node.js opcional para conectar um assistente educacional com API de IA sem expor chaves no navegador.
+
+---
+
+## 1. Visão Geral
+
+### Nome do projeto
+
+**Portal da Comunidade | Ceará Científico**
+
+### Objetivo
+
+Criar uma plataforma digital escolar para:
+
+- registrar a história e a memória da comunidade;
+- valorizar saberes do campo;
+- organizar conteúdos sobre agricultura, plantas nativas e plantas medicinais;
+- publicar reportagens educativas;
+- oferecer recursos interativos para estudantes e professores;
+- preparar uma integração segura com inteligência artificial.
+
+### Público-alvo
+
+- estudantes;
+- professores;
+- comunidade escolar;
+- moradores da comunidade;
+- visitantes do Ceará Científico;
+- avaliadores de projetos escolares e científicos.
+
+---
+
+## 2. Tecnologias Utilizadas
+
+### Frontend
+
+- HTML5;
+- CSS3;
+- JavaScript moderno com módulos ES;
+- JSON local para conteúdo dinâmico leve;
+- acessibilidade com ARIA, foco visível e mensagens acessíveis;
+- layout responsivo para desktop, tablet e celular.
+
+### Backend opcional
+
+- Node.js;
+- Express;
+- CORS;
+- Dotenv;
+- Google Gemini API via `@google/generative-ai`.
+
+### Hospedagem
+
+- GitHub Pages para o frontend;
+- Render, Railway, Vercel, Fly.io ou serviço similar para o backend de IA.
+
+---
+
+## 3. Estrutura de Pastas
+
+```text
+Portal-da-Comunidade2-main/
+├── index.html
+├── contato.html
+├── DOCUMENTACAO.md
+├── README.md
+├── DEPLOY.md
+├── data/
+│   └── site.json
+├── css/
+│   ├── portal.css
+│   ├── portal-responsivo.css
+│   ├── estilo.css
+│   └── responsivo.css
+├── js/
+│   ├── app.js
+│   ├── chat-standalone.js
+│   ├── config.js
+│   ├── config.example.js
+│   ├── main.js
+│   ├── noticias.js
+│   ├── components/
+│   │   ├── carrossel.js
+│   │   ├── chat-widget.js
+│   │   ├── conteudo.js
+│   │   ├── formulario.js
+│   │   ├── imagens.js
+│   │   └── menu.js
+│   └── services/
+│       └── ai-service.js
+├── pages/
+│   ├── historia.html
+│   ├── memoria.html
+│   ├── agricola.html
+│   ├── Plantação Nativa.html
+│   ├── Plantas Medicinais.html
+│   ├── mudas.html
+│   ├── reportagem-educacao.html
+│   ├── reportagem-clima.html
+│   ├── materia_ia_educacao_v2.html
+│   ├── plantas-do-ceara.html
+│   ├── plantasdoceara.html
+│   └── Plantas-Medicinais.html
+├── img/
+│   ├── banner/
+│   ├── galeria/
+│   ├── icones/
+│   └── logo/
+└── backend/
+    ├── server.js
+    ├── package.json
+    ├── package-lock.json
+    ├── .env.example
+    ├── exemplo-openai-proxy.js
+    └── README.md
+```
+
+---
+
+## 4. Páginas do Projeto
+
+### Páginas principais
+
+| Arquivo | Função |
+|---|---|
+| `index.html` | Página inicial, hero, rolo de fotos, atalhos, reportagens, notícias, eventos e assistente IA. |
+| `contato.html` | Página de contato e envio de contribuição. |
+
+### Páginas internas
+
+| Arquivo | Função |
+|---|---|
+| `pages/historia.html` | História da comunidade, linha do tempo e registros históricos. |
+| `pages/memoria.html` | Memória oral, depoimentos, saberes e relatos da comunidade. |
+| `pages/agricola.html` | Produção agrícola, cultivos, práticas sustentáveis e dados do campo. |
+| `pages/Plantação Nativa.html` | Plantas nativas, preservação ambiental e biodiversidade regional. |
+| `pages/Plantas Medicinais.html` | Plantas medicinais, usos tradicionais e pesquisa escolar responsável. |
+| `pages/mudas.html` | Produção de mudas, cultivo, sustentabilidade e educação ambiental. |
+| `pages/reportagem-educacao.html` | Reportagem sobre Educação do Campo e Pedagogia da Alternância. |
+| `pages/reportagem-clima.html` | Reportagem sobre mudanças climáticas, campo e agricultura. |
+| `pages/materia_ia_educacao_v2.html` | Reportagem padronizada sobre IA na Educação. |
+
+### Páginas de redirecionamento
+
+| Arquivo | Função |
+|---|---|
+| `pages/plantas-do-ceara.html` | Redireciona para `Plantação Nativa.html`. |
+| `pages/plantasdoceara.html` | Redireciona para `Plantação Nativa.html`. |
+| `pages/Plantas-Medicinais.html` | Redireciona para a página oficial `Plantas Medicinais.html`. |
+
+Essas páginas existem para evitar erro 404 caso algum visitante acesse um link antigo.
+
+---
+
+## 5. Arquitetura Visual
+
+O visual principal do portal está concentrado em:
+
+- `css/portal.css`;
+- `css/portal-responsivo.css`.
+
+### Padrão visual utilizado
+
+- cores verdes ligadas ao campo, território e natureza;
+- tons terrosos e amarelos para identidade regional e energia visual;
+- cards com bordas suaves;
+- foco em legibilidade;
+- layout responsivo;
+- botões consistentes;
+- menu principal com submenus;
+- seções com `container` e `secao`;
+- rodapé comum.
+
+### Classes importantes
+
+| Classe | Uso |
+|---|---|
+| `.cabecalho` | Cabeçalho fixo/sticky do portal. |
+| `.logo` / `.logo__imagem` | Marca visual do projeto. |
+| `.menu` | Menu principal. |
+| `.submenu` | Submenus de Plantas e Reportagens. |
+| `.hero` | Hero visual da página inicial e de páginas internas antigas. |
+| `.titulo-pagina` | Cabeçalho padrão de páginas internas. |
+| `.secao` | Bloco de conteúdo com espaçamento padrão. |
+| `.grade-cards` | Grade de cards funcionais. |
+| `.grade-dados` | Cards de dados e indicadores. |
+| `.artigo-layout` | Layout com conteúdo principal e sidebar. |
+| `.artigo-corpo` | Corpo textual de artigos/reportagens. |
+| `.artigo-sidebar` | Lateral com cards de resumo. |
+| `.imagem-destaque` | Imagem grande com legenda. |
+| `.galeria-historica` | Galeria em grade. |
+| `.faixa-contribuir` | Chamada final para participação. |
+| `.rodape` | Rodapé padrão. |
+
+---
+
+## 6. JavaScript
+
+O arquivo principal é:
+
+```text
+js/app.js
+```
+
+Ele inicializa os componentes do portal:
+
+```js
+prepararImagens();
+iniciarMenu();
+iniciarFormularioContato();
+iniciarCarrosseis();
+carregarConteudo();
+iniciarChatEducacional();
+atualizarAno();
+```
+
+### Componentes
+
+| Arquivo | Responsabilidade |
+|---|---|
+| `js/components/menu.js` | Controla menu mobile, submenus, tecla Escape e página ativa. |
+| `js/components/formulario.js` | Validação do formulário de contato e mensagens acessíveis. |
+| `js/components/carrossel.js` | Comportamento do rolo de fotos. |
+| `js/components/imagens.js` | Esconde imagens com erro quando usam `data-fallback-hidden`. |
+| `js/components/conteudo.js` | Carrega `data/site.json` e renderiza notícias, eventos e listas. |
+| `js/components/chat-widget.js` | Widget modular do assistente educacional. |
+| `js/services/ai-service.js` | Comunicação com o backend de IA. |
+| `js/chat-standalone.js` | Assistente flutuante independente usado no portal. |
+
+---
+
+## 7. Conteúdo Dinâmico com JSON
+
+O arquivo:
+
+```text
+data/site.json
+```
+
+alimenta partes da página inicial e listas leves do portal.
+
+### Estrutura atual
+
+```json
+{
+  "noticias": [],
+  "eventos": [],
+  "dicasAgricolas": [],
+  "plantasNativas": [],
+  "plantasMedicinais": []
+}
+```
+
+### Onde cada campo aparece
+
+| Campo | Uso |
+|---|---|
+| `noticias` | Lista de notícias da página inicial. |
+| `eventos` | Bloco de eventos do mês. |
+| `dicasAgricolas` | Lista de dicas agrícolas. |
+| `plantasNativas` | Cards de plantas nativas. |
+| `plantasMedicinais` | Cards de plantas medicinais. |
+
+### Exemplo de notícia
+
+```json
+{
+  "data": "2026-06-13",
+  "titulo": "Nova atividade do Ceará Científico",
+  "resumo": "Estudantes organizam registros da comunidade para alimentar o portal."
+}
+```
+
+---
+
+## 8. Imagens e Espaços Prefixados
+
+O portal já possui locais preparados para imagens reais dos estudantes, da escola, da comunidade, das plantações e dos eventos.
+
+### Funcionamento dos placeholders
+
+Algumas imagens ainda podem não existir na pasta. Para evitar quebra visual, os elementos usam:
+
+```html
+data-fallback-hidden
+```
+
+O script `js/components/imagens.js` esconde a imagem caso o arquivo ainda não exista.
+
+### Principais locais de imagem
+
+| Pasta | Uso |
+|---|---|
+| `img/banner/` | Banners das páginas e imagens principais. |
+| `img/galeria/` | Galerias, rolo de fotos, plantas, registros da comunidade. |
+| `img/logo/` | Logo do projeto. |
+| `img/icones/` | Ícones e recursos visuais auxiliares. |
+
+### Exemplos de imagens esperadas
+
+```text
+img/banner/banner-campo-digital.jpg
+img/banner/banner-ia-educacao.jpg
+img/galeria/rolo-01.jpg
+img/galeria/rolo-02.jpg
+img/galeria/ia-escola-01.jpg
+img/galeria/ia-escola-02.jpg
+img/galeria/ia-escola-03.jpg
+```
+
+---
+
+## 9. Menu e Navegação
+
+O menu principal está organizado em áreas:
+
+- Início;
+- História;
+- Memória;
+- Produção Agrícola;
+- Plantas;
+- Reportagens;
+- Contato.
+
+### Submenu Plantas
+
+- Plantação Nativa;
+- Plantas Medicinais;
+- Cultivando Vida.
+
+### Submenu Reportagens
+
+- Educação do Campo;
+- Clima e Campo;
+- IA na Educação.
+
+O arquivo `js/components/menu.js` também marca a página atual usando:
+
+```html
+data-page
+data-page-link
+```
+
+Exemplo:
+
+```html
+<body data-page="materia-ia">
+<a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a>
+```
+
+---
+
+## 10. Acessibilidade
+
+O projeto possui recursos importantes de acessibilidade:
+
+- link "Pular para o conteúdo";
+- foco visível com `:focus-visible`;
+- botões com `aria-expanded`;
+- menu com `aria-label`;
+- submenus navegáveis por teclado;
+- fechamento do menu com tecla `Escape`;
+- textos alternativos em imagens;
+- mensagens de formulário acessíveis;
+- estrutura semântica com `header`, `main`, `section`, `article`, `aside` e `footer`.
+
+### Recomendações de manutenção
+
+- Toda imagem deve ter `alt` descritivo.
+- Botões devem ter texto claro.
+- Não usar texto importante apenas dentro de imagem.
+- Manter contraste suficiente entre texto e fundo.
+- Testar navegação pelo teclado.
+- Validar formulários com mensagens claras.
+
+---
+
+## 11. Assistente de IA
+
+O portal está preparado para um assistente educacional inteligente.
+
+### No frontend
+
+Arquivos relacionados:
+
+```text
+js/chat-standalone.js
+js/components/chat-widget.js
+js/services/ai-service.js
+js/config.js
+js/config.example.js
+```
+
+O frontend nunca deve armazenar chave de API.
+
+### No backend
+
+Pasta:
+
+```text
+backend/
+```
+
+Arquivos principais:
+
+| Arquivo | Função |
+|---|---|
+| `backend/server.js` | Servidor Express que conversa com a API Gemini. |
+| `backend/.env.example` | Modelo das variáveis de ambiente. |
+| `backend/package.json` | Dependências e scripts do backend. |
+| `backend/README.md` | Instruções específicas do backend. |
+
+### Segurança
+
+A chave da API deve ficar somente no backend:
+
+```text
+backend/.env
+```
+
+Esse arquivo não deve ser enviado ao GitHub.
+
+### Endpoint esperado pelo frontend
+
+```js
+window.PORTAL_AI_ENDPOINT = "https://seu-backend.com/api/assistente";
+```
+
+Quando o endpoint não está configurado, o portal usa respostas locais de fallback.
+
+---
+
+## 12. Como Rodar Localmente
+
+Por ser um site estático, é possível abrir `index.html` diretamente no navegador. Porém, para testar `fetch` de JSON e módulos JavaScript com mais segurança, recomenda-se rodar um servidor local.
+
+### Opção com Python
+
+Na raiz do projeto:
+
+```bash
+python -m http.server 8000
+```
+
+Depois acesse:
+
+```text
+http://localhost:8000
+```
+
+### Backend de IA
+
+Na pasta `backend/`:
+
+```bash
+npm install
+npm start
+```
+
+Servidor padrão:
+
+```text
+http://localhost:3001
+```
+
+Teste:
+
+```text
+http://localhost:3001/health
+```
+
+---
+
+## 13. Deploy no GitHub Pages
+
+O projeto é compatível com GitHub Pages porque:
+
+- usa arquivos estáticos;
+- não depende de build;
+- possui `.nojekyll`;
+- usa caminhos relativos;
+- mantém CSS e JS dentro da própria pasta do projeto.
+
+### Passos gerais
+
+1. Enviar o projeto para um repositório no GitHub.
+2. Abrir `Settings`.
+3. Entrar em `Pages`.
+4. Selecionar branch principal.
+5. Selecionar pasta raiz `/`.
+6. Salvar.
+
+URL esperada:
+
+```text
+https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/
+```
+
+---
+
+## 14. Convenções de Código
+
+### HTML
+
+- usar `lang="pt-BR"`;
+- manter `meta charset="UTF-8"`;
+- usar títulos claros;
+- manter `body data-page`;
+- usar cabeçalho e rodapé padrão;
+- preferir classes já existentes no `portal.css`.
+
+### CSS
+
+- concentrar estilos principais em `portal.css`;
+- concentrar responsividade em `portal-responsivo.css`;
+- evitar estilos inline;
+- evitar criar layout totalmente diferente para páginas novas;
+- reaproveitar componentes como cards, seções, artigo e sidebar.
+
+### JavaScript
+
+- manter lógica modular em `js/components/`;
+- evitar código duplicado nas páginas HTML;
+- não colocar chaves de API no frontend;
+- validar dados antes de renderizar.
+
+### Imagens
+
+- usar nomes simples e descritivos;
+- preferir `.jpg` para fotos;
+- usar `.png` para logos ou imagens com transparência;
+- compactar imagens antes de publicar;
+- manter textos alternativos.
+
+---
+
+## 15. Manutenção de Conteúdo
+
+### Adicionar notícia
+
+Editar `data/site.json`:
+
+```json
+{
+  "data": "2026-06-13",
+  "titulo": "Título da notícia",
+  "resumo": "Resumo curto da notícia."
+}
+```
+
+### Adicionar evento
+
+Editar `data/site.json`:
+
+```json
+{
+  "data": "2026-06-20",
+  "nome": "Nome do evento",
+  "descricao": "Descrição curta do evento."
+}
+```
+
+### Trocar imagem
+
+1. Verificar o caminho indicado no HTML.
+2. Salvar a imagem na pasta correta.
+3. Manter o mesmo nome do arquivo.
+4. Atualizar o `alt` se necessário.
+
+Exemplo:
+
+```text
+img/galeria/rolo-01.jpg
+```
+
+---
+
+## 16. Pontos de Atenção
+
+- Alguns arquivos antigos ainda existem por compatibilidade, como `estilo.css`, `responsivo.css`, `main.js` e páginas de redirecionamento.
+- O padrão visual atual está em `portal.css` e `portal-responsivo.css`.
+- Para novas páginas, o ideal é copiar a estrutura de uma página já padronizada, como `materia_ia_educacao_v2.html`, `agricola.html` ou `memoria.html`.
+- Não remover páginas de redirecionamento sem verificar se há links antigos publicados.
+- Não subir `backend/.env` para o GitHub.
+- Evitar nomes de arquivo com acentos em novos arquivos, mesmo que os atuais funcionem.
+
+---
+
+## 17. Roadmap Técnico
+
+### Curto prazo
+
+- revisar acentuação dos arquivos Markdown antigos;
+- padronizar nomes de arquivos sem espaços e acentos;
+- criar imagens reais para todos os placeholders;
+- revisar todos os textos finais com professores e estudantes;
+- testar no GitHub Pages após cada alteração.
+
+### Médio prazo
+
+- criar painel simples para edição de notícias e eventos;
+- melhorar busca interna;
+- criar páginas individuais para notícias;
+- adicionar filtros por tema;
+- ampliar quizzes educativos;
+- criar modo de alto contraste.
+
+### Longo prazo
+
+- integrar IA com backend publicado;
+- criar assistente que recomende conteúdos do próprio portal;
+- gerar quizzes automáticos por tema;
+- criar dashboard do projeto científico;
+- registrar métricas de participação;
+- criar versão PWA para acesso offline.
+
+---
+
+## 18. Resumo para Apresentação
+
+O Portal da Comunidade é uma plataforma educacional do Ceará Científico construída com HTML, CSS e JavaScript. O projeto valoriza a cultura regional, a educação do campo, a memória comunitária e a inovação tecnológica. Ele possui páginas informativas, reportagens, galerias, conteúdo dinâmico em JSON, assistente de IA em preparação e arquitetura compatível com GitHub Pages.
+
+Além de ser um site, o portal funciona como produto pedagógico: estudantes podem alimentar o conteúdo, registrar saberes locais, produzir reportagens, organizar dados científicos e aprender práticas modernas de desenvolvimento web.
+

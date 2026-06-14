@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal educacional do Ceará Científico com memória, agricultura, cultura regional e recursos interativos para estudantes e professores.">
+  <title>Portal da Comunidade | Ceará Científico</title>
+  <link rel="stylesheet" href="css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="css/portal-responsivo.css?v=20260608-2">
+</head>
+<body data-page="inicio">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="index.html" aria-label="Ir para a página inicial">
+        <!-- LOGO ATUALIZADA -->
+        <img src="img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="pages/historia.html" data-page-link="historia">História</a></li>
+          <li><a href="pages/memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="pages/agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="pages/Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="pages/Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="pages/mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="pages/reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="pages/reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="pages/materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <!-- BANNER ATUALIZADO -->
+      <div class="hero__imagem" data-image-placeholder="img/banner/banner-campo-digital.jpg">
+        <img src="img/banner/banner-campo-digital.jpg" alt="Estudantes e comunidade em atividade científica no campo" data-fallback-hidden>
+      </div>
+      <div class="container hero__conteudo">
+        <p class="selo">Educação, ciência e território</p>
+        <h1>Portal da Comunidade</h1>
+        <p>Um espaço digital para registrar memórias, valorizar saberes do campo e aproximar estudantes, professores e comunidade da inovação.</p>
+        <div class="hero__acoes" aria-label="Ações principais">
+          <a class="botao" href="pages/historia.html">Conhecer a história</a>
+          <a class="botao botao--secundario" href="#noticias">Ver notícias</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container secao" aria-labelledby="titulo-rolo">
+      <div class="secao__cabecalho">
+        <div>
+          <p class="selo">Galeria da comunidade</p>
+          <h2 id="titulo-rolo">Rolo de fotos</h2>
+        </div>
+        <p>Substitua os arquivos indicados por fotos reais dos estudantes, da escola, das plantações e dos eventos.</p>
+      </div>
+
+      <div class="rolo-fotos" data-carousel aria-label="Rolo de fotos da comunidade">
+        <div class="rolo-fotos__trilha">
+          <figure class="foto-card" data-image-placeholder="img/galeria/rolo-01.jpg">
+            <img src="img/galeria/rolo-01.jpg" alt="Foto 1 da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>img/galeria/rolo-01.jpg</figcaption>
+          </figure>
+          <figure class="foto-card" data-image-placeholder="img/galeria/rolo-02.jpg">
+            <img src="img/galeria/rolo-02.jpg" alt="Foto 2 da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>img/galeria/rolo-02.jpg</figcaption>
+          </figure>
+          <figure class="foto-card" data-image-placeholder="img/galeria/rolo-03.jpg">
+            <img src="img/galeria/rolo-03.jpg" alt="Foto 3 da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>img/galeria/rolo-03.jpg</figcaption>
+          </figure>
+          <figure class="foto-card" data-image-placeholder="img/galeria/rolo-04.jpg">
+            <img src="img/galeria/rolo-04.jpg" alt="Foto 4 da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>img/galeria/rolo-04.jpg</figcaption>
+          </figure>
+          <figure class="foto-card" data-image-placeholder="img/galeria/rolo-05.jpg">
+            <img src="img/galeria/rolo-05.jpg" alt="Foto 5 da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>img/galeria/rolo-05.jpg</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="container secao" aria-labelledby="titulo-explore">
+      <div class="secao__cabecalho">
+        <div>
+          <p class="selo">Navegação rápida</p>
+          <h2 id="titulo-explore">Explore o portal</h2>
+        </div>
+        <p>Áreas pensadas para pesquisa escolar, memória local e projetos do Ceará Científico.</p>
+      </div>
+
+      <div class="grade-cards">
+        <a class="card-link" href="pages/historia.html">
+          <span aria-hidden="true">📜</span>
+          <h3>História</h3>
+          <p>Origem da comunidade, linha do tempo e registros importantes.</p>
+        </a>
+        <a class="card-link" href="pages/memoria.html">
+          <span aria-hidden="true">🎙</span>
+          <h3>Memória</h3>
+          <p>Depoimentos, relatos, curiosidades e saberes dos moradores.</p>
+        </a>
+        <a class="card-link" href="pages/agricola.html">
+          <span aria-hidden="true">🌱</span>
+          <h3>Produção Agrícola</h3>
+          <p>Dados de cultivo, práticas sustentáveis e economia local.</p>
+        </a>
+        <a class="card-link" href="pages/Plantação Nativa.html">
+          <span aria-hidden="true">🌵</span>
+          <h3>Plantação Nativa</h3>
+          <p>Espécies regionais, preservação ambiental e caatinga.</p>
+        </a>
+        <a class="card-link" href="pages/Plantas Medicinais.html">
+          <span aria-hidden="true">🧪</span>
+          <h3>Plantas Medicinais</h3>
+          <p>Uso tradicional, cuidados e pesquisa orientada por professores.</p>
+        </a>
+        <a class="card-link card-link--ia" href="#assistente-ia">
+          <span aria-hidden="true">🤖</span>
+          <h3>Assistente IA</h3>
+          <p>Base preparada para chat educacional, quizzes e recomendações.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="container secao secao-reportagens" aria-labelledby="titulo-reportagens">
+      <div class="secao__cabecalho">
+        <div>
+          <p class="selo">Reportagens especiais</p>
+          <h2 id="titulo-reportagens">Pesquisa, campo e tecnologia</h2>
+        </div>
+        <p>Leituras principais do portal, produzidas para aprofundar temas do Ceará Científico e orientar pesquisas dos estudantes.</p>
+      </div>
+
+      <div class="grade-reportagens">
+        <a class="reportagem-card reportagem-card--educacao" href="pages/reportagem-educacao.html">
+          <span class="reportagem-card__categoria">Educação do Campo</span>
+          <h3>A Escola que Nasce da Terra</h3>
+          <p>Uma reportagem sobre Pedagogia da Alternância, escola do campo, mística e direito de aprender sem deixar o território.</p>
+          <strong>Ler reportagem →</strong>
+        </a>
+
+        <a class="reportagem-card reportagem-card--clima" href="pages/reportagem-clima.html">
+          <span class="reportagem-card__categoria">Clima e Agricultura</span>
+          <h3>Mudanças Climáticas Ameaçam o Futuro do Campo</h3>
+          <p>Investigação sobre os impactos das emergências climáticas no assentamento e na produção agrícola local.</p>
+          <strong>Ler reportagem →</strong>
+        </a>
+
+        <a class="reportagem-card reportagem-card--ia" href="pages/materia_ia_educacao_v2.html">
+          <span class="reportagem-card__categoria">Tecnologia e Escola</span>
+          <h3>IA na sala de aula</h3>
+          <p>Uma leitura crítica sobre inteligência artificial, orientação docente, letramento digital e futuro da aprendizagem.</p>
+          <strong>Ler reportagem →</strong>
+        </a>
+      </div>
+    </section>
+
+    <section class="faixa">
+      <div class="container painel-home">
+        <section aria-labelledby="noticias">
+          <div class="secao__cabecalho secao__cabecalho--compacto">
+            <div>
+              <p class="selo">Atualizações diárias</p>
+              <h2 id="noticias">Educação &amp; Inovação</h2>
+              <p class="secao__subtitulo">Vestibulares · Tecnologia · Agroecologia · ENEM</p>
+            </div>
+            <span class="badge-ao-vivo">🔴 Ao vivo</span>
+          </div>
+          <div class="lista-noticias" data-render="noticias"></div>
+        </section>
+
+        <aside class="eventos" aria-labelledby="eventos-mes">
+          <p class="selo">Agenda</p>
+          <h2 id="eventos-mes">Eventos do mês</h2>
+          <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FFortaleza"
+          style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"> </iframe>
+         </iframe>
+          <div data-render="eventos"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container secao chamada-ia" id="assistente-ia" aria-labelledby="titulo-ia">
+      <div>
+        <p class="selo">Próxima etapa</p>
+        <h2 id="titulo-ia">Inteligência Artificial educacional</h2>
+        <p>O portal já possui estrutura para um assistente virtual. A chave da API deve ficar em um backend seguro, e o frontend deve conversar apenas com esse endpoint protegido.</p>
+      </div>
+      <ul class="lista-check">
+        <li>Responder dúvidas educacionais.</li>
+        <li>Gerar quizzes sobre os conteúdos do portal.</li>
+        <li>Recomendar páginas e materiais pedagógicos.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script type="module" src="js/app.js?v=20260608-2"></script>
+  <script src="js/chat-standalone.js?v=20260526"></script>
+  <script src="js/noticias.js?v=20260525"></script>
+</body>
+</html>
+
+

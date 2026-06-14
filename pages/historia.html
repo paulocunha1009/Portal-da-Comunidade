@@ -1,0 +1,542 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A história da comunidade: origens, linha do tempo, personagens e registros do projeto Ceará Científico.">
+  <title>História da Comunidade | Portal da Comunidade</title>
+  <link rel="stylesheet" href="../css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="../css/portal-responsivo.css?v=20260608-2">
+  <style>
+    /* ── Créditos e ficha técnica ──────────────────────────── */
+    .creditos-reportagem {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-top: 3px solid var(--cor-primaria);
+      border-radius: var(--raio);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .creditos-reportagem__titulo {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 1.25rem;
+    }
+    .creditos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 2rem;
+    }
+    .credito-item strong {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 0.2rem;
+    }
+    .credito-item span {
+      display: block;
+      font-weight: 700;
+      color: var(--cor-primaria-escura);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .credito-item p {
+      font-size: 0.82rem;
+      color: var(--cor-acento);
+      margin: 0.15rem 0 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .creditos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="historia">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="../index.html" aria-label="Ir para a página inicial">
+                <!-- LOGO ATUALIZADA -->
+        <img src="../img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">â˜°</span><span>Menu</span>
+      </button>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="historia.html" data-page-link="historia">História</a></li>
+          <li><a href="memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="../contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero__imagem" data-image-placeholder="../img/banner/banner-historia.jpg">
+      <img src="../img/banner/banner-historia.jpg" alt="Vista da comunidade ao longo dos anos" data-fallback-hidden>
+    </div>
+    <div class="container hero__conteudo">
+      <p class="trilha" style="color:rgba(255,255,255,0.7);margin-bottom:12px;">
+        <a href="../index.html" style="color:#fff;">Início</a> &rsaquo; História
+      </p>
+      <p class="selo">História da comunidade</p>
+      <h1>As raízes que<br>nos definem</h1>
+      <p>Uma jornada por décadas de luta, cultura e pertencimento no coração do Ceará.</p>
+      <div class="artigo-meta-hero">
+        <span>Ceará Científico</span>
+        <span>Atualizado em maio de 2026</span>
+        <span>Leitura: 8 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE METADADOS -->
+  <div class="artigo-barra">
+    <div class="container artigo-barra__conteudo">
+      <div class="artigo-barra__info">
+        <span class="artigo-categoria">História</span>
+        <time datetime="2026-05-20">20 de maio de 2026</time>
+        <span>Por estudantes do Curso Técnico em Informática</span>
+      </div>
+      <a class="botao botao--pequeno" href="../contato.html">Contribuir com registros</a>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main id="conteudo">
+    <div class="container artigo-layout">
+
+      <!-- CORPO DO ARTIGO -->
+      <article class="artigo-corpo">
+
+        <!-- PARÁGRAFO DE ABERTURA -->
+        <p class="artigo-lead">
+          No litoral oeste do Ceará, a poucos quilômetros de Itarema, ergueu-se um assentamento
+          que nasceu do sangue e da coragem de trabalhadores rurais que se recusaram a ceder suas
+          terras a uma grande empresa. O Assentamento Lagoa do Mineiro é hoje lar de 214 famílias
+          distribuídas em sete comunidades — uma conquista forjada na luta pela Reforma Agrária,
+          selada por mártires e sustentada por décadas de organização coletiva.
+        </p>
+
+        <!-- DESTAQUE: REPORTAGEM ESPECIAL — EDUCAÇÃO -->
+        <div style="background:linear-gradient(135deg,#174726,#246b3a);border-radius:var(--raio);padding:2rem;margin:2rem 0;color:#fff;">
+          <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.65);margin-bottom:0.5rem;">
+            📚 Reportagem especial · Ceará Científico 2026
+          </p>
+          <h2 style="color:#fff;font-size:1.4rem;margin:0 0 0.75rem;line-height:1.3;">
+            A Escola que Nasce da Terra
+          </h2>
+          <p style="color:rgba(255,255,255,0.85);font-size:0.92rem;line-height:1.6;margin:0 0 1.25rem;">
+            Educação do Campo, Educação Profissional, Pedagogia da Alternância, Místicas e
+            Tempo Comunidade — conheça as bases que tornam a EEMPC Francisco Araújo Barros
+            uma escola genuinamente diferente, construída para e pela comunidade do
+            Assentamento Lagoa do Mineiro.
+          </p>
+          <a href="reportagem-educacao.html"
+             style="display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--cor-primaria-escura);padding:0.65rem 1.25rem;border-radius:var(--raio-pequeno,6px);font-weight:700;font-size:0.88rem;text-decoration:none;">
+            Ler a reportagem completa →
+          </a>
+        </div>
+
+        <!-- SEÇÃO 1: ORIGEM -->
+        <h2 class="artigo-titulo-secao">Origem do assentamento</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/historia-origem.jpg">
+            <img src="../img/galeria/historia-origem.jpg" alt="Primeiros moradores e construções da comunidade" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/historia-origem.jpg — Substitua por foto das origens da comunidade</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              As terras que hoje formam o assentamento pertenciam ao senhor Francisco Teófilo de
+              Andrade. Por décadas, cerca de 150 famílias de trabalhadores rurais viveram ali como
+              moradores de condição — cultivando a terra, criando animais e construindo suas vidas
+              naquele chão. Tudo mudou em 1985, quando o padre Aristides, sobrinho e herdeiro de
+              Francisco Teófilo, anunciou durante uma missa a venda das terras para a empresa
+              DUCOCO — que pretendia instalar plantações de coco e expulsar todos os moradores.
+            </p>
+            <p>
+              A resposta dos trabalhadores não tardou. Reunidos em torno das Comunidades Eclesiais
+              de Base (CEBs) e apoiados pela Diocese de Itapipoca, sob a liderança de Dom Paulo,
+              os moradores começaram a se organizar nas leituras da Bíblia e nas reuniões noturnas.
+              Quando a DUCOCO construiu uma cerca para demarcar o terreno, cerca de 90 trabalhadores
+              a derrubaram diante de 16 policiais, bradando: <em>"ou a vida ou a morte!"</em>
+              O conflito custou a vida de três trabalhadores — mártires da luta pela terra.
+            </p>
+          </div>
+        </div>
+
+        <!-- CITAÇÃO DE DESTAQUE -->
+        <blockquote class="pullquote">
+          <p>"A gente sabia que podia morrer, mas não ia sair daqui. Essa terra foi comprada com o nosso suor. Ou a vida ou a morte!"</p>
+          <cite>— Trabalhadores do Assentamento Lagoa do Mineiro, 1986</cite>
+        </blockquote>
+
+        <!-- SEÇÃO 2: LINHA DO TEMPO -->
+        <h2 class="artigo-titulo-secao">Linha do tempo</h2>
+
+        <ol class="linha-do-tempo linha-do-tempo--visual">
+          <li>
+            <strong>Até 1985</strong>
+            <span>Cerca de 150 famílias vivem como moradores de condição nas terras de Francisco Teófilo de Andrade. O anúncio da venda para a DUCOCO desencadeia a organização dos trabalhadores, apoiados pelas CEBs e pela Diocese de Itapipoca.</span>
+          </li>
+          <li>
+            <strong>1984</strong>
+            <span>Francisco Araújo Barros começa a organizar famílias das comunidades vizinhas para lutar pelo direito à terra e à Reforma Agrária. Surgem os primeiros núcleos de resistência articulados às Comunidades Eclesiais de Base (CEBs).</span>
+          </li>
+          <li>
+            <strong>1986</strong>
+            <span>Trabalhadores derrubam a cerca da DUCOCO. Três mártires perdem a vida no conflito. O Decreto nº 92.826, de 26 de junho de 1986, determina a desapropriação das terras. Em 19 de setembro, os trabalhadores tomam posse formal do assentamento.</span>
+          </li>
+          <li>
+            <strong>1987</strong>
+            <span>Por meio da Portaria nº 573 do MIRAD, de 13 de julho de 1987, é criado oficialmente o Projeto de Assentamento Lagoa do Mineiro, reconhecendo as sete comunidades que o compõem. Em <strong>12 de agosto de 1987</strong>, Francisco Araújo Barros é assassinado a tiro e degolado com sua ferramenta de trabalho — torna-se mártir e dá nome à escola do assentamento.</span>
+          </li>
+          <li>
+            <strong>1989</strong>
+            <span>O MST surge no Ceará com apoio da CPT, da CUT e do Sindicato de Quixeramobim. Primeira ocupação estadual: Fazenda Reunidas de São Joaquim — hoje Assentamento 25 de Maio. A luta se expande por todo o litoral e sertão.</span>
+          </li>
+          <li>
+            <strong>1991</strong>
+            <span>Em 14 de abril de 1991, é fundada a COPAGLAM — Cooperativa dos Produtores Agrícolas do Assentamento Lagoa do Mineiro — com 204 membros, fortalecendo a economia solidária do assentamento.</span>
+          </li>
+          <li>
+            <strong>1998</strong>
+            <span>Construção do Açude Corrente, com capacidade de 731.250 m³, garantindo água para a produção agrícola e o abastecimento das comunidades.</span>
+          </li>
+          <li>
+            <strong>2002</strong>
+            <span>Início da <strong>Caminhada dos Mártires</strong>, articulada pelas CEBs, CPT e MST. Realizada todo dia 12 de agosto, homenageia os trabalhadores que tombaram na luta pela terra e repassa a memória às novas gerações. A caminhada parte da comunidade Corrente e encerra em Barbosa, na Igreja Nossa Senhora da Libertação.</span>
+          </li>
+          <li>
+            <strong>2005</strong>
+            <span>O <strong>Projeto Lagoa das Artes</strong> é contemplado pelo Programa BNB de Cultura. O assentamento torna-se <strong>Ponto de Cultura</strong>, integrando o coletivo "Nós: Artistas da Vida" com mais quatro assentamentos da região (Pachicu, Patos/Bela Vista, Salgado Cumprido). Cerca de 1.300 pessoas são beneficiadas pelas ações culturais.</span>
+          </li>
+          <li>
+            <strong>2010</strong>
+            <span>O <strong>Projeto de Lei 08/10</strong>, do Deputado Nelson Martins (PT), denomina oficialmente a escola do assentamento como <em>Francisco Araújo Barros</em>, aprovado pela Assembleia Legislativa do Estado do Ceará.</span>
+          </li>
+          <li>
+            <strong>2011</strong>
+            <span>Em 3 de março, começa a funcionar a EEMPC Francisco Araújo Barros, escola nomeada em homenagem ao mártir da luta pela terra. A autorização formal vem pelo Decreto nº 30.493, de 18 de abril de 2011.</span>
+          </li>
+          <li>
+            <strong>2012</strong>
+            <span>Em <strong>15 de fevereiro de 2012</strong>, solenidade oficial de inauguração da EEMPC Francisco Araújo Barros, com a Secretária de Educação <strong>Izolda Cela</strong>. Investimento de <strong>R$ 3,6 milhões</strong> dos governos federal e estadual. A escola dispõe de 12 salas, capacidade para 1.600 alunos, e 10 ha de Campo Experimental doados pelo assentamento.</span>
+          </li>
+          <li>
+            <strong>2014</strong>
+            <span>Em <strong>22 de abril de 2014</strong>, mais de 100 famílias ocupam a Fazenda Sítio Viana, em Itarema, organizadas pelo MST — nasce o <strong>Acampamento Francisco Araújo Barros</strong>, em homenagem ao mártir.</span>
+          </li>
+          <li>
+            <strong>2021</strong>
+            <span>Em <strong>12 de agosto de 2021</strong>, imissão de posse da antiga Fazenda Sítio Viana. Nasce o <strong>Assentamento Zé Santana</strong>, nome em homenagem a uma liderança do Lagoa do Mineiro. A regularização fundiária é viabilizada pela <strong>Lei nº 17.533/2021</strong> (Lei Wilson Brandão), por meio do IDACE.</span>
+          </li>
+          <li>
+            <strong>2022–2023</strong>
+            <span>Implantação dos cursos técnicos: em 2022, Administração e Agroecologia na modalidade subsequente; em 2023, cursos integrados de Agroecologia e Informática, ampliando o horizonte educacional dos jovens do assentamento.</span>
+          </li>
+          <li>
+            <strong>2026</strong>
+            <span>Estudantes do Curso Técnico em Informática desenvolvem o Portal da Comunidade como parte do projeto Ceará Científico, preservando e divulgando a história e os saberes do assentamento.</span>
+          </li>
+        </ol>
+
+        <!-- SEÇÃO 3: CRESCIMENTO -->
+        <h2 class="artigo-titulo-secao">Crescimento ao longo dos anos</h2>
+
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/historia-crescimento.jpg">
+            <img src="../img/galeria/historia-crescimento.jpg" alt="Comunidade em fase de crescimento e desenvolvimento" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/historia-crescimento.jpg — Substitua por foto da fase de crescimento</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Com a posse da terra conquistada, as sete comunidades do assentamento — Saguim,
+              Lagoa do Mineiro, Mineiro Velho, Corrente, Barbosa, Cedro e Córrego das Moças —
+              iniciaram a construção coletiva de uma nova vida. A COPAGLAM, fundada em 1991,
+              passou a organizar a produção agrícola e a comercialização, garantindo renda e
+              autonomia para as famílias assentadas. O Açude Corrente, concluído em 1998,
+              transformou a produção local ao assegurar irrigação durante o período de estiagem.
+            </p>
+            <p>
+              Hoje, o assentamento reúne 214 famílias — 130 assentadas e 90 agregadas —
+              distribuídas nas sete comunidades. A escola EEMPC Francisco Araújo Barros, com <strong>249 alunos distribuídos em 8 turmas em 2025</strong>, atendendo estudantes de <strong>25 comunidades</strong> do entorno, tornou-se o centro irradiador de educação e cultura. Adota a Pedagogia da Alternância para integrar o Tempo Escola ao Tempo Comunidade, valorizando os saberes do campo em cada etapa da formação.
+            </p>
+          </div>
+        </div>
+
+        <!-- IMAGEM DESTAQUE (full-width) -->
+        <figure class="imagem-destaque" data-image-placeholder="../img/galeria/historia-panorama.jpg">
+          <img src="../img/galeria/historia-panorama.jpg" alt="Vista panorâmica atual da comunidade" loading="lazy" data-fallback-hidden>
+          <figcaption>Vista panorâmica do Assentamento Lagoa do Mineiro, Itarema — CE</figcaption>
+        </figure>
+
+        <!-- SEÇÃO ARTE CULTURA E IDENTIDADE -->
+        <h2 class="artigo-titulo-secao">Arte, Cultura e Identidade — Ponto de Cultura "Nós: Artistas da Vida"</h2>
+
+        <p>A experiência de ocupação da terra no Assentamento Lagoa do Mineiro passa não só pelo desenvolvimento da atividade agrícola: as manifestações artísticas e culturais são cultivadas de modo a responder aos anseios do povo assentado, manter a coesão social e preservar a memória dos tempos de luta. Em 2005, o <strong>Projeto Lagoa das Artes</strong> foi contemplado pelo Programa BNB de Cultura, tornando o assentamento um Ponto de Cultura. Junto com mais quatro assentamentos, formou o coletivo <strong>"Nós: Artistas da Vida"</strong>, que reúne cerca de <strong>1.300 pessoas</strong> em ações de arte, formação e geração de renda.</p>
+
+        <p>Os <strong>Mestres e Mestras do Reisado e Dramas de Lagoa do Mineiro</strong> se destacam no âmbito da cultura popular tradicional, com apresentações que combinam elementos cênicos cômicos e improvisados, histórias cantadas e contadas. O coletivo organiza o Festival de Poetas Populares e Emboladores de Coco, o Encontro das Dramistas e a publicação de cordéis escritos pelos próprios alunos das escolas do assentamento.</p>
+
+        <div class="destaque-verde" style="margin:1.25rem 0;">
+          <p><strong>Manifestações culturais do assentamento:</strong> Grupo de Teatro · Reisado e Dramas · Coral Juvenil · Banda Musical · Literatura de Cordel · São Gonçalo · Torém (descendência indígena) · Místicas · <strong>Caminhada dos Mártires</strong> (todo 12 de agosto, desde 2002 — da comunidade Corrente até a Igreja Nossa Senhora da Libertação, em Barbosa).</p>
+        </div>
+
+        <blockquote class="pullquote">
+          <p>"Do sangue dos nossos mártires nasce à força e a garra para continuarmos a luta em defesa da vida, dos nossos territórios livres da opressão."</p>
+          <cite>— Cosma Damasceno, dirigente estadual do MST e Coordenadora Pedagógica da EEMPC Francisco Araújo Barros</cite>
+        </blockquote>
+
+        <!-- SEÇÃO 4: GALERIA -->
+        <h2 class="artigo-titulo-secao">Galeria histórica</h2>
+
+        <div class="galeria-historica">
+          <figure data-image-placeholder="../img/galeria/historia-gal-01.jpg">
+            <img src="../img/galeria/historia-gal-01.jpg" alt="Trabalhadores organizados durante a luta pela terra, 1986" loading="lazy" data-fallback-hidden>
+            <figcaption>Trabalhadores organizados durante o conflito com a DUCOCO, 1986</figcaption>
+          </figure>
+          <figure data-image-placeholder="../img/galeria/historia-gal-02.jpg">
+            <img src="../img/galeria/historia-gal-02.jpg" alt="Cerimônia de posse formal do assentamento, setembro de 1986" loading="lazy" data-fallback-hidden>
+            <figcaption>Posse formal do assentamento — 19 de setembro de 1986</figcaption>
+          </figure>
+          <figure data-image-placeholder="../img/galeria/historia-gal-03.jpg">
+            <img src="../img/galeria/historia-gal-03.jpg" alt="Fundação da COPAGLAM em 14 de abril de 1991" loading="lazy" data-fallback-hidden>
+            <figcaption>Fundação da COPAGLAM — Cooperativa dos Produtores Agrícolas, 1991</figcaption>
+          </figure>
+          <figure data-image-placeholder="../img/galeria/historia-gal-04.jpg">
+            <img src="../img/galeria/historia-gal-04.jpg" alt="Inauguração da Escola EEMPC Francisco Araújo Barros, 2011" loading="lazy" data-fallback-hidden>
+            <figcaption>Início do funcionamento da EEMPC Francisco Araújo Barros — março de 2011</figcaption>
+          </figure>
+          <figure data-image-placeholder="../img/galeria/historia-gal-05.jpg">
+            <img src="../img/galeria/historia-gal-05.jpg" alt="Estudantes do Curso Técnico em Informática, turma 2025.1" loading="lazy" data-fallback-hidden>
+            <figcaption>Primeira turma do Curso Técnico em Informática — 2025.1, marco histórico do assentamento</figcaption>
+          </figure>
+        </div>
+
+        <!-- SEÇÃO 5: PERSONAGENS -->
+        <h2 class="artigo-titulo-secao">Personagens da história</h2>
+
+        <div class="grade-personagens">
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/personagem-01.jpg">
+              <img src="../img/galeria/personagem-01.jpg" alt="Francisco Araújo Barros — mártir da luta pela terra" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong>Francisco Araújo Barros</strong>
+              <span>Mártir da Reforma Agrária · Lagoa do Mineiro, Itarema</span>
+              <p>Nasceu em 31 de maio de 1945 na localidade de Lagoa do Mineiro, em Itarema. Casou-se com a agricultora Maria de Jesus da Silva, com quem teve oito filhos. Apenas alfabetizado — o difícil acesso à escola e o excesso de trabalho impediram que fosse além. A partir de 1984, reuniu famílias de comunidades vizinhas para lutar pela terra, pela Reforma Agrária e pela justiça social. Em <strong>12 de agosto de 1987</strong>, durante trabalho coletivo, foi morto a tiro e degolado com sua própria ferramenta. Tornou-se mártir e símbolo máximo da resistência camponesa. A escola do assentamento leva seu nome em sua homenagem.</p>
+            </div>
+          </div>
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/personagem-02.jpg">
+              <img src="../img/galeria/personagem-02.jpg" alt="Dom Paulo — Bispo da Diocese de Itapipoca" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong>Dom Paulo</strong>
+              <span>Diocese de Itapipoca — apoio pastoral</span>
+              <p>Bispo da Diocese de Itapipoca que acolheu e apoiou os trabalhadores rurais por meio das Comunidades Eclesiais de Base (CEBs). Seu suporte foi decisivo para a organização da resistência e para garantir que a luta chegasse ao conhecimento das autoridades e da sociedade.</p>
+            </div>
+          </div>
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/personagem-03.jpg">
+              <img src="../img/galeria/personagem-03.jpg" alt="Maria Ivaniza Martins de Sousa Nascimento — diretora da escola" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong>Maria Ivaniza Martins de Sousa Nascimento</strong>
+              <span>Diretora — EEMPC Francisco Araújo Barros</span>
+              <p>Liderança educacional à frente da escola do assentamento, responsável por consolidar a Pedagogia da Alternância e a implantação dos cursos técnicos em Informática e Agroecologia, abrindo novos caminhos para os jovens da comunidade.</p>
+            </div>
+          </div>
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/personagem-04.jpg">
+              <img src="../img/galeria/personagem-04.jpg" alt="Cosma Damasceno — Coordenadora Pedagógica" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong>Cosma dos Santos Damasceno</strong>
+              <span>Coordenadora Pedagógica — Militante MST</span>
+              <p>Mestre em Agroecossistemas pela Universidade Federal de Santa Catarina (UFSC). Coordenadora Pedagógica da EEMPC Francisco Araújo Barros e dirigente estadual do MST. Referência na implementação da Pedagogia da Alternância, do Campo Experimental e da matriz tecnológica agroecológica na escola do assentamento.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             CRÉDITOS DA PESQUISA
+        ════════════════════════════════════ -->
+        <div class="creditos-reportagem" aria-label="Créditos da pesquisa histórica">
+          <p class="creditos-reportagem__titulo">Créditos e ficha técnica</p>
+          <div class="creditos-grid">
+            <div class="credito-item">
+              <strong>Pesquisa e documentação</strong>
+              <span>Estudantes do Curso Técnico em Informática</span>
+              <p>EEMPC Francisco Araújo Barros · Itarema, CE</p>
+            </div>
+            <div class="credito-item">
+              <strong>Instituição</strong>
+              <span>E.E.M.P.C Francisco Araújo Barros</span>
+              <p>Educação Profissional em Tempo Integral · Itarema, CE</p>
+            </div>
+            <div class="credito-item">
+              <strong>Projeto</strong>
+              <span>Ceará Científico 2026</span>
+              <p>Portal Digital da Comunidade — memória e história do Assentamento Lagoa do Mineiro</p>
+            </div>
+            <div class="credito-item">
+              <strong>Território documentado</strong>
+              <span>Assentamento Lagoa do Mineiro</span>
+              <p>214 famílias · 7 comunidades · Itarema, CE · desde 1986</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referências bibliográficas -->
+        <details style="margin:1.5rem 0;border:1px solid var(--cor-borda);border-radius:var(--raio);padding:1rem 1.25rem;">
+          <summary style="font-size:0.85rem;font-weight:700;color:var(--cor-primaria-escura);cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <span>▶</span> Referências bibliográficas
+          </summary>
+          <ul style="margin-top:1rem;font-size:0.82rem;color:var(--cor-texto-suave);line-height:2;padding-left:1.25rem;">
+            <li>BRASIL. Decreto n.º 92.826, de 19 de setembro de 1986. <em>Cria o Projeto de Assentamento Lagoa do Mineiro.</em> Diário Oficial da União, Brasília, 1986.</li>
+            <li>BRASIL. Ministério do Desenvolvimento Agrário. Portaria n.º 573/MIRAD, de 1987. <em>Cria oficialmente o PA Lagoa do Mineiro.</em> Brasília: MIRAD, 1987.</li>
+            <li>CALDART, Roseli Salete. <em>Pedagogia do Movimento Sem Terra.</em> 3. ed. São Paulo: Expressão Popular, 2004.</li>
+            <li>CANUTO, Antônio; LUZ, Cássia Regina da S.; ANDRADE, Thiago Valentim P. (Orgs.). <em>Conflitos no Campo — Brasil.</em> Goiânia: CPT Nacional, 2022.</li>
+            <li>CEARÁ. Decreto n.º 30.493, de 3 de março de 2011. <em>Autoriza o funcionamento da EEMPC Francisco Araújo Barros.</em> Diário Oficial do Estado do Ceará, Fortaleza, 2011.</li>
+            <li>COMISSÃO PASTORAL DA TERRA (CPT). <em>Conflitos no Campo Brasil.</em> Goiânia: CPT, 1986–2025.</li>
+            <li>FERNANDES, Bernardo Mançano. <em>A Formação do MST no Brasil.</em> Petrópolis: Vozes, 2000.</li>
+            <li>FREIRE, Paulo. <em>Pedagogia do Oprimido.</em> 17. ed. Rio de Janeiro: Paz e Terra, 1987.</li>
+            <li>INCRA — Instituto Nacional de Colonização e Reforma Agrária. <em>Relatório de assentamentos do Ceará.</em> Brasília: INCRA, 2023.</li>
+            <li>MARTINS, José de Souza. <em>O Sujeito Oculto: ordem e transgressão na reforma agrária.</em> Porto Alegre: UFRGS, 2003.</li>
+            <li>SILVA, José Graziano da. <em>A modernização dolorosa: estrutura agrária, fronteira agrícola e trabalhadores rurais no Brasil.</em> Rio de Janeiro: Zahar, 1982.</li>
+            <li>STÉDILE, João Pedro; FERNANDES, Bernardo Mançano. <em>Brava Gente: a trajetória do MST e a luta pela terra no Brasil.</em> São Paulo: Perseu Abramo, 1999.</li>
+            <li>CEARÁ. Lei nº 17.533, de 22 de junho de 2021 (Lei Wilson Brandão). <em>Regularização fundiária de assentamentos estaduais.</em> Fortaleza: IDACE, 2021.</li>
+            <li>DAMASCENO, Cosma dos Santos. <em>Contribuições e desafios da Escola do Campo Francisco Araújo Barros para construção do projeto de Agricultura Camponesa do MST — Ceará.</em> Dissertação — UFSC, Florianópolis, 2015.</li>
+            <li>DO NASCIMENTO, Cícero Danilo G.; DINIZ, Aldiva Sales. <em>A EEM Francisco Araújo Barros, um símbolo de resistência camponesa no Ceará.</em> MAG/UVA, Sobral, CE.</li>
+            <li>MST — Página do MST. <em>Acampamento Francisco Araújo Barros completa dois anos.</em> Por Tiago Pereira, 2016.</li>
+            <li>MST — Página do MST. <em>No Ceará, famílias Sem Terra comemoram conquista da terra após sete anos de luta.</em> Por Aline Oliveira, 2021.</li>
+            <li>PONTO DE CULTURA "Nós: Artistas da Vida". <em>Histórico do Assentamento Lagoa do Mineiro.</em> Itarema, CE.</li>
+          </ul>
+        </details>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="artigo-sidebar" aria-label="Informações complementares">
+
+        <div class="card-lateral destaque-lateral">
+          <h2 class="card-lateral__titulo" style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:12px;">Fatos da comunidade</h2>
+          <dl class="fatos-rapidos">
+            <div class="fatos-rapidos li" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Fundação</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">1986</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Estado</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Ceará</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Famílias</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">214 famílias</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Escola</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Sim</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Pessoas (rede)</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">~1.300</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Alunos (2025)</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">249 · 25 com.</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Mártir</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">12/08/1987</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Bioma</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Caatinga</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="card-lateral">
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:4px;">Explore o portal</h2>
+          <ul class="card-lateral__lista">
+            <li><a href="reportagem-educacao.html">📚 Educação do Campo</a></li>
+            <li><a href="memoria.html">Depoimentos de moradores</a></li>
+            <li><a href="agricola.html">Produção Agrícola</a></li>
+            <li><a href="Plantação Nativa.html">Plantas Nativas da região</a></li>
+            <li><a href="Plantas Medicinais.html">Plantas Medicinais</a></li>
+            <li><a href="../contato.html">Enviar documentos históricos</a></li>
+          </ul>
+        </div>
+
+        <div class="card-lateral" style="background:linear-gradient(135deg,#eef7ef,#fff);border-color:rgba(36,107,58,0.2);">
+          <p class="selo" style="margin-bottom:8px;">Projeto escolar</p>
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.05rem;">Ceará Científico 2026</h2>
+          <p style="margin-top:8px;color:var(--cor-texto-suave);font-size:0.88rem;line-height:1.6;">
+            Este portal foi construído por estudantes do Curso Técnico em Informática como
+            parte do projeto Ceará Científico, com o objetivo de preservar e valorizar a
+            memória da comunidade.
+          </p>
+          <a class="botao" href="../contato.html" style="margin-top:14px;font-size:0.88rem;min-height:38px;">Falar com o projeto</a>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- FAIXA DE CHAMADA PARA CONTRIBUIÇÃO -->
+    <section class="faixa-contribuir" aria-labelledby="titulo-contribuir">
+      <div class="container faixa-contribuir__conteudo">
+        <div>
+          <p class="selo">Preservação da memória</p>
+          <h2 id="titulo-contribuir">Você tem fotos ou documentos históricos?</h2>
+          <p>Ajude a enriquecer esta página. Fotos antigas, certidões, mapas, cartas — qualquer registro é bem-vindo para contar melhor a história desta comunidade.</p>
+        </div>
+        <a class="botao botao--claro" href="../contato.html">Enviar meus registros</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática</p>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script type="module" src="../js/app.js?v=20260608-2"></script>
+  <script src="../js/chat-standalone.js?v=20260526"></script>
+</body>
+</html>
+
+
+

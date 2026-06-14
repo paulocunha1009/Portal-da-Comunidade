@@ -1,0 +1,6 @@
+Coloque aqui ícones, logos e marcas do projeto.
+
+O layout atual usa uma marca textual "CC" em CSS, então o site não quebra se não houver logo.
+Se quiser adicionar uma imagem oficial depois, prefira:
+- logo.png
+- favicon.png

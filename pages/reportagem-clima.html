@@ -1,0 +1,1018 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mudanças climáticas ameaçam o futuro do campo: investigação sobre os impactos econômicos das emergências climáticas no Assentamento Salgado Comprido, em Itarema, CE — Ceará Científico 2025.">
+  <meta name="keywords" content="mudanças climáticas, agricultura familiar, sertão cearense, Itarema, Salgado Comprido, Ceará Científico, reforma agrária, seca, produção agrícola">
+  <title>Mudanças Climáticas Ameaçam o Futuro do Campo | Portal da Comunidade</title>
+  <link rel="stylesheet" href="../css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="../css/portal-responsivo.css?v=20260608-2">
+  <style>
+    /* ── Elementos jornalísticos adicionais ────────────────────────────── */
+
+    /* Estatísticas econômicas */
+    .dados-economicos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .dado-card {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .dado-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--cor-primaria);
+    }
+    .dado-card__numero {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--cor-primaria);
+      line-height: 1;
+      display: block;
+      letter-spacing: -1px;
+    }
+    .dado-card__label {
+      font-size: 0.78rem;
+      color: var(--cor-texto-suave);
+      margin-top: 0.5rem;
+      display: block;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    .dado-card--destaque .dado-card__numero {
+      color: var(--cor-acento, #0f766e);
+    }
+    .dado-card--destaque::before {
+      background: var(--cor-acento, #0f766e);
+    }
+
+    /* Grid de cultivos */
+    .grade-cultivos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .cultivo-card {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 1rem 0.75rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cultivo-card:hover {
+      border-color: var(--cor-primaria);
+      transform: translateY(-2px);
+    }
+    .cultivo-card__emoji {
+      font-size: 1.75rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .cultivo-card__nome {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cor-primaria-escura);
+      line-height: 1.3;
+    }
+
+    /* Lista de impactos climáticos */
+    .impactos-lista {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .impactos-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--cor-borda);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .impactos-lista li:last-child { border-bottom: none; }
+    .impactos-lista__icone {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .impactos-lista strong {
+      color: var(--cor-primaria-escura);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Ciclo climático visual */
+    .ciclo-climatico {
+      background: linear-gradient(135deg, #fff8f0, #fff);
+      border: 1px solid #f59e0b33;
+      border-left: 4px solid #f59e0b;
+      border-radius: var(--raio);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+    }
+    .ciclo-climatico p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #78350f;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+    .ciclo-climatico strong { color: #92400e; }
+
+    /* Grid de soluções futuras */
+    .grade-solucoes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .solucao-card {
+      background: linear-gradient(135deg, #eef7ef, #fff);
+      border: 1px solid rgba(36,107,58,0.2);
+      border-radius: var(--raio);
+      padding: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .solucao-card:hover {
+      border-color: var(--cor-primaria);
+      transform: translateY(-2px);
+    }
+    .solucao-card__icone {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .solucao-card strong {
+      display: block;
+      color: var(--cor-primaria-escura);
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .solucao-card p {
+      color: var(--cor-texto-suave);
+      font-size: 0.82rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Bloco de dado destacado (número grande com contexto) */
+    .bloco-numero {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .bloco-numero__valor {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--cor-primaria);
+      line-height: 1;
+      flex-shrink: 0;
+      letter-spacing: -2px;
+    }
+    .bloco-numero__texto strong {
+      display: block;
+      color: var(--cor-primaria-escura);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .bloco-numero__texto span {
+      font-size: 0.88rem;
+      color: var(--cor-texto-suave);
+      line-height: 1.5;
+    }
+
+    /* Créditos da reportagem */
+    .creditos-reportagem {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-top: 3px solid var(--cor-primaria);
+      border-radius: var(--raio);
+      padding: 2rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .creditos-reportagem__titulo {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 1.25rem;
+    }
+    .creditos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .credito-item strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 0.2rem;
+    }
+    .credito-item span {
+      font-size: 0.9rem;
+      color: var(--cor-primaria-escura);
+      font-weight: 600;
+    }
+    .credito-item p {
+      font-size: 0.82rem;
+      color: var(--cor-texto-suave);
+      margin: 0.15rem 0 0;
+    }
+
+    /* Citação final grande */
+    .frase-final {
+      text-align: center;
+      padding: 3rem 2rem;
+      margin: 2rem 0;
+      background: linear-gradient(135deg, var(--cor-primaria), var(--cor-acento, #0f766e));
+      border-radius: var(--raio);
+      color: #fff;
+    }
+    .frase-final p {
+      font-size: 1.3rem;
+      font-style: italic;
+      line-height: 1.7;
+      font-weight: 400;
+      margin: 0 0 1rem;
+      color: rgba(255,255,255,0.95);
+    }
+    .frase-final cite {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      font-style: normal;
+    }
+
+    /* Divisor estilizado */
+    .divisor-secao {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+      color: var(--cor-texto-suave);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .divisor-secao::before,
+    .divisor-secao::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--cor-borda);
+    }
+
+    /* Responsividade adicional */
+    @media (max-width: 720px) {
+      .dados-economicos { grid-template-columns: repeat(2, 1fr); }
+      .grade-solucoes { grid-template-columns: 1fr; }
+      .creditos-grid { grid-template-columns: 1fr; }
+      .bloco-numero { flex-direction: column; text-align: center; gap: 0.75rem; }
+      .bloco-numero__valor { font-size: 2.75rem; }
+      .frase-final p { font-size: 1.1rem; }
+    }
+    @media (max-width: 520px) {
+      .dados-economicos { grid-template-columns: 1fr 1fr; }
+      .dado-card__numero { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body data-page="reportagem-clima">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="../index.html" aria-label="Ir para a página inicial">
+                <!-- LOGO ATUALIZADA -->
+        <img src="../img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span><span>Menu</span>
+      </button>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="historia.html" data-page-link="historia">História</a></li>
+          <li><a href="memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="../contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO BANNER — Impacto jornalístico
+  ════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__imagem" data-image-placeholder="../img/banner/banner-reportagem-clima.jpg">
+      <img src="../img/banner/banner-reportagem-clima.jpg" alt="Terra ressecada e família de agricultores no Assentamento Salgado Comprido, Itarema — CE" data-fallback-hidden>
+    </div>
+    <div class="container hero__conteudo">
+      <p class="trilha" style="color:rgba(255,255,255,0.7);margin-bottom:12px;">
+        <a href="../index.html" style="color:#fff;">Início</a> &rsaquo;
+        <a href="agricola.html" style="color:#fff;">Produção Agrícola</a> &rsaquo; Reportagem
+      </p>
+      <p class="selo">Ceará Científico 2025 · Investigação Especial</p>
+      <h1>Mudanças Climáticas<br>Ameaçam o Futuro<br>do Campo</h1>
+      <p>No Sertão Cearense, famílias rurais enfrentam a maior crise de uma geração.</p>
+      <div class="artigo-meta-hero">
+        <span>Maria Ariane Verissimo &amp; Alana dos Santos Felix</span>
+        <span>Itarema, Ceará · Maio de 2025</span>
+        <span>Leitura: 10 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE METADADOS -->
+  <div class="artigo-barra">
+    <div class="container artigo-barra__conteudo">
+      <div class="artigo-barra__info">
+        <span class="artigo-categoria">Investigação · Agricultura &amp; Clima</span>
+        <time datetime="2025-05-01">Maio de 2025</time>
+        <span>E.E.M.P.C Francisco Araújo Barros</span>
+      </div>
+      <a class="botao botao--pequeno" href="../contato.html">Contribuir com a pesquisa</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+  ════════════════════════════════════════════════════════════ -->
+  <main id="conteudo">
+    <div class="container artigo-layout">
+
+      <!-- ─── CORPO DO ARTIGO ─────────────────────────────── -->
+      <article class="artigo-corpo">
+
+        <!-- ABERTURA IMPACTANTE -->
+        <p class="artigo-lead">
+          Uma investigação sobre os impactos econômicos das emergências climáticas no
+          Assentamento Salgado Comprido, em Itarema, revela a vulnerabilidade de quem vive
+          da terra — e as estratégias de resistência de uma comunidade que se recusa a desistir.
+        </p>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 1: QUANDO A SECA NÃO DÁ TRÉGUA
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Quando a seca não dá trégua</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-seca-01.jpg">
+            <img src="../img/galeria/agricola-seca-01.jpg" alt="Paisagem do assentamento com terra ressecada e família de agricultores" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-seca-01.jpg — Terra ressecada no Assentamento Salgado Comprido</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              No coração do sertão cearense, onde o sol castiga a terra vermelha e as chuvas
+              tornaram-se promessas cada vez mais raras, famílias agricultoras enfrentam uma
+              batalha silenciosa contra as mudanças climáticas. O Assentamento Salgado
+              Comprido, em Itarema, é um exemplo vivo dessa realidade.
+            </p>
+            <p>
+              Aqui, <strong>15 famílias dependem quase integralmente do que a terra oferece</strong>.
+              Esta reportagem é resultado de um projeto científico desenvolvido na Escola Estadual
+              de Educação Profissional Carlos Francisco Araújo Barros, onde duas estudantes de
+              educação profissional, com orientação de uma educadora comprometida com a
+              realidade rural, mergulharam na complexidade de como as emergências climáticas
+              transformam a economia, a cultura e o cotidiano de quem vive do trabalho na terra.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="pullquote">
+          <p>"O que elas descobriram vai muito além de números. É uma história de resiliência, de saberes ancestrais que persistem, de esperança que não morre enquanto houver sementes para plantar."</p>
+          <cite>— Priscila Santos de Sousa, educadora orientadora</cite>
+        </blockquote>
+
+        <div class="divisor-secao">Dados da pesquisa</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 2: A AGRICULTURA QUE ALIMENTA
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">A agricultura que alimenta e sustenta</h2>
+
+        <p>
+          No Assentamento Salgado Comprido, a agricultura não é apenas um ofício herdado de
+          gerações. É o alicerce da vida econômica das famílias. Os dados da pesquisa revelam
+          uma realidade crua: <strong>a atividade agrícola é responsável por 50% de toda a
+          renda familiar</strong>. Essa dependência quase absoluta transforma cada evento
+          climático extremo em ameaça real à sobrevivência.
+        </p>
+
+        <!-- Cards de dados econômicos -->
+        <div class="dados-economicos" aria-label="Distribuição da renda familiar">
+          <div class="dado-card">
+            <span class="dado-card__numero">50%</span>
+            <span class="dado-card__label">Renda vinda da agricultura</span>
+          </div>
+          <div class="dado-card dado-card--destaque">
+            <span class="dado-card__numero">20%</span>
+            <span class="dado-card__label">Outras atividades diversificadas</span>
+          </div>
+          <div class="dado-card">
+            <span class="dado-card__numero">10%</span>
+            <span class="dado-card__label">Produção de frutas</span>
+          </div>
+          <div class="dado-card">
+            <span class="dado-card__numero">10%</span>
+            <span class="dado-card__label">Pecuária</span>
+          </div>
+        </div>
+
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-producao-01.jpg">
+            <img src="../img/galeria/agricola-producao-01.jpg" alt="Agricultores trabalhando no campo no assentamento" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-producao-01.jpg — Trabalho familiar nos cultivos do assentamento</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Os principais problemas enfrentados compõem um retrato desolador: queda da
+              produção agrícola, aumento dos custos dos alimentos, incidência crescente de
+              pragas e doenças e baixa disponibilidade de chuva — fatores que afetam
+              permanentemente o assentamento e suas famílias.
+            </p>
+            <p>
+              Quando a renda agrícola cai, não existe uma rede de proteção robusta. A maioria
+              das famílias não tem acesso a crédito formal, seguro-safra ou assistência técnica
+              regular. <strong>A crise climática é, para elas, também uma crise econômica
+              imediata.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="divisor-secao">Os cultivos</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 3: OS CULTIVOS QUE TECEM A VIDA
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Os cultivos que tecem a vida no campo</h2>
+
+        <p>
+          Nos quintais e pequenas glebas do assentamento, a diversidade cultivada conta a
+          história de um povo que conhece profundamente a terra. Os cultivos que sustentam
+          as famílias refletem necessidade econômica e segurança alimentar:
+        </p>
+
+        <!-- Grid de cultivos -->
+        <div class="grade-cultivos" aria-label="Cultivos do assentamento">
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🌽</span>
+            <span class="cultivo-card__nome">Milho</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🫘</span>
+            <span class="cultivo-card__nome">Feijão</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🍠</span>
+            <span class="cultivo-card__nome">Mandioca</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🥬</span>
+            <span class="cultivo-card__nome">Hortaliças</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🥥</span>
+            <span class="cultivo-card__nome">Coco</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🍎</span>
+            <span class="cultivo-card__nome">Caju</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🎃</span>
+            <span class="cultivo-card__nome">Jerimum</span>
+          </div>
+          <div class="cultivo-card">
+            <span class="cultivo-card__emoji">🐔</span>
+            <span class="cultivo-card__nome">Galinhas caipiras</span>
+          </div>
+        </div>
+
+        <p>
+          <strong>O milho é o soberano do assentamento</strong>, plantado em praticamente
+          todas as propriedades. Mas os períodos de plantio tornaram-se cada vez mais
+          imprevisíveis. As chuvas que deveriam chegar em outubro não vêm. O milho, plantado
+          com esperança, morre na estiagem antes de frutificar.
+        </p>
+        <p>
+          O feijão é a base da alimentação nordestina. A mandioca, que se transforma em
+          farinha, resiste melhor à seca, mas também é afetada por pragas. As hortaliças
+          sofrem com a falta d'água. Coco, caju, jerimum e galinhas caipiras completam a
+          economia diversificada — uma estratégia instintiva de não colocar todos os ovos
+          na mesma cesta.
+        </p>
+
+        <div class="divisor-secao">Impactos climáticos</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 4: QUANDO O CLIMA VIRA INIMIGO
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Quando o clima vira inimigo</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-clima-01.jpg">
+            <img src="../img/galeria/agricola-clima-01.jpg" alt="Plantação atingida pela seca intensa no sertão cearense" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-clima-01.jpg — Plantação afetada pela estiagem prolongada</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              As famílias do Assentamento Salgado Comprido percebem claramente as mudanças
+              climáticas. Não é abstração acadêmica. É presente imediato, sentido no corpo,
+              no bolso e na mesa.
+            </p>
+            <p>
+              A seca no sertão cearense não é novidade, mas sua intensidade e duração mudaram
+              drasticamente. <strong>O calendário agrícola centenário não serve mais.</strong>
+              O aumento das temperaturas favorece a proliferação de pragas, acelera a
+              evaporação da água e aumenta o estresse das plantas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Lista de impactos -->
+        <ul class="impactos-lista" aria-label="Principais impactos climáticos observados">
+          <li>
+            <span class="impactos-lista__icone">🔥</span>
+            <div>
+              <strong>Queimadas frequentes</strong>
+              Incêndios cada vez mais comuns destroem vegetação nativa, empobrecendo o solo e eliminando reservatórios naturais de umidade.
+            </div>
+          </li>
+          <li>
+            <span class="impactos-lista__icone">🌡️</span>
+            <div>
+              <strong>Aumento das temperaturas</strong>
+              Calor extremo acelera a evaporação da água do solo, aumenta o estresse hídrico das plantas e favorece a proliferação de pragas e doenças.
+            </div>
+          </li>
+          <li>
+            <span class="impactos-lista__icone">🌧️</span>
+            <div>
+              <strong>Alterações no regime de chuvas</strong>
+              As precipitações tornaram-se imprevisíveis. O agricultor não sabe mais quando plantar. Chuvas escassas ou fora de época comprometem toda a safra.
+            </div>
+          </li>
+          <li>
+            <span class="impactos-lista__icone">🐛</span>
+            <div>
+              <strong>Proliferação de pragas</strong>
+              O calor e a seca criam condições ideais para insetos e fungos que atacam as lavouras, destruindo safras inteiras e aumentando o custo de produção.
+            </div>
+          </li>
+          <li>
+            <span class="impactos-lista__icone">🗑️</span>
+            <div>
+              <strong>Descarte irregular de lixo</strong>
+              A ausência de coleta adequada gera acúmulo de resíduos que contaminam nascentes, lagoas e solos — agravando o impacto ambiental já produzido pelo clima.
+            </div>
+          </li>
+        </ul>
+
+        <!-- Ciclo climático visual -->
+        <div class="ciclo-climatico" role="note" aria-label="Ciclo de impacto climático">
+          <p>
+            <strong>Ciclo do impacto:</strong>
+            Temperaturas sobem ↑ → Pragas se proliferam ↑ | Chuvas caem ↓ → Produção cai ↓ |
+            Renda cai ↓ → Preços dos alimentos sobem ↑ | Vulnerabilidade das famílias aumenta ↑↑↑
+          </p>
+        </div>
+
+        <div class="divisor-secao">Identidade e cultura</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 5: CULTURA E IDENTIDADE DO CAMPO
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Cultura e identidade do campo</h2>
+
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-familia-01.jpg">
+            <img src="../img/galeria/agricola-familia-01.jpg" alt="Família agricultora trabalhando junta na colheita" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-familia-01.jpg — Trabalho coletivo e transmissão de saberes</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Para entender Salgado Comprido, é preciso olhar além dos números. A agricultura
+              não é apenas atividade econômica. É identidade. É herança. É a forma através
+              da qual famílias mantêm viva uma cultura que antecede o Brasil moderno.
+            </p>
+            <p>
+              <strong>No trabalho na terra, transmite-se conhecimento entre gerações.</strong>
+              O avô ensina o neto a plantar observando a lua. A mãe mostra à filha como
+              processar mandioca. Essa transmissão de saberes é vivida, praticada, incorporada
+              no corpo e na alma de quem cresce no campo.
+            </p>
+            <p>
+              A mesa do agricultor conta histórias. O feijão vem da própria plantação. Essa
+              soberania alimentar é mais que nutrição. É dignidade. O trabalho não é solitário
+              — é trabalho familiar e comunitário. Os agricultores de Salgado Comprido sempre
+              praticaram sustentabilidade como forma de sobreviver.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="pullquote">
+          <p>"A mesa do agricultor conta histórias. O feijão vem da própria plantação. Essa soberania alimentar é mais que nutrição. É dignidade."</p>
+          <cite>— Reportagem Ceará Científico 2025</cite>
+        </blockquote>
+
+        <div class="divisor-secao">Ciência e saber popular</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 6: CIÊNCIA E SABEDORIA POPULAR
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Ciência e sabedoria popular</h2>
+
+        <p>
+          A solução não está em escolher entre ciência e sabedoria popular. Está em integrar
+          ambas. Os agricultores possuem conhecimento profundo sobre a terra, plantas e ciclos
+          naturais. Observar as fases da lua para plantar é astronomia popular. Conhecer quais
+          plantas indicam presença de água subterrânea é hidrologia empírica.
+        </p>
+
+        <!-- Bloco de número destacado -->
+        <div class="bloco-numero" role="note">
+          <span class="bloco-numero__valor">13</span>
+          <div class="bloco-numero__texto">
+            <strong>das 15 famílias não possuem orçamento familiar formal</strong>
+            <span>
+              Mas isso não significa ausência de cálculo. Quando uma mãe divide R$ 200 entre
+              despesas do mês, está fazendo operações matemáticas reais — sem papel, sem
+              planilha, com a precisão de quem não pode errar.
+            </span>
+          </div>
+        </div>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-escola-01.jpg">
+            <img src="../img/galeria/agricola-escola-01.jpg" alt="Estudantes da EEMPC Francisco Araújo Barros em pesquisa de campo" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-escola-01.jpg — Pesquisa participativa: estudantes e comunidade</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              A escola rural — como a E.E.M.P.C Francisco Araújo Barros — é crucial nesse
+              contexto. Quando estudantes como Maria Ariane e Alana investigam os impactos das
+              mudanças climáticas em sua própria comunidade, fazem pesquisa participativa que
+              serve diretamente àquela realidade.
+            </p>
+            <p>
+              <strong>A educação deixa de ser alienação. Torna-se libertadora.</strong>
+              O conhecimento produzido pelos jovens do campo, sobre o campo, para o campo —
+              esse é o ciclo virtuoso que transforma escola em agente de transformação social.
+            </p>
+          </div>
+        </div>
+
+        <div class="divisor-secao">Dados da pesquisa</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 7: O QUE OS DADOS REVELAM
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">O que os dados revelam</h2>
+
+        <p>
+          A pesquisa foi conduzida com 15 famílias entre abril e outubro de 2025. Os dados
+          consolidados pintam um quadro de vulnerabilidade estrutural combinada com uma
+          resiliência surpreendente.
+        </p>
+
+        <!-- Grade de dados da pesquisa -->
+        <div class="grade-personagens">
+          <div class="card-personagem">
+            <div class="card-personagem__foto" style="background:linear-gradient(135deg,#eef7ef,#d1fae5);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🌾</div>
+            <div class="card-personagem__info">
+              <strong>Renda agrícola</strong>
+              <span>50% do sustento familiar</span>
+              <p>Metade de toda a renda das famílias vem diretamente do que é plantado e colhido na terra. A dependência é alta e a vulnerabilidade climática, direta.</p>
+            </div>
+          </div>
+          <div class="card-personagem">
+            <div class="card-personagem__foto" style="background:linear-gradient(135deg,#fff8f0,#fef3c7);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">📋</div>
+            <div class="card-personagem__info">
+              <strong>Sem orçamento formal</strong>
+              <span>13 de 15 famílias</span>
+              <p>A ausência de controle estruturado de receitas e despesas não significa desorganização — significa ausência de ferramentas e letramento financeiro adequados.</p>
+            </div>
+          </div>
+          <div class="card-personagem">
+            <div class="card-personagem__foto" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🥗</div>
+            <div class="card-personagem__info">
+              <strong>Segurança alimentar</strong>
+              <span>8 cultivos para consumo próprio</span>
+              <p>A produção local destina-se primariamente ao consumo familiar. Em períodos de crise, as famílias conseguem se manter alimentadas com o que produzem.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem destaque full-width -->
+        <figure class="imagem-destaque" data-image-placeholder="../img/galeria/agricola-panorama-01.jpg">
+          <img src="../img/galeria/agricola-panorama-01.jpg" alt="Vista panorâmica do Assentamento Salgado Comprido durante a estação seca" loading="lazy" data-fallback-hidden>
+          <figcaption>Vista panorâmica do Assentamento Salgado Comprido, Itarema — CE · Pesquisa realizada entre abril e outubro de 2025</figcaption>
+        </figure>
+
+        <div class="divisor-secao">Caminhos para o futuro</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 8: CAMINHOS PARA O FUTURO
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Caminhos para o futuro</h2>
+
+        <p>
+          As comunidades rurais não precisam apenas de caridade. Precisam de políticas públicas
+          inteligentes, de educação que as empodere e de reconhecimento dos seus saberes.
+          A pesquisa identificou oito caminhos concretos para construir um futuro mais resiliente:
+        </p>
+
+        <div class="grade-solucoes" aria-label="Caminhos para o futuro do assentamento">
+          <div class="solucao-card">
+            <span class="solucao-card__icone">📚</span>
+            <strong>Educação Ambiental</strong>
+            <p>Integrada ao currículo: agroecologia prática conectando ciência com saberes locais.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">💧</span>
+            <strong>Captação de Água</strong>
+            <p>Cisternas, açudes comunitários e sistemas de captação de água de chuva para irrigação na seca.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">☀️</span>
+            <strong>Energia Solar</strong>
+            <p>Painéis solares para irrigação, beneficiamento de alimentos e redução de custos de produção.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">🤝</span>
+            <strong>Cooperativas</strong>
+            <p>Organização coletiva para produção, compra de insumos e comercialização com mais poder de barganha.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">🏭</span>
+            <strong>Agroindustrialização</strong>
+            <p>Processamento local de alimentos agrega valor significativo e abre novos mercados para a produção.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">💻</span>
+            <strong>Tecnologia Rural</strong>
+            <p>Aplicativos de previsão climática, monitoramento de pragas e acesso a informação técnica no campo.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">💳</span>
+            <strong>Crédito Rural Acessível</strong>
+            <p>Linhas de crédito adaptadas à realidade da agricultura familiar, com carência e juros compatíveis.</p>
+          </div>
+          <div class="solucao-card">
+            <span class="solucao-card__icone">🌱</span>
+            <strong>Agroecologia Certificada</strong>
+            <p>Certificação orgânica para acessar mercados premium e diversificar a renda das famílias.</p>
+          </div>
+        </div>
+
+        <p>
+          <strong>Juventude do campo:</strong> imagine o cenário em que jovens permanecem
+          na comunidade porque encontram oportunidades reais — educação de qualidade, crédito
+          acessível, políticas de comercialização que valorizem o produtor local. Esse futuro
+          é possível. Mas exige escolhas políticas conscientes.
+        </p>
+
+        <p>
+          E há um caminho muitas vezes ignorado: a <strong>educação matemática como
+          autonomia</strong>. Se as famílias aprendessem a registrar receitas, calcular
+          custos reais, determinar preço com lucro, poupar e planejar safras — estariam
+          se empoderando economicamente com ferramentas simples e acessíveis.
+        </p>
+
+        <div class="divisor-secao">Conclusão</div>
+
+        <!-- ═══════════════════════════════════
+             SEÇÃO 9: A LUTA CONTINUA
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">A luta continua</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/agricola-futuro-01.jpg">
+            <img src="../img/galeria/agricola-futuro-01.jpg" alt="Jovem agricultor olhando para o horizonte no sertão cearense" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/agricola-futuro-01.jpg — A geração que planta e resiste</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Quando Maria Ariane Verissimo e Alana dos Santos Felix iniciaram sua investigação,
+              provavelmente não imaginavam quanto suas descobertas iluminariam uma realidade que
+              a mídia grande ignora. Mas elas fizeram mais que pesquisa acadêmica. Fizeram
+              encontro com sua comunidade. Fizeram honra à sua origem.
+            </p>
+            <p>
+              O Assentamento Salgado Comprido não é exceção. <strong>Existem milhares de
+              Salgados Compridos pelo Brasil</strong> — comunidades rurais vulneráveis, mas
+              resilientes, que conhecem a terra, que alimentam o país, que merecem
+              reconhecimento e políticas públicas que valorizem seus saberes.
+            </p>
+            <p>
+              A crise climática é, fundamentalmente, uma crise de desigualdade. Os agricultores
+              de Salgado Comprido não causaram o efeito estufa, mas colhem suas consequências
+              todos os dias.
+            </p>
+          </div>
+        </div>
+
+        <!-- Frase final impactante -->
+        <div class="frase-final" role="note">
+          <p>"Enquanto houver esperança no coração de quem planta, haverá resistência na terra do sertão."</p>
+          <cite>— Itarema, CE · Maio de 2025</cite>
+        </div>
+
+        <p style="text-align:center;font-size:0.95rem;color:var(--cor-texto-suave);line-height:1.8;">
+          Porque enquanto houver seca, enquanto houver um agricultor olhando para o céu pedindo
+          chuva, enquanto houver uma mãe calculando como fazer o alimento durar até o final do
+          mês — a luta continua. E as comunidades rurais seguem plantando. Seguem resistindo.
+          Seguem sonhando com futuro possível. Porque, acima de tudo, eles têm fé na terra.
+        </p>
+
+        <!-- ═══════════════════════════════════
+             CRÉDITOS DA REPORTAGEM
+        ════════════════════════════════════ -->
+        <div class="creditos-reportagem" aria-label="Créditos da reportagem">
+          <p class="creditos-reportagem__titulo">Créditos e ficha técnica</p>
+          <div class="creditos-grid">
+            <div class="credito-item">
+              <strong>Estudante pesquisadora</strong>
+              <span>Maria Ariane Verissimo</span>
+            </div>
+            <div class="credito-item">
+              <strong>Estudante pesquisadora</strong>
+              <span>Alana dos Santos Felix</span>
+            </div>
+            <div class="credito-item">
+              <strong>Educadora orientadora</strong>
+              <span>Priscila Santos de Sousa</span>
+            </div>
+            <div class="credito-item">
+              <strong>Instituição</strong>
+              <span>E.E.M.P.C Francisco Araújo Barros</span>
+              <p>Educação Profissional em Tempo Integral · Itarema, CE</p>
+            </div>
+            <div class="credito-item">
+              <strong>Projeto</strong>
+              <span>Ceará Científico 2025</span>
+              <p>Os Impactos Econômicos das Emergências Climáticas no Assentamento Salgado Comprido</p>
+            </div>
+            <div class="credito-item">
+              <strong>Período &amp; Participantes</strong>
+              <span>Abril a outubro de 2025</span>
+              <p>15 famílias do Assentamento Salgado Comprido · Itarema, CE</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referências bibliográficas -->
+        <details style="margin:1.5rem 0;border:1px solid var(--cor-borda);border-radius:var(--raio);padding:1rem 1.25rem;">
+          <summary style="font-size:0.85rem;font-weight:700;color:var(--cor-primaria-escura);cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <span>▶</span> Referências bibliográficas
+          </summary>
+          <ul style="margin-top:1rem;font-size:0.82rem;color:var(--cor-texto-suave);line-height:2;padding-left:1.25rem;">
+            <li>BRASIL. Ministério do Meio Ambiente. <em>Política Nacional sobre Mudança do Clima.</em> Brasília: MMA, 2012.</li>
+            <li>D'AMBROSIO, Ubiratan. <em>Educação matemática e sociedade.</em> São Paulo: Papirus, 1990.</li>
+            <li>FREIRE, Paulo. <em>Educação como prática da liberdade.</em> Rio de Janeiro: Paz e Terra, 1989.</li>
+            <li>IPCC. <em>Relatório de Avaliação sobre Mudanças Climáticas.</em> Genebra: IPCC, 2021.</li>
+            <li>PEREIRA, João Carlos. <em>Mudanças climáticas e agricultura familiar.</em> São Paulo: Editora Contexto, 2019.</li>
+            <li>SILVA, Maria Lúcia. <em>Sustentabilidade e Clima: impactos na zona rural.</em> Curitiba: CRV, 2020.</li>
+          </ul>
+        </details>
+
+      </article>
+
+      <!-- ─── SIDEBAR ──────────────────────────────────────── -->
+      <aside class="artigo-sidebar" aria-label="Dados da pesquisa e informações complementares">
+
+        <div class="card-lateral destaque-lateral">
+          <h2 class="card-lateral__titulo" style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:12px;">Dados da pesquisa</h2>
+          <dl class="fatos-rapidos">
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Famílias</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">15 famílias</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Renda agrícola</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">50%</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Sem orçamento</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">13 / 15</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Cultivos</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">8 tipos</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Período</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Abr–Out 2025</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Município</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Itarema – CE</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="card-lateral" style="border-left:3px solid #f59e0b;">
+          <p class="selo" style="margin-bottom:8px;background:#fff8f0;color:#92400e;">Impactos observados</p>
+          <ul class="card-lateral__lista" style="margin-top:0.5rem;">
+            <li>🔥 Queimadas frequentes</li>
+            <li>🌡️ Aumento das temperaturas</li>
+            <li>🌧️ Chuvas irregulares</li>
+            <li>🐛 Proliferação de pragas</li>
+            <li>📉 Queda na produção</li>
+            <li>💸 Aumento no custo de vida</li>
+          </ul>
+        </div>
+
+        <div class="card-lateral">
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:4px;">Explore o portal</h2>
+          <ul class="card-lateral__lista">
+            <li><a href="agricola.html">Produção Agrícola</a></li>
+            <li><a href="Plantação Nativa.html">Plantas Nativas da região</a></li>
+            <li><a href="Plantas Medicinais.html">Plantas Medicinais</a></li>
+            <li><a href="historia.html">História do assentamento</a></li>
+            <li><a href="memoria.html">Memória da comunidade</a></li>
+          </ul>
+        </div>
+
+        <div class="card-lateral" style="background:linear-gradient(135deg,#eef7ef,#fff);border-color:rgba(36,107,58,0.2);">
+          <p class="selo" style="margin-bottom:8px;">Ceará Científico 2025</p>
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.05rem;">E.E.M.P.C Francisco Araújo Barros</h2>
+          <p style="margin-top:8px;color:var(--cor-texto-suave);font-size:0.88rem;line-height:1.6;">
+            Reportagem produzida por estudantes do Curso Técnico em Informática como parte
+            do projeto Ceará Científico 2025 — investigando os impactos econômicos das
+            emergências climáticas na agricultura familiar.
+          </p>
+          <a class="botao" href="../contato.html" style="margin-top:14px;font-size:0.88rem;min-height:38px;">Falar com o projeto</a>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- FAIXA DE CHAMADA PARA CONTRIBUIÇÃO -->
+    <section class="faixa-contribuir" aria-labelledby="titulo-contribuir-clima">
+      <div class="container faixa-contribuir__conteudo">
+        <div>
+          <p class="selo">Expansão da pesquisa</p>
+          <h2 id="titulo-contribuir-clima">Você conhece a realidade do campo em Itarema?</h2>
+          <p>Depoimentos, fotos, dados de produção, registros de seca — qualquer informação ajuda a aprofundar a investigação e fortalecer a voz das comunidades rurais do sertão cearense.</p>
+        </div>
+        <a class="botao botao--claro" href="../contato.html">Contribuir com a pesquisa</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática</p>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script type="module" src="../js/app.js?v=20260608-2"></script>
+  <script src="../js/chat-standalone.js?v=20260526"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,1394 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O Verdadeiro Tesouro do Sertão: 12 plantas medicinais da Caatinga cearense documentadas por estudantes da EEMPC Francisco Araújo Barros — saberes ancestrais que a ciência está confirmando.">
+  <meta name="keywords" content="plantas medicinais, Caatinga, Ceará, saber popular, chanana, pata de vaca, janaguba, quebra-pedra, remédios naturais, biodiversidade, Itarema">
+  <title>Plantas Medicinais — O Tesouro do Sertão | Portal da Comunidade</title>
+  <link rel="stylesheet" href="../css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="../css/portal-responsivo.css?v=20260608-2">
+  <style>
+    /* ── Cards de plantas medicinais ───────────────────────── */
+    .planta-card {
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      overflow: hidden;
+      margin: 2.5rem 0;
+      background: var(--cor-superficie);
+      scroll-margin-top: 90px;
+    }
+    .planta-card__header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, var(--cor-primaria, #246b3a), var(--cor-acento, #0f766e));
+      color: #fff;
+    }
+    .planta-card__numero {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.25);
+      min-width: 3rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .planta-card__titulo {
+      flex: 1;
+    }
+    .planta-card__nome {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .planta-card__cientifico {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+      margin: 0.25rem 0 0;
+      font-style: italic;
+    }
+    .planta-card__populares {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      margin: 0.15rem 0 0;
+      font-style: normal;
+    }
+    .planta-card__emoji {
+      font-size: 2.25rem;
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+    .planta-card__imagem {
+      width: 100%;
+      background: #f0f7f2;
+      border-bottom: 1px solid var(--cor-borda);
+      overflow: hidden;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .planta-card__imagem[data-image-placeholder]::before {
+      content: attr(data-image-placeholder);
+      font-size: 0.75rem;
+      color: var(--cor-texto-suave);
+      padding: 1rem;
+      text-align: center;
+      opacity: 0.6;
+    }
+    .planta-card__imagem img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .planta-card__imagem figcaption {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      color: var(--cor-texto-suave);
+      background: #f9fafb;
+      border-top: 1px solid var(--cor-borda);
+    }
+    .planta-card__corpo {
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+    .planta-info {
+      padding: 1rem;
+      background: #fff;
+      border: 1px solid var(--cor-borda);
+      border-radius: 8px;
+    }
+    .planta-info--full {
+      grid-column: 1 / -1;
+    }
+    .planta-info strong {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--cor-primaria-escura, #174726);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--cor-borda);
+    }
+    .planta-info p,
+    .planta-info ul {
+      font-size: 0.88rem;
+      color: var(--cor-texto, #1a1a1a);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .planta-info ul {
+      padding-left: 1.1rem;
+    }
+    .planta-info li {
+      margin-bottom: 0.3rem;
+    }
+    .planta-info--alerta {
+      grid-column: 1 / -1;
+      background: #fff8f0;
+      border-left: 4px solid #f59e0b;
+      border-color: #fde68a;
+    }
+    .planta-info--alerta strong {
+      color: #92400e;
+      border-bottom-color: #f59e0b44;
+    }
+    .planta-info--alerta p,
+    .planta-info--alerta ul { color: #78350f; }
+
+    /* Aviso de saúde */
+    .aviso-saude {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid #3b82f6;
+      border-radius: var(--raio);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .aviso-saude__icone {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .aviso-saude p {
+      font-size: 0.88rem;
+      color: #1e40af;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .aviso-saude strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+      color: #1d4ed8;
+    }
+
+    /* Você sabia? */
+    .voce-sabia {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--cor-primaria, #246b3a);
+      border-radius: var(--raio);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .voce-sabia__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cor-primaria, #246b3a);
+      margin-bottom: 0.4rem;
+    }
+    .voce-sabia p {
+      font-size: 0.9rem;
+      color: var(--cor-primaria-escura, #174726);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* Índice rápido das plantas */
+    .indice-plantas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+    }
+    .indice-plantas a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.85rem;
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--cor-primaria-escura);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .indice-plantas a:hover {
+      border-color: var(--cor-primaria);
+      background: #f0fdf4;
+    }
+    .indice-plantas a span:first-child {
+      font-size: 0.7rem;
+      color: var(--cor-texto-suave);
+      font-weight: 500;
+      min-width: 1.5rem;
+    }
+
+    /* Guia de registro */
+    .guia-registro {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.85rem;
+      margin: 1.5rem 0;
+    }
+    .guia-item {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 1rem;
+    }
+    .guia-item__icone {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .guia-item strong {
+      display: block;
+      color: var(--cor-primaria-escura);
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .guia-item p {
+      font-size: 0.8rem;
+      color: var(--cor-texto-suave);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Pesquisadores */
+    .pesquisadores-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .pesquisador-chip {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--cor-primaria-escura);
+    }
+
+    /* Responsividade */
+    @media (max-width: 720px) {
+      .planta-card__corpo { grid-template-columns: 1fr; }
+      .planta-info--alerta,
+      .planta-info--full { grid-column: 1; }
+      .planta-card__header { gap: 0.75rem; }
+      .planta-card__numero { font-size: 1.75rem; min-width: 2rem; }
+      .planta-card__emoji { font-size: 1.75rem; }
+    }
+    @media (max-width: 520px) {
+      .indice-plantas { grid-template-columns: repeat(2, 1fr); }
+      .guia-registro { grid-template-columns: 1fr 1fr; }
+      .planta-card__corpo { padding: 1rem; }
+    }
+
+    /* ── Créditos e ficha técnica ──────────────────────────── */
+    .creditos-reportagem {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-top: 3px solid var(--cor-primaria);
+      border-radius: var(--raio);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .creditos-reportagem__titulo {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 1.25rem;
+    }
+    .creditos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 2rem;
+    }
+    .credito-item strong {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 0.2rem;
+    }
+    .credito-item span {
+      display: block;
+      font-weight: 700;
+      color: var(--cor-primaria-escura);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .credito-item p {
+      font-size: 0.82rem;
+      color: var(--cor-acento);
+      margin: 0.15rem 0 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .creditos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="plantas-medicinais">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="../index.html" aria-label="Ir para a página inicial">
+                <!-- LOGO ATUALIZADA -->
+        <img src="../img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span><span>Menu</span>
+      </button>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="historia.html" data-page-link="historia">História</a></li>
+          <li><a href="memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="../contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO BANNER
+  ════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__imagem" data-image-placeholder="../img/banner/banner-plantas-medicinais.jpg">
+      <img src="../img/banner/banner-plantas-medicinais.jpg" alt="Plantas medicinais da Caatinga cearense — saberes que atravessam gerações" data-fallback-hidden>
+    </div>
+    <div class="container hero__conteudo">
+      <p class="trilha" style="color:rgba(255,255,255,0.7);margin-bottom:12px;">
+        <a href="../index.html" style="color:#fff;">Início</a> &rsaquo; Plantas Medicinais
+      </p>
+      <p class="selo">Reportagem especial · Ceará Científico 2025</p>
+      <h1>O Verdadeiro<br>Tesouro do Sertão</h1>
+      <p>12 plantas medicinais que curam, alimentam e revelam os saberes ancestrais da Caatinga cearense.</p>
+      <div class="artigo-meta-hero">
+        <span>11 estudantes pesquisadores</span>
+        <span>EEMPC Francisco Araújo Barros · Itarema, CE</span>
+        <span>Leitura: 15 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE METADADOS -->
+  <div class="artigo-barra">
+    <div class="container artigo-barra__conteudo">
+      <div class="artigo-barra__info">
+        <span class="artigo-categoria">Plantas Medicinais · Saberes Populares</span>
+        <time datetime="2025-01-01">2025</time>
+        <span>2º Ano A Técnico — Turma Manoel Louvado</span>
+      </div>
+      <a class="botao botao--pequeno" href="../contato.html">Contribuir com registros</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+  ════════════════════════════════════════════════════════════ -->
+  <main id="conteudo">
+    <div class="container artigo-layout">
+
+      <!-- ─── CORPO DO ARTIGO ──────────────────────────────── -->
+      <article class="artigo-corpo">
+
+        <!-- ABERTURA -->
+        <p class="artigo-lead">
+          Estudantes de educação profissional investigaram suas próprias comunidades e
+          descobriram uma farmácia viva. Agora, a ciência confirma: a tradição popular
+          conhecia tudo isso. Esta é a história de 12 plantas, 11 pesquisadores e um
+          conhecimento que levou séculos para se construir — e que merecia ser honrado.
+        </p>
+
+        <!-- SEÇÃO 1: QUANDO A ESCOLA APRENDE COM A COMUNIDADE -->
+        <h2 class="artigo-titulo-secao">Quando a escola aprende com a comunidade</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/medicinais-escola-01.jpg">
+            <img src="../img/galeria/medicinais-escola-01.jpg" alt="Estudantes pesquisadores com plantas medicinais em campo" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/medicinais-escola-01.jpg — Pesquisadores em suas comunidades</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Janela da escola para a Caatinga. Estudantes olhando para suas próprias famílias
+              com olhar novo. Isso começou como pesquisa escolar. Mas virou documentação de
+              um conhecimento que atravessou gerações sem nunca aparecer num livro.
+            </p>
+            <p>
+              No Assentamento Salgado Comprido, na zona rural de Itarema, avós curavam
+              febres com Janaguba. Mães faziam chás de Pata-de-Vaca para controlar açúcar
+              no sangue. Comunidades inteiras utilizavam Quebra-Pedra sem saber que estavam
+              usando um diurético mais sofisticado que qualquer medicamento sintético.
+              <strong>E ninguém estava anotando isto em lugar algum.</strong>
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="pullquote">
+          <p>"A ciência moderna está apenas começando a validar o que as comunidades rurais sempre souberam. E enquanto isso, essas plantas estão sendo ameaçadas."</p>
+          <cite>— Pesquisa Escolar, EEMPC Francisco Araújo Barros, 2025</cite>
+        </blockquote>
+
+        <p>
+          Uma turma de jovens pesquisadores decidiu que esse conhecimento merecia ser
+          preservado. Que suas comunidades mereciam ser celebradas. Doze plantas. Doze
+          histórias. Uma verdade que ecoa através de gerações.
+        </p>
+
+        <!-- AVISO EDUCATIVO -->
+        <div class="aviso-saude" role="note" aria-label="Aviso de saúde">
+          <span class="aviso-saude__icone">ℹ️</span>
+          <div>
+            <strong>Conteúdo educativo — orientação importante</strong>
+            <p>
+              Este conteúdo possui finalidade educativa e não substitui orientação de
+              profissionais de saúde. Antes de utilizar qualquer planta medicinal, consulte
+              um médico ou farmacêutico. As informações aqui apresentadas são baseadas em
+              saberes populares documentados e pesquisa escolar.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 2: AS 12 PLANTAS — ÍNDICE RÁPIDO -->
+        <h2 class="artigo-titulo-secao">A farmácia viva da Caatinga — 12 espécies</h2>
+
+        <p>
+          Cada planta representa séculos de experimentação prática. Nenhuma delas foi
+          descoberta em laboratório. Todas foram descobertas através da observação contínua,
+          do erro, do acerto, da transmissão entre gerações.
+        </p>
+
+        <nav class="indice-plantas" aria-label="Índice das 12 plantas medicinais">
+          <a href="#planta-01"><span>01</span> 🌸 Chanana</a>
+          <a href="#planta-02"><span>02</span> 🐾 Pata de Vaca</a>
+          <a href="#planta-03"><span>03</span> 🌴 Carnaúba</a>
+          <a href="#planta-04"><span>04</span> 🌳 Torém</a>
+          <a href="#planta-05"><span>05</span> 🥬 Bredo</a>
+          <a href="#planta-06"><span>06</span> 💧 Quebra-Pedra</a>
+          <a href="#planta-07"><span>07</span> 🌿 Janaguba</a>
+          <a href="#planta-08"><span>08</span> 🌱 Alecrim-Pimenta</a>
+          <a href="#planta-09"><span>09</span> 🌊 Aroeira da Praia</a>
+          <a href="#planta-10"><span>10</span> 🫙 Batiputá</a>
+          <a href="#planta-11"><span>11</span> 🌼 Pepaconha</a>
+          <a href="#planta-12"><span>12</span> 💜 Mussambê</a>
+        </nav>
+
+        <!-- ═══════════════════════════════════
+             GUIA DAS 12 PLANTAS
+        ════════════════════════════════════ -->
+        <h2 class="artigo-titulo-secao">Guia completo das plantas medicinais</h2>
+
+        <!-- ─── PLANTA 01: CHANANA ──────────────────────── -->
+        <div class="planta-card" id="planta-01">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">01</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Chanana — A Flor da Resiliência</h3>
+              <p class="planta-card__cientifico">Turnera subulata · Família Turneraceae</p>
+              <p class="planta-card__populares">Nomes populares: flor-do-Guarujá, boa-noite, onze-horas, damiana, xanana</p>
+            </div>
+            <span class="planta-card__emoji">🌸</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-chanana.jpg">
+            <img src="../img/galeria/medicinais-chanana.jpg" alt="Flores brancas com centro escuro da Chanana" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Pequena flor branca com centro escuro que abre sempre no mesmo horário (por isso "onze-horas"). Herbácea, de 30 a 80 cm de altura, com folhas aveludadas. Muito comum nos quintais das comunidades rurais de Itarema.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória, analgésica, calmante e cicatrizante. Usada para dores musculares, ansiedade leve, gargarejos em dor de garganta, cicatrização de feridas, dores crônicas, inflamações, problemas digestivos, febres e infecções urinárias.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Chá:</strong> 1 colher de folhas ou flores em 1 xícara de água quente. Deixar descansar 10 min, coar e beber.</li>
+                <li><strong>Mel de Chanana:</strong> Pétalas em mel por 24h. Tomar 1 colher 3× ao dia.</li>
+                <li><strong>Compressa:</strong> Amassar folhas frescas com azeite. Aplicar por 30 min na região afetada.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade científica</strong>
+              <p>A abertura das flores sempre no mesmo horário é uma resposta ao fotoperíodo — a planta "sabe" a hora através da luz solar. Por isso, em toda a região, é chamada de "onze-horas": a hora em que o campo floresce.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Uso moderado — não exceder a dose indicada</li>
+                <li>Contraindicado durante gravidez e amamentação</li>
+                <li>Testar alergias antes do uso tópico</li>
+                <li>Coletar somente de locais livres de agrotóxicos e poluição</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 02: PATA DE VACA ─────────────────── -->
+        <div class="planta-card" id="planta-02">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">02</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Pata de Vaca — O Controle do Açúcar</h3>
+              <p class="planta-card__cientifico">Bauhinia forficata · Família Fabaceae</p>
+              <p class="planta-card__populares">Nome popular: Pata de Vaca, Mororó</p>
+            </div>
+            <span class="planta-card__emoji">🐾</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-pata-vaca.jpg">
+            <img src="../img/galeria/medicinais-pata-vaca.jpg" alt="Folhas características em formato de pata da Bauhinia forficata" loading="lazy" data-fallback-hidden>
+            </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Árvore robusta com folhas características em formato de pata (divididas ao meio, bilobadas). Flores roxas ou rosadas. Muito comum em quintais rurais e jardins das comunidades. A forma das folhas é inconfundível — cada uma parece a marca de uma pata bovina impressa na árvore.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Controla diabetes naturalmente, auxilia a digestão e contribui para a saúde dos rins com efeito diurético. As comunidades a usam para reduzir açúcar no sangue, melhorar a digestão, limpar os rins e garantir o bom funcionamento urinário.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Forma de preparo</strong>
+              <ul>
+                <li><strong>Chá de folhas secas:</strong> 1 colher em 1 litro de água. Ferver 5–10 min, deixar descansar 10 min, coar e beber ao longo do dia.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade científica</strong>
+              <p>Estudos farmacológicos confirmaram que a Bauhinia forficata possui compostos com ação hipoglicemiante — ou seja, que reduzem o açúcar no sangue. A sabedoria popular antecedeu a ciência por séculos neste caso.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Não substitui medicamentos para diabetes — uso complementar</li>
+                <li>Pode baixar muito a glicose se usada com remédios — monitorar</li>
+                <li>Uso excessivo pode prejudicar fígado e rins</li>
+                <li>Contraindicado em gravidez e amamentação</li>
+                <li>Crianças devem evitar sem orientação médica</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="voce-sabia">
+          <p class="voce-sabia__label">💡 Você sabia?</p>
+          <p>Quando voc usar uma planta medicinal documentada nesta pesquisa, estará participando de um experimento científico que começou antes da medicina moderna existir. Estará confirmando, com sua experiência, a sabedoria que sua comunidade sempre soube.</p>
+        </div>
+
+        <!-- ─── PLANTA 03: CARNAÚBA ─────────────────────── -->
+        <div class="planta-card" id="planta-03">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">03</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Carnaúba — A Árvore da Vida</h3>
+              <p class="planta-card__cientifico">Copernicia prunifera · Família Arecaceae</p>
+              <p class="planta-card__populares">Nomes populares: carnaubeira, carnaúva, carandaúba, caranaúba</p>
+            </div>
+            <span class="planta-card__emoji">🌴</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-carnauba.jpg">
+            <img src="../img/galeria/medicinais-carnauba.jpg" alt="Palmeira carnaúba com folhas em leque — símbolo do Ceará" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Palmeira nativa do Nordeste, chegando a 15 metros de altura. Folhas em forma de leque contêm cera valiosa. Frutos comestíveis, madeira para construção, raízes medicinais. Símbolo do Ceará e uma das espécies mais versáteis da flora nordestina.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>As raízes são usadas como diuréticos e depurativos — limpam o sangue e tratam inflamações. As folhas são trançadas para artesanato. A cera tem múltiplos usos industriais. Os frutos são nutritivos e comestíveis.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de uso</strong>
+              <ul>
+                <li><strong>Chá das raízes:</strong> uso diurético tradicional — raízes secas em água fervente.</li>
+                <li><strong>Cera:</strong> aplicada em móveis, automóveis e produtos industriais.</li>
+                <li><strong>Folhas trançadas:</strong> bolsas, chapéus, cestos e peças de artesanato.</li>
+                <li><strong>Frutos:</strong> consumo in natura ou em preparações culinárias.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade cultural</strong>
+              <p>A cera de carnaúba entrou na composição de cosméticos, ceras de automóvel, revestimentos industriais e isolantes elétricos em todo o mundo, rendendo ao Ceará o apelido de "Terra da Luz". Uma árvore que sustenta famílias e alimenta mercados globais.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas ambientais</strong>
+              <ul>
+                <li>Espécie ameaçada por pragas invasoras (unha-do-diabo, ácaro-vermelho)</li>
+                <li>Preservação ambiental é essencial — não desmatar áreas de carnaúbal</li>
+                <li>Coleta de cera deve ser feita de forma sustentável, sem dano à palmeira</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 04: TORÉM ───────────────────────── -->
+        <div class="planta-card" id="planta-04">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">04</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Torém — A Árvore da Recuperação</h3>
+              <p class="planta-card__cientifico">Cecropia pachystachya · Família Urticaceae</p>
+              <p class="planta-card__populares">Nomes populares: Embaúba, Imbaúba, Árvore-da-Preguiça</p>
+            </div>
+            <span class="planta-card__emoji">🌳</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-torem.jpg">
+            <img src="../img/galeria/medicinais-torem.jpg" alt="Torém com folhas em formato de guarda-chuva" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Árvore nativa brasileira, comum em solos úmidos e áreas em recuperação. Folhas em forma de guarda-chuva, muito características. Cresce rápido e é colonizadora de áreas degradadas — é a primeira árvore a aparecer quando um solo perturbado começa a se recuperar.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória, antioxidante, cardiovascular. As comunidades a usam para pressão alta, inchaços, problemas renais e inflamações gerais. A folha é o principal elemento medicinal da planta.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Chá das folhas:</strong> 1 folha seca em 500 ml de água. Ferver 3–5 min, infusionar 10–15 min, coar e beber.</li>
+                <li><strong>Pasta para feridas:</strong> Amassar folhas frescas, aplicar em ferida limpa, cobrir com gaze. Trocar 1–2×/dia.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade ecológica</strong>
+              <p>O Torém é chamado de "pioneiro" porque é uma das primeiras espécies a colonizar terrenos desmatados, preparando o solo para que árvores maiores se estabeleçam. É, literalmente, a planta que inicia a cura da mata.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Contraindicado em gravidez e amamentação</li>
+                <li>Evitar em crianças sem supervisão médica</li>
+                <li>Não usar por mais de 15 dias consecutivos</li>
+                <li>Consultar profissional de saúde antes do uso prolongado</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 05: BREDO ───────────────────────── -->
+        <div class="planta-card" id="planta-05">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">05</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Bredo — A Planta Nutritiva</h3>
+              <p class="planta-card__cientifico">Amaranthus deflexus / A. viridis · Família Amaranthaceae</p>
+              <p class="planta-card__populares">Nomes populares: Bredo, Caruru</p>
+            </div>
+            <span class="planta-card__emoji">🥬</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-bredo.jpg">
+            <img src="../img/galeria/medicinais-bredo.jpg" alt="Folhas verdes do Bredo — PANC altamente nutritiva" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>PANC — Planta Alimentícia Não Convencional. Rústica, altamente nutritiva e importante culturalmente no Norte e Nordeste. Existe na versão sem espinhos (A. viridis) e com espinhos (A. spinosus). Identificar corretamente é essencial antes do uso.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Altamente nutritivo (ferro, cálcio, potássio, zinco, vitaminas A, C e E). Antibacteriano natural. Auxilia a digestão e combate enjoos. Pode ser consumido como alimento (refogado) e como remédio.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Suco natural:</strong> 100g de folhas + 200 ml de água. Bater e coar.</li>
+                <li><strong>Chá das folhas:</strong> 1 colher em 200 ml de água. Infusionar 5–10 min.</li>
+                <li><strong>Compressa:</strong> 2g de folhas secas em 200 ml de água. Deixar agir 10–15 min.</li>
+                <li><strong>Refogado:</strong> Folhas frescas refogadas com alho e azeite — nutritivo e saboroso.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade nutricional</strong>
+              <p>O Bredo tem teor de proteína comparável ao espinafre e ferro superior a muitas carnes vermelhas. Na medicina popular nordestina, é indicado para anemia e fraqueza — e a ciência confirma essa eficácia pelo seu alto teor mineral.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Uso moderado — não exagerar nas quantidades</li>
+                <li>Gestantes e crianças: somente com orientação médica</li>
+                <li>Testar alergias antes do uso</li>
+                <li>Identificar corretamente a espécie antes de consumir</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 06: QUEBRA-PEDRA ────────────────── -->
+        <div class="planta-card" id="planta-06">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">06</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Quebra-Pedra — O Defensor dos Rins</h3>
+              <p class="planta-card__cientifico">Phyllanthus niruri · Família Phyllanthaceae</p>
+              <p class="planta-card__populares">Nome popular: Quebra-Pedra, Arrebenta-Pedra, Erva-Pombinha</p>
+            </div>
+            <span class="planta-card__emoji">💧</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-quebra-pedra.jpg">
+            <img src="../img/galeria/medicinais-quebra-pedra.jpg" alt="Planta Quebra-Pedra com sementes características alinhadas nos ramos" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Planta herbácea pequena (30–60 cm), com caule fino ereto e folhas minúsculas. Tem uma característica visual inconfundível: sementes redondas alinhadas na parte de baixo dos ramos — como pequenas pérolas. É uma das plantas medicinais mais conhecidas no Nordeste.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Previne cálculos renais e vesiculares. Diurética poderosa. Antiespasmódica (alivia cólicas). Hepatoprotetora (protege o fígado). Elimina toxinas, reduz inchaços e facilita a expulsão de cristais do sistema urinário.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Chá de infusão:</strong> 1 colher de planta seca em 250 ml de água quente. Deixar infusionar 10 min, coar e beber.</li>
+                <li><strong>Compressa:</strong> 2g de folhas secas em 200 ml de água. Deixar agir 10–15 min na região afetada.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade científica</strong>
+              <p>Estudos publicados em revistas científicas internacionais confirmaram a ação do Phyllanthus niruri na inibição da cristalização de oxalato de cálcio — a principal causa de cálculos renais. A ciência validou o que as avós do sertão já sabiam há gerações.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Usar no máximo 2 semanas consecutivas</li>
+                <li><strong>CONTRAINDICADO em gravidez e amamentação</strong> — potencial abortivo</li>
+                <li>Cuidado com medicamentos para diabetes e pressão arterial</li>
+                <li>Não recomendado para crianças sem supervisão</li>
+                <li>Insuficiência renal grave requer supervisão médica obrigatória</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <figure class="imagem-destaque" data-image-placeholder="../img/galeria/medicinais-panorama-01.jpg">
+          <img src="../img/galeria/medicinais-panorama-01.jpg" alt="Plantas medicinais da Caatinga cearense — biodiversidade e saberes populares" loading="lazy" data-fallback-hidden>
+          <figcaption>A farmácia viva da Caatinga: plantas que curam, alimentam e revelam a sabedoria do sertão cearense</figcaption>
+        </figure>
+
+        <!-- ─── PLANTA 07: JANAGUBA ────────────────────── -->
+        <div class="planta-card" id="planta-07">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">07</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Janaguba — A Leiteira Sagrada</h3>
+              <p class="planta-card__cientifico">Himatanthus drasticus · Família Apocynaceae</p>
+              <p class="planta-card__populares">Nomes populares: Janaguba, Leiteira, Janaúba</p>
+            </div>
+            <span class="planta-card__emoji">🌿</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-janaguba.jpg">
+            <img src="../img/galeria/medicinais-janaguba.jpg" alt="Flores brancas fragrantes da Janaguba e látex leitoso característico" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Árvore nativa da Amazônia e do Nordeste. Frutos com sementes grandes. Flores brancas e muito fragrantes. Conhecida pelo látex (leite) medicinal extraído da casca — um líquido branco e espesso que escorre quando a casca é incisada.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória, cicatrizante, vermífuga. Trata gastrite, úlceras, infecções, febre e dores. Muito usada na medicina popular da Caatinga, inclusive relatada para tratamento de doenças graves — porém sem comprovação científica consolidada.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Forma de preparo</strong>
+              <ul>
+                <li><strong>Diluição em água:</strong> 18 gotas de látex em 1 litro de água filtrada. Tomar 1 copo pequeno em jejum. Conservar na geladeira.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade cultural</strong>
+              <p>No Assentamento Salgado Comprido, as avós curavam febres altas com Janaguba quando não havia acesso à farmácia. O látex era guardado como tesouro doméstico, passado de mão em mão entre as famílias que conheciam seu preparo correto.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Uso moderado e cauteloso — dose exata é importante</li>
+                <li>Contraindicado em gravidez e amamentação</li>
+                <li>Possíveis reações alérgicas ao látex — testar antes</li>
+                <li>Identificar corretamente a espécie antes do uso</li>
+                <li>Não substitui tratamento médico convencional</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 08: ALECRIM-PIMENTA ────────────── -->
+        <div class="planta-card" id="planta-08">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">08</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Alecrim-Pimenta — A Planta do Semiárido</h3>
+              <p class="planta-card__cientifico">Lippia sidoides · Família Verbenaceae</p>
+              <p class="planta-card__populares">Nomes populares: Alecrim-do-Nordeste, Alecrim-da-Caatinga</p>
+            </div>
+            <span class="planta-card__emoji">🌱</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-alecrim-pimenta.jpg">
+            <img src="../img/galeria/medicinais-alecrim-pimenta.jpg" alt="Arbusto de Alecrim-Pimenta com folhas aromáticas pequenas" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Arbusto silvestre nativo da Caatinga nordestina, chegando a 3 metros de altura. Folhas pequenas e muito aromáticas. Especialista em clima seco e ensolarado — quanto mais seco, mais concentrado é seu óleo essencial e maior seu poder medicinal.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Potente ação anti-inflamatória, antisséptica e antimicrobiana (rico em timol e carvacrol, os mesmos compostos ativos do tomilho e do orégano). Trata infecções de pele, inflamações bucais, dor de garganta, feridas, acne e micoses.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Chá:</strong> 2–3g de folhas em 150 ml de água. Infusionar 5–10 min. Preferencialmente para bochechos ou gargarejos.</li>
+                <li><strong>Compressa:</strong> 2–3g de folhas em 1 xícara de água. Infusionar 10 min. Aplicar em pano ou gaze na região afetada.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade científica</strong>
+              <p>O timol e o carvacrol presentes no Alecrim-Pimenta são estudados pela farmacologia como alternativas naturais a antibióticos. Pesquisas da Embrapa Nordeste desenvolveram formulações de enxaguante bucal e sabonete com extrato da planta.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas — PLANTA POTENTE</strong>
+              <ul>
+                <li>Uso MODERADO — é uma planta de ação forte</li>
+                <li>Preferir uso tópico (externo) ao inverno</li>
+                <li>Contraindicado em gravidez e crianças pequenas</li>
+                <li>Pode causar reações alérgicas — testar pequena área primeiro</li>
+                <li>Identificar corretamente a espécie antes de usar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="voce-sabia">
+          <p class="voce-sabia__label">💡 Você sabia?</p>
+          <p>As plantas medicinais da Caatinga desenvolveram compostos ativos altamente concentrados como estratégia de sobrevivência ao calor e à seca extremos. É por isso que muitas delas têm ação medicinal mais potente que espécies de clima úmido. A resistência ao ambiente tornou-as mais poderosas.</p>
+        </div>
+
+        <!-- ─── PLANTA 09: AROEIRA DA PRAIA ──────────── -->
+        <div class="planta-card" id="planta-09">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">09</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Aroeira da Praia — A Cicatrizante Marinha</h3>
+              <p class="planta-card__cientifico">Eugenia punicifolia · Família Myrtaceae</p>
+              <p class="planta-card__populares">Nomes populares: Ameixa-do-mato, Aroeira da Praia</p>
+            </div>
+            <span class="planta-card__emoji">🌊</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-aroeira-praia.jpg">
+            <img src="../img/galeria/medicinais-aroeira-praia.jpg" alt="Aroeira da Praia com frutos amarelo-alaranjados arredondados" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Arbustiva ou pequena árvore de 2 a 6 metros. Folhas ovais e lisas. Flores esbranquiçadas ou amareladas. Fruto arredondado e carnudo, amarelo ou alaranjado — como uma pequena ameixa. Cresce especialmente bem em áreas litorâneas e de restinga.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória, antibacteriana natural e cicatrizante poderosa. Trata inflamações localizadas, combate bactérias e acelera a cicatrização de feridas. Usada pelas comunidades costeiras para feridas, cortes e inflamações de pele.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Forma de preparo</strong>
+              <ul>
+                <li><strong>Compressa com chá das folhas:</strong> 1–2g de folhas secas em 200 ml de água. Deixar descansar 5–10 min. Mergulhar pano ou gaze e aplicar por 10–15 min, 1 a 2× ao dia.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade regional</strong>
+              <p>A Aroeira da Praia é especialmente valorizada pelas famílias de Morro dos Patos e das comunidades costeiras de Itarema. A proximidade com o mar, onde os cortes e feridas são comuns entre pescadores, tornou essa planta um recurso doméstico indispensável.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Uso moderado para evitar desconfortos digestivos se ingerida</li>
+                <li>Gestantes e crianças: evitar sem orientação médica</li>
+                <li>Testar alergias antes do uso em pele sensível</li>
+                <li>Uso preferencial externo (tópico)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 10: BATIPUTÁ ───────────────────── -->
+        <div class="planta-card" id="planta-10">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">10</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Batiputá — O Óleo Sagrado Tremembé</h3>
+              <p class="planta-card__cientifico">Ouratea parviflora · Família Ochnaceae</p>
+              <p class="planta-card__populares">Nomes populares: Jabutapitá, Manteiga-de-Batiputá, Coração-de-Bugre</p>
+            </div>
+            <span class="planta-card__emoji">🫙</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-batiputa.jpg">
+            <img src="../img/galeria/medicinais-batiputa.jpg" alt="Batiputá com frutos ricos em óleo comestível e medicinal" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Arbusto nativo da costa cearense, com frutos ricos em óleo comestível e medicinal. Conhecimento de profundo valor para a cultura do povo indígena Tremembé, que habita a região de Itarema há séculos. Os sinônimos "coração-de-bugre" e "jabutapitá" revelam sua longa história de uso nativo.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Cicatrizante para queimaduras e cortes. Anti-inflamatório para artrite, reumatismo e dores musculares. Trata colesterol alto. Considerado "santo remédio" pelo povo Tremembé — uma das plantas medicinais mais respeitadas da tradição indígena cearense.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Formas de preparo</strong>
+              <ul>
+                <li><strong>Chá das folhas:</strong> 1 colher em 1 litro de água. Ferver, deixar infusionar 10–15 min, coar e beber.</li>
+                <li><strong>Óleo das sementes (tópico ou culinário):</strong> Aquecer em banho-maria até liquefazer. Massagear a região por 20–30 min.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade indígena</strong>
+              <p>O povo Tremembé de Itarema mantém vivo o conhecimento sobre o Batiputá como parte essencial de sua identidade cultural. Para eles, o uso dessa planta é inseparável da espiritualidade, do cuidado com o território e da transmissão de saberes entre anciãos e jovens.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas de uso</strong>
+              <ul>
+                <li>Aquecer o óleo APENAS em banho-maria — nunca deixar ferver diretamente</li>
+                <li>Uso com orientação profissional recomendado para doenças crônicas</li>
+                <li>Respeitar o conhecimento tradicional indígena na origem do uso</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 11: PEPACONHA ──────────────────── -->
+        <div class="planta-card" id="planta-11">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">11</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Pepaconha — A Pequena Guerreira</h3>
+              <p class="planta-card__cientifico">Pombalia calceolaria · Família Violaceae</p>
+              <p class="planta-card__populares">Nomes populares: Papo-de-peru, Papo-de-galo, Erva-de-lagarto, Pombinha</p>
+            </div>
+            <span class="planta-card__emoji">🌼</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-pepaconha.jpg">
+            <img src="../img/galeria/medicinais-pepaconha.jpg" alt="Planta Pepaconha com flores claras — herbácea nativa da Caatinga" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Herbácea pequena com caule fino ramificado, folhas simples miúdas e flores claras. Nativa da Caatinga nordestina — ocorre no Piauí, Ceará, Bahia e Pernambuco. Muito adaptada ao clima seco, cresce nos lugares mais áridos com discrição e eficiência.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória, antibacteriana e cicatrizante. Alivia problemas digestivos, prisão de ventre, tosse e catarro. Laxante e expectorante natural — age suavizando as vias respiratórias e estimulando o funcionamento intestinal.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Forma de preparo</strong>
+              <ul>
+                <li><strong>Chá das folhas:</strong> 1 colher de planta picada em 250 ml de água. Ferver 5–10 min. Tampar e deixar descansar alguns minutos antes de coar.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade científica</strong>
+              <p>A Pepaconha pertence à família das violetas (Violaceae) — a mesma família da flor violeta conhecida mundialmente. Sua presença na Caatinga mostra como essa família botânica se adaptou a climas extremos, produzindo espécies com propriedades medicinais únicas.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas — USO MÍNIMO</strong>
+              <ul>
+                <li><strong>USO MÍNIMO</strong> — dosagem adequada ainda não bem definida cientificamente</li>
+                <li>Intoxicação por uso excessivo — respeitar pequenas quantidades</li>
+                <li>Efeito laxante forte pode causar desidratação se abusado</li>
+                <li>Orientação profissional de saúde é essencial antes do uso</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PLANTA 12: MUSSAMBÊ ────────────────────── -->
+        <div class="planta-card" id="planta-12">
+          <div class="planta-card__header">
+            <span class="planta-card__numero">12</span>
+            <div class="planta-card__titulo">
+              <h3 class="planta-card__nome">Mussambê — A Resistente da Caatinga</h3>
+              <p class="planta-card__cientifico">Cleome spinosa · Família Cleomaceae</p>
+              <p class="planta-card__populares">Nome popular: Mussambê, Mussambe, Caarobinha</p>
+            </div>
+            <span class="planta-card__emoji">💜</span>
+          </div>
+          <figure class="planta-card__imagem" data-image-placeholder="../img/galeria/medicinais-mussamba.jpg">
+            <img src="../img/galeria/medicinais-mussamba.jpg" alt="Mussambê com flores pequenas roxas e rosadas características" loading="lazy" data-fallback-hidden>
+          </figure>
+          <div class="planta-card__corpo">
+            <div class="planta-info">
+              <strong>🌿 O que é</strong>
+              <p>Planta com flores pequenas roxas ou rosadas, folhas verdes e cheiro forte muito característico. Muito resistente ao clima seco da Caatinga — cresce onde outras plantas desistem. Pode ser encontrada em terrenos secos, bordas de estradas e roças abandonadas.</p>
+            </div>
+            <div class="planta-info">
+              <strong>💊 Para que serve</strong>
+              <p>Anti-inflamatória (reduz inflamações no corpo), alivia dores musculares e reumáticas, antibacteriana (combate infecções). Muito usada na medicina popular nordestina, especialmente pelas gerações mais antigas das comunidades rurais.</p>
+            </div>
+            <div class="planta-info">
+              <strong>☕ Forma de preparo</strong>
+              <ul>
+                <li><strong>Chá das folhas:</strong> Preparo tradicional em infusão. As informações completas sobre dosagem devem ser obtidas com os moradores mais antigos da comunidade ou com profissional de saúde habilitado em plantas medicinais.</li>
+              </ul>
+            </div>
+            <div class="planta-info">
+              <strong>🧬 Curiosidade da Caatinga</strong>
+              <p>O cheiro forte do Mussambê é produzido por compostos voláteis que a planta libera como mecanismo de defesa contra predadores. Esses mesmos compostos têm ação antimicrobiana confirmada — a planta "defende-se" de bactérias na natureza e pode ajudar a combatê-las no organismo humano.</p>
+            </div>
+            <div class="planta-info planta-info--alerta">
+              <strong>⚠️ Alertas e contraindicações</strong>
+              <ul>
+                <li>Uso moderado recomendado — iniciar com pequenas quantidades</li>
+                <li>Gestantes e crianças: evitar sem orientação médica</li>
+                <li>Consultar moradores experientes ou profissional de saúde para dosagem correta</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: COMO IDENTIFICAR E REGISTRAR -->
+        <h2 class="artigo-titulo-secao">Como identificar e registrar plantas medicinais</h2>
+
+        <p>
+          A pesquisa realizada pelos estudantes da EEMPC Francisco Araújo Barros seguiu uma
+          metodologia rigorosa de documentação. Preservar esse conhecimento exige mais do
+          que coletar folhas — exige respeito, cuidado e método.
+        </p>
+
+        <div class="guia-registro" aria-label="Guia para registro de plantas medicinais">
+          <div class="guia-item">
+            <span class="guia-item__icone">📝</span>
+            <strong>Nome popular e científico</strong>
+            <p>Registre como a planta é chamada na comunidade e busque o nome científico para identificação precisa.</p>
+          </div>
+          <div class="guia-item">
+            <span class="guia-item__icone">🌿</span>
+            <strong>Parte utilizada</strong>
+            <p>Folha, raiz, casca, fruto, látex — cada parte tem princípios ativos diferentes. Especificar é essencial.</p>
+          </div>
+          <div class="guia-item">
+            <span class="guia-item__icone">👵</span>
+            <strong>Relato da comunidade</strong>
+            <p>Entrevistar os mais velhos com respeito e paciência. O saber oral é tão válido quanto o saber escrito.</p>
+          </div>
+          <div class="guia-item">
+            <span class="guia-item__icone">📍</span>
+            <strong>Local de coleta</strong>
+            <p>Coletar somente em locais livres de agrotóxicos, poluição e distantes de rodovias.</p>
+          </div>
+          <div class="guia-item">
+            <span class="guia-item__icone">⚠️</span>
+            <strong>Cuidados e contraindicações</strong>
+            <p>Pesquisar e documentar contraindicações, especialmente para gestantes, crianças e pessoas com doenças crônicas.</p>
+          </div>
+          <div class="guia-item">
+            <span class="guia-item__icone">🔬</span>
+            <strong>Pesquisa responsável</strong>
+            <p>Cruzar o saber popular com pesquisas científicas disponíveis. Um não invalida o outro — se complementam.</p>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: PESQUISA ESCOLAR E CIÊNCIA -->
+        <h2 class="artigo-titulo-secao">Pesquisa escolar e ciência: a escola que celebra sua comunidade</h2>
+
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/medicinais-pesquisadores.jpg">
+            <img src="../img/galeria/medicinais-pesquisadores.jpg" alt="Equipe de estudantes pesquisadores da turma Manoel Louvado" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/medicinais-pesquisadores.jpg — 11 jovens pesquisadores que documentaram o tesouro do sertão</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              Quando uma jovem pesquisadora como Karen Thaís investiga as plantas medicinais
+              de sua comunidade, ela não está fazendo "pesquisa sobre" sua comunidade. Ela
+              está afirmando que sua comunidade, suas avós, seu conhecimento, merece respeito.
+              <strong>Ela está dizendo: isso importa. Somos importantes. Nossa sabedoria
+              é importante. E isso é revolucionário.</strong>
+            </p>
+            <p>
+              A pesquisa foi conduzida pela turma 2º Ano A Técnico — Turma Manoel Louvado
+              da EEMPC Francisco Araújo Barros, com orientação técnica da equipe pedagógica.
+              Cada estudante investigou uma ou mais plantas, combinando pesquisa de campo
+              nas comunidades com documentação científica.
+            </p>
+          </div>
+        </div>
+
+        <div class="pesquisadores-grid" aria-label="Equipe de pesquisadores">
+          <span class="pesquisador-chip">Karen Thaís</span>
+          <span class="pesquisador-chip">José Alysson Gomes Castro</span>
+          <span class="pesquisador-chip">Mariah Laylana de Sousa Rodrigues</span>
+          <span class="pesquisador-chip">Maria Clara do Nascimento</span>
+          <span class="pesquisador-chip">Maria Emanuelly</span>
+          <span class="pesquisador-chip">Allan Carlos Nunes</span>
+          <span class="pesquisador-chip">Kauemberg Azevedo de Sousa</span>
+          <span class="pesquisador-chip">João Pedro Sousa de Oliveira</span>
+          <span class="pesquisador-chip">Maria Clara Felix de Sousa</span>
+          <span class="pesquisador-chip">Eduarda Alves do Nascimento</span>
+          <span class="pesquisador-chip">Suelen Ferreira de Sousa</span>
+        </div>
+
+        <!-- SEÇÃO: BIODIVERSIDADE E SUSTENTABILIDADE -->
+        <h2 class="artigo-titulo-secao">Biodiversidade e sustentabilidade: o que está em risco</h2>
+
+        <p>
+          A ciência moderna está apenas começando a validar o que as comunidades rurais
+          sempre souberam. E enquanto isso, essas plantas estão sendo ameaçadas.
+        </p>
+
+        <ul class="lista-check" aria-label="Ameaças à biodiversidade medicinal da Caatinga">
+          <li>Pragas invasoras atacam espécies como a Carnaúba, ameaçando sua população</li>
+          <li>A Caatinga sofre pressão crescente de desmatamento para pasto e agricultura convencional</li>
+          <li>Conhecimentos tradicionais desaparecem conforme jovens migram do campo para as cidades</li>
+          <li>Uso indiscriminado sem reposição ameaça populações de plantas medicinais silvestres</li>
+          <li>Mudanças climáticas alteram os ciclos de floração e a distribuição das espécies</li>
+        </ul>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/medicinais-caatinga-01.jpg">
+            <img src="../img/galeria/medicinais-caatinga-01.jpg" alt="Biodiversidade da Caatinga cearense — flora medicinal em seu habitat natural" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/medicinais-caatinga-01.jpg — A Caatinga: bioma único com medicinas únicas</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              A Caatinga é o único bioma exclusivamente brasileiro — não existe em nenhum
+              outro país do mundo. E abriga uma diversidade de plantas medicinais adaptadas
+              ao semiárido que ainda é pouco estudada pela ciência formal. Cada espécie
+              perdida é um livro de medicina que se fecha para sempre.
+            </p>
+            <p>
+              O uso consciente e sustentável significa coletar apenas o necessário, nunca
+              arrancar plantas inteiras, replantá-las em quintais e hortas medicinais
+              comunitárias e transmitir o conhecimento do preparo correto às novas gerações.
+            </p>
+          </div>
+        </div>
+
+        <!-- CONCLUSÃO -->
+        <h2 class="artigo-titulo-secao">O conhecimento que não pode desaparecer</h2>
+
+        <p>
+          Enquanto você lê isto, alguém no sertão está colhendo uma folha de Chanana.
+          Alguém está preparando chá de Pata de Vaca. Alguém está aplicando Batiputá em
+          uma queimadura. Alguém está usando conhecimento que nunca apareceu em nenhum
+          livro de medicina, mas que funciona há séculos.
+        </p>
+        <p>
+          Agora, graças a esses jovens pesquisadores, esse conhecimento está documentado.
+          Está preservado. Está honrado. A próxima vez que você usar uma planta medicinal,
+          lembre-se: você está usando sabedoria destilada em tempo, experiência e gerações
+          de observação cuidadosa. <strong>Você está confiando na medicina mais testada que
+          existe: a medicina do povo que conhece a natureza porque vive nela.</strong>
+        </p>
+
+        <blockquote class="pullquote">
+          <p>"Toda cura vem da natureza. Toda sabedoria vem da observação. Toda tradição é conhecimento que merece ser honrado."</p>
+          <cite>— EEMPC Francisco Araújo Barros · Itarema, CE · 2025</cite>
+        </blockquote>
+
+        <p>
+          A luta pela preservação dessas plantas, desses conhecimentos, dessa forma de estar
+          no mundo — continua. E agora ela tem nomes: Karen, José Alysson, Mariah, Maria
+          Clara, Maria Emanuelly, Allan, Kauemberg, João Pedro, Eduarda, Suelen. Jovens
+          pesquisadores que decidiram que suas comunidades mereciam ser celebradas.
+          E tinham razão.
+        </p>
+
+        <!-- REFORÇO DO AVISO -->
+        <div class="aviso-saude" role="note">
+          <span class="aviso-saude__icone">ℹ️</span>
+          <div>
+            <strong>Lembrete importante</strong>
+            <p>
+              As informações desta página têm finalidade educativa e de preservação cultural.
+              Não substituem a orientação de médicos, farmacêuticos ou outros profissionais
+              de saúde habilitados. Consulte sempre um profissional antes de utilizar
+              plantas medicinais, especialmente em casos de gravidez, amamentação,
+              doenças crônicas ou uso de medicamentos.
+            </p>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             CRÉDITOS DA PESQUISA
+        ════════════════════════════════════ -->
+        <div class="creditos-reportagem" aria-label="Créditos da pesquisa">
+          <p class="creditos-reportagem__titulo">Créditos e ficha técnica</p>
+          <div class="creditos-grid">
+            <div class="credito-item">
+              <strong>Equipe de pesquisa</strong>
+              <span>Turma Manoel Louvado — 2.º Ano A Técnico</span>
+              <p>Karen · José Alysson · Mariah · Maria Clara · Maria Emanuelly · Allan · Kauemberg · João Pedro · Eduarda · Suelen e colegas</p>
+            </div>
+            <div class="credito-item">
+              <strong>Instituição</strong>
+              <span>E.E.M.P.C Francisco Araújo Barros</span>
+              <p>Educação Profissional em Tempo Integral · Itarema, CE</p>
+            </div>
+            <div class="credito-item">
+              <strong>Projeto</strong>
+              <span>Ceará Científico 2025</span>
+              <p>O Verdadeiro Tesouro do Sertão: saberes medicinais da Caatinga cearense</p>
+            </div>
+            <div class="credito-item">
+              <strong>Território de pesquisa</strong>
+              <span>Assentamento Lagoa do Mineiro</span>
+              <p>Comunidades de Saguim, Corrente, Cedro e entorno · Itarema, CE</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referências bibliográficas -->
+        <details style="margin:1.5rem 0;border:1px solid var(--cor-borda);border-radius:var(--raio);padding:1rem 1.25rem;">
+          <summary style="font-size:0.85rem;font-weight:700;color:var(--cor-primaria-escura);cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <span>▶</span> Referências bibliográficas
+          </summary>
+          <ul style="margin-top:1rem;font-size:0.82rem;color:var(--cor-texto-suave);line-height:2;padding-left:1.25rem;">
+            <li>AGRA, Maria de Fátima et al. <em>Medicinal and poisonous diversity of the flora of "Cariri Paraibano", Brazil.</em> Journal of Ethnopharmacology, v. 111, n. 2, 2007.</li>
+            <li>ALBUQUERQUE, Ulysses Paulino de; HANAZAKI, Natalia. <em>As pesquisas etnodirigidas na descoberta de novos fármacos de interesse médico e farmacêutico.</em> Revista Brasileira de Farmacognosia, v. 16, 2006.</li>
+            <li>BRASIL. Ministério da Saúde. <em>Política Nacional de Plantas Medicinais e Fitoterápicos.</em> Brasília: MS, 2006.</li>
+            <li>CARTAXO, Sônia Lúcia Moreira et al. <em>Medicinal plants with bioprospecting potential used in semi-arid northeastern Brazil.</em> Journal of Ethnopharmacology, v. 131, 2010.</li>
+            <li>LORENZI, Harri; MATOS, Francisco José de Abreu. <em>Plantas Medicinais no Brasil: nativas e exóticas.</em> 2. ed. Nova Odessa: Instituto Plantarum, 2008.</li>
+            <li>MATOS, Francisco José de Abreu. <em>Plantas Medicinais: guia de seleção e emprego de plantas usadas em fitoterapia no Nordeste do Brasil.</em> 3. ed. Fortaleza: Edições UFC, 2007.</li>
+            <li>RODRIGUES, Eliana; CARLINI, Elisaldo Araújo. <em>Plants with possible psychoactive effects used by the Krahô Indians, Brazil.</em> Revista Brasileira de Psiquiatria, v. 28, 2006.</li>
+            <li>SANTOS, Luzimara Ferreira dos; LIMA, João Batista Melo de. <em>Etnobotânica e uso de plantas medicinais em comunidades rurais do Ceará.</em> Fortaleza: EMBRAPA Agroindústria Tropical, 2014.</li>
+            <li>SILVA, Nívea Cristina Vieira da et al. <em>Lippia sidoides Cham. (Alecrim-pimenta): atividade antimicrobiana e composição do óleo essencial.</em> Química Nova, v. 33, n. 7, 2010.</li>
+            <li>TROPICOS.ORG. <em>Missouri Botanical Garden.</em> Disponível em: https://tropicos.org. Acesso em: maio 2025.</li>
+          </ul>
+        </details>
+
+      </article>
+
+      <!-- ─── SIDEBAR ──────────────────────────────────────── -->
+      <aside class="artigo-sidebar" aria-label="Informações complementares">
+
+        <!-- Aviso de saúde em destaque -->
+        <div class="card-lateral" style="background:#eff6ff;border-color:#bfdbfe;border-left:4px solid #3b82f6;">
+          <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#1d4ed8;margin-bottom:0.5rem;">⚕️ Aviso de saúde</p>
+          <p style="font-size:0.82rem;color:#1e3a8a;line-height:1.6;margin:0;">
+            Este conteúdo é educativo e <strong>não substitui orientação médica</strong>.
+            Consulte um profissional de saúde antes de usar qualquer planta medicinal.
+          </p>
+        </div>
+
+        <div class="card-lateral destaque-lateral">
+          <h2 class="card-lateral__titulo" style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:12px;">As 12 plantas</h2>
+          <ul class="card-lateral__lista" style="margin:0;">
+            <li><a href="#planta-01">🌸 Chanana</a></li>
+            <li><a href="#planta-02">🐾 Pata de Vaca</a></li>
+            <li><a href="#planta-03">🌴 Carnaúba</a></li>
+            <li><a href="#planta-04">🌳 Torém</a></li>
+            <li><a href="#planta-05">🥬 Bredo</a></li>
+            <li><a href="#planta-06">💧 Quebra-Pedra</a></li>
+            <li><a href="#planta-07">🌿 Janaguba</a></li>
+            <li><a href="#planta-08">🌱 Alecrim-Pimenta</a></li>
+            <li><a href="#planta-09">🌊 Aroeira da Praia</a></li>
+            <li><a href="#planta-10">🫙 Batiputá</a></li>
+            <li><a href="#planta-11">🌼 Pepaconha</a></li>
+            <li><a href="#planta-12">💜 Mussambê</a></li>
+          </ul>
+        </div>
+
+        <div class="card-lateral">
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:4px;">Equipe de pesquisa</h2>
+          <p style="font-size:0.78rem;color:var(--cor-texto-suave);margin:0 0 0.75rem;">2º Ano A Técnico · Turma Manoel Louvado</p>
+          <ul class="card-lateral__lista" style="font-size:0.82rem;">
+            <li>Karen Thaís</li>
+            <li>José Alysson Gomes Castro</li>
+            <li>Mariah Laylana de Sousa Rodrigues</li>
+            <li>Maria Clara do Nascimento</li>
+            <li>Maria Emanuelly</li>
+            <li>Allan Carlos Nunes</li>
+            <li>Kauemberg Azevedo de Sousa</li>
+            <li>João Pedro Sousa de Oliveira</li>
+            <li>Maria Clara Felix de Sousa</li>
+            <li>Eduarda Alves do Nascimento</li>
+            <li>Suelen Ferreira de Sousa</li>
+          </ul>
+        </div>
+
+        <div class="card-lateral">
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:4px;">Explore o portal</h2>
+          <ul class="card-lateral__lista">
+            <li><a href="Plantação Nativa.html">Plantas Nativas da região</a></li>
+            <li><a href="agricola.html">Produção Agrícola</a></li>
+            <li><a href="reportagem-clima.html">Reportagem: Clima e Campo</a></li>
+            <li><a href="historia.html">História do assentamento</a></li>
+            <li><a href="../contato.html">Enviar fotos de plantas</a></li>
+          </ul>
+        </div>
+
+        <div class="card-lateral" style="background:linear-gradient(135deg,#eef7ef,#fff);border-color:rgba(36,107,58,0.2);">
+          <p class="selo" style="margin-bottom:8px;">Ceará Científico 2025</p>
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.05rem;">EEMPC Francisco Araújo Barros</h2>
+          <p style="margin-top:8px;color:var(--cor-texto-suave);font-size:0.88rem;line-height:1.6;">
+            Pesquisa sobre plantas medicinais conduzida pelo 2º Ano A Técnico como parte
+            do projeto Ceará Científico 2025 — documentando o saber popular da Caatinga.
+          </p>
+          <a class="botao" href="../contato.html" style="margin-top:14px;font-size:0.88rem;min-height:38px;">Falar com o projeto</a>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- FAIXA DE CHAMADA PARA CONTRIBUIÇÃO -->
+    <section class="faixa-contribuir" aria-labelledby="titulo-contribuir-medicinais">
+      <div class="container faixa-contribuir__conteudo">
+        <div>
+          <p class="selo">Preservação do saber popular</p>
+          <h2 id="titulo-contribuir-medicinais">Você conhece outras plantas medicinais da comunidade?</h2>
+          <p>Relatos de uso tradicional, fotos de campo, receitas de preparo, histórias de cura — cada registro fortalece a documentação dos saberes ancestrais da Caatinga cearense.</p>
+        </div>
+        <a class="botao botao--claro" href="../contato.html">Contribuir com registros</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática</p>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script type="module" src="../js/app.js?v=20260608-2"></script>
+  <script src="../js/chat-standalone.js?v=20260526"></script>
+</body>
+</html>
+
+
+

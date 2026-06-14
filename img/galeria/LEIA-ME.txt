@@ -1,0 +1,21 @@
+Coloque aqui as fotos da comunidade e do projeto.
+
+Arquivos já esperados pelo HTML:
+- rolo-01.jpg
+- rolo-02.jpg
+- rolo-03.jpg
+- rolo-04.jpg
+- rolo-05.jpg
+- historia-foto-antiga.jpg
+- memoria-01.jpg
+- memoria-02.jpg
+- memoria-03.jpg
+- agricola-01.jpg
+- nativa-01.jpg
+- nativa-02.jpg
+- nativa-03.jpg
+
+Recomendação:
+- fotos horizontais para o rolo de fotos
+- 1200x900px ou 1600x1200px
+- usar nomes exatamente iguais aos indicados acima

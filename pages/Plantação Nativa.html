@@ -1,0 +1,614 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="As Plantas que Guardam o Ceará — inventário de 17 espécies nativas documentadas por estudantes da EEMPC Francisco Araújo Barros em Itarema, CE.">
+  <title>Plantação Nativa | Portal da Comunidade</title>
+  <link rel="stylesheet" href="../css/portal.css?v=20260608-2">
+  <link rel="stylesheet" href="../css/portal-responsivo.css?v=20260608-2">
+  <style>
+    /* ── Créditos e ficha técnica ──────────────────────────── */
+    .creditos-reportagem {
+      background: var(--cor-superficie);
+      border: 1px solid var(--cor-borda);
+      border-top: 3px solid var(--cor-primaria);
+      border-radius: var(--raio);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .creditos-reportagem__titulo {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 1.25rem;
+    }
+    .creditos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 2rem;
+    }
+    .credito-item strong {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cor-texto-suave);
+      margin-bottom: 0.2rem;
+    }
+    .credito-item span {
+      display: block;
+      font-weight: 700;
+      color: var(--cor-primaria-escura);
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .credito-item p {
+      font-size: 0.82rem;
+      color: var(--cor-acento);
+      margin: 0.15rem 0 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .creditos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="plantacao-nativa">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a class="logo" href="../index.html" aria-label="Ir para a página inicial">
+                <!-- LOGO ATUALIZADA -->
+        <img src="../img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+      </a>
+      <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span><span>Menu</span>
+      </button>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html" data-page-link="inicio">Início</a></li>
+          <li><a href="historia.html" data-page-link="historia">História</a></li>
+          <li><a href="memoria.html" data-page-link="memoria">Memória</a></li>
+          <li><a href="agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button>
+            <ul class="submenu">
+              <li><a href="Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li>
+              <li><a href="Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li>
+              <li><a href="mudas.html" data-page-link="mudas">Cultivando Vida</a></li>
+            </ul>
+          </li>
+          <li class="menu__grupo">
+            <button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button>
+            <ul class="submenu">
+              <li><a href="reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li>
+              <li><a href="reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li>
+              <li><a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li>
+            </ul>
+          </li>
+          <li><a href="../contato.html" data-page-link="contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero__imagem" data-image-placeholder="../img/banner/banner-plantacao.jpg">
+      <img src="../img/banner/banner-plantacao.jpg" alt="Vegetação nativa das comunidades do Assentamento Lagoa do Mineiro" data-fallback-hidden>
+    </div>
+    <div class="container hero__conteudo">
+      <p class="trilha" style="color:rgba(255,255,255,0.7);margin-bottom:12px;">
+        <a href="../index.html" style="color:#fff;">Início</a> &rsaquo; Plantação Nativa
+      </p>
+      <p class="selo">Biodiversidade da Caatinga e Restinga</p>
+      <h1>As Plantas que<br>Guardam o Ceará</h1>
+      <p>Um inventário vivo de 17 espécies nativas documentadas nas comunidades do Assentamento Lagoa do Mineiro, em Itarema.</p>
+      <div class="artigo-meta-hero">
+        <span>EEMPC Francisco Araújo Barros</span>
+        <span>Ceará Científico 2026</span>
+        <span>17 espécies documentadas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE METADADOS -->
+  <div class="artigo-barra">
+    <div class="container artigo-barra__conteudo">
+      <div class="artigo-barra__info">
+        <span class="artigo-categoria">Plantação Nativa</span>
+        <time datetime="2026-05-20">20 de maio de 2026</time>
+        <span>Por estudantes do Curso Técnico em Informática</span>
+      </div>
+      <a class="botao botao--pequeno" href="../contato.html">Contribuir com fotos</a>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main id="conteudo">
+    <div class="container artigo-layout">
+
+      <!-- CORPO DO ARTIGO -->
+      <article class="artigo-corpo">
+
+        <!-- PARÁGRAFO DE ABERTURA -->
+        <p class="artigo-lead">
+          Quando se caminha pelas comunidades que rodeiam a Lagoa do Mineiro, é fácil passar direto.
+          As plantas parecem apenas paisagem — pano de fundo de uma vida já ocupada demais. Mas há
+          algo especial acontecendo nesse território: uma biodiversidade resistente, sábia e urgente,
+          documentada aqui por quem sempre viveu ao seu lado.
+        </p>
+
+        <!-- SEÇÃO 1: PRESERVAÇÃO E TERRITÓRIO -->
+        <h2 class="artigo-titulo-secao">Preservação e território</h2>
+
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/plantacao-origem.jpg">
+            <img src="../img/galeria/plantacao-origem.png" alt="Vegetação nativa nas comunidades do assentamento" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/plantacao-origem.png — Flora nativa do assentamento</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              A plantação nativa fortalece a natureza local, protege o solo e contribui para a
+              preservação da biodiversidade. Há plantas que resistem ao semiárido, que alimentam
+              famílias, que curam, que protegem as dunas do avanço do mar e sustentam os manguezais.
+            </p>
+            <p>
+              Plantas que os povos indígenas conheciam há séculos e cujo saber foi passado de geração
+              em geração — até começar a se perder. Foi quando a escola resolveu pesquisar e documentar
+              essa flora que tudo começou a ganhar sentido. O resultado está aqui: um inventário de
+              17 espécies nativas, com suas histórias, usos e importância ecológica.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="pullquote">
+          <p>"Essas plantas não são apenas mato. Elas são história, medicina, proteção do solo e conexão com a identidade nordestina."</p>
+          <cite>— Projeto de Pesquisa, EEMPC Francisco Araújo Barros</cite>
+        </blockquote>
+
+        <!-- SEÇÃO 2: CONTEXTO GEOGRÁFICO -->
+        <h2 class="artigo-titulo-secao">Um mosaico de vida: a geografia do território</h2>
+
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/plantacao-territorio.jpg">
+            <img src="../img/galeria/plantacao-territorio.jpg" alt="Vista do território — dunas, lagoas e comunidades de Itarema" loading="lazy" data-fallback-hidden>
+            <figcaption>../img/galeria/plantacao-territorio.jpg — Mosaico de ambientes do assentamento</figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p>
+              <strong>Morro dos Patos</strong> — Comunidade litorânea onde a biodiversidade é mais
+              intensa. As plantas crescem enfrentando salinidade e seca ao mesmo tempo, um desafio
+              duplo que pouquíssimas espécies conseguem superar.
+            </p>
+            <p>
+              <strong>Patos</strong> — Comunidade rural ao norte, marcada pelo trabalho com a terra.
+              O conhecimento de quem vive entre dunas e lagoas interdunares gerou boa parte do
+              levantamento deste inventário.
+            </p>
+            <p>
+              <strong>Mineiro Velho</strong> — Ao sul, com lagoas interdunares e solo levemente mais
+              fértil, abriga uma vegetação mais robusta. <strong>Barbosa</strong> é onde fica a
+              escola, próxima à Lagoa do Mineiro — um corpo de água doce que parece milagre em
+              meio à aridez do semiárido.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 3: ÍNDICE DAS ESPÉCIES -->
+        <h2 class="artigo-titulo-secao">As 17 espécies documentadas</h2>
+
+        <div class="grade-dados grade-plantas-indice">
+          <div class="item-planta"><span class="num"></span><span class="nome">Guajiru</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Ipomeia-da-Praia</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Feijão-da-Praia</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Carnaúba ⭐</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Aroeira</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Pau-Branco</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Bromélias e Cactos</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Mangue-Vermelho ⭐</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Batiputá</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Torém</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Murici</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Murta</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Araticum-da-Restinga</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Mangaba</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Janaguba</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Juazeiro</span></div>
+          <div class="item-planta"><span class="num"></span><span class="nome">Umbuzeiro</span></div>
+        </div>
+
+        <!-- SEÇÃO 4: ESPÉCIES EM DESTAQUE -->
+        <h2 class="artigo-titulo-secao">Espécies em destaque</h2>
+
+        <!-- CARNAÚBA -->
+        <div class="bloco-imagem-texto">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/planta-04-carnauba.jpg">
+            <img src="../img/galeria/planta-04-carnauba.jpg" alt="Carnaubeira em Patos — a árvore símbolo do Ceará" loading="lazy" data-fallback-hidden>
+            <figcaption>Carnaúba — <em>Copernicia prunifera</em></figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p><strong> Carnaúba</strong> <em>· Copernicia prunifera · Família Arecaceae · Habitat: toda a região</em></p>
+            <p>
+              A carnaúba é a rainha das plantas cearenses. Palmeira de folhas em leque, produz nas
+              folhas uma cera branca que rendeu ao Ceará o apelido de "Terra da Luz" e colocou o
+              estado no mapa da economia global — a cera de carnaúba entra na composição de
+              cosméticos, ceras de automóvel, revestimentos industriais e isolantes elétricos.
+            </p>
+            <p>
+              Em Patos, Mineiro Velho e Barbosa, muitas famílias têm sua economia ligada, direta
+              ou indiretamente, à carnaúba. Suas raízes vão fundo, alcançando lençóis de água que
+              outras plantas jamais atingem. No pico da seca, quando tudo ao redor amarelece, a
+              carnaúba permanece verde — o emblema vivo da resistência nordestina.
+            </p>
+          </div>
+        </div>
+
+        <!-- MANGUE-VERMELHO -->
+        <div class="bloco-imagem-texto bloco-imagem-texto--invertido">
+          <figure class="bloco-imagem-texto__figura" data-image-placeholder="../img/galeria/planta-08-mangue.jpg">
+            <img src="../img/galeria/planta-08-mangue.jpg" alt="Raízes aéreas do mangue-vermelho na costa de Itarema" loading="lazy" data-fallback-hidden>
+            <figcaption>Mangue-Vermelho — <em>Rhizophora mangle</em></figcaption>
+          </figure>
+          <div class="bloco-imagem-texto__texto">
+            <p><strong> Mangue-Vermelho</strong> <em>· Rhizophora mangle · Família Rhizophoraceae · Habitat: costa de Itarema</em></p>
+            <p>
+              Se houvesse uma eleição para a planta mais importante do litoral de Itarema, o
+              mangue-vermelho ganharia sem disputa. Suas raízes aéreas criam um labirinto úmido
+              que é a maternidade do mar — larvas de peixes, camarões e moluscos crescem protegidas
+              entre essas raízes antes de ganhar o oceano.
+            </p>
+            <p>
+              Muitas famílias de Morro dos Patos dependem da pesca — e essa pesca só existe porque
+              o mangue existe primeiro. O mangue-vermelho sobrevive em água salgada graças a
+              glândulas nas folhas que <em>expelem</em> o sal ativamente: um sistema de
+              dessalinização vivo, sem gasto de energia elétrica, operando há milhares de anos.
+            </p>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 5: INVENTÁRIO COMPLETO -->
+        <h2 class="artigo-titulo-secao">Inventário completo das espécies</h2>
+
+        <div class="grade-personagens">
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-01-guajiru.jpg">
+              <img src="../img/galeria/planta-01-guajiru.jpg" alt="Frutos maduros do guajiru" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Guajiru</strong>
+              <span><em>Chrysobalanus icaco</em> · Restinga litorânea</span>
+              <p>Árvore pequena das restingas com frutos negros, doces e levemente adstringentes. Suas raízes seguram o solo das dunas de Morro dos Patos evitando erosão. Frutos usados em geleias por moradores há gerações.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-02-ipomeia.jpg">
+              <img src="../img/galeria/planta-02-ipomeia.jpg" alt="Flores roxas da ipomeia-da-praia nas dunas" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Ipomeia-da-Praia</strong>
+              <span><em>Ipomoea pes-caprae</em> · Dunas e praias</span>
+              <p>Cresce na areia pura das dunas, sem solo fértil, com sal constante do mar — e exibe flores roxas ao amanhecer. Suas raízes rastejantes formam uma malha que prende a areia no lugar, protegendo as casas de Morro dos Patos.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-03-feijao.jpg">
+              <img src="../img/galeria/planta-03-feijao.jpg" alt="Feijão-da-praia nas dunas litorâneas" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Feijão-da-Praia</strong>
+              <span><em>Canavalia rosea</em> · Dunas litorâneas</span>
+              <p>Parceira da ipomeia nas dunas, é uma leguminosa que fixa nitrogênio no solo — fertilizando a areia enquanto a segura. Para os povos originários, suas sementes também eram alimento de emergência.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-05-aroeira.jpg">
+              <img src="../img/galeria/planta-05-aroeira.jpg" alt="Tronco avermelhado da aroeira" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Aroeira</strong>
+              <span><em>Myracrodruon urundeuva</em> · Mineiro Velho e arredores</span>
+              <p>Madeira extraordinariamente dura, usada por povos indígenas para arcos e ferramentas. A casca, rica em taninos, é anti-inflamatória, antifúngica e cicatrizante — um dos remédios mais citados pelos mais velhos das comunidades.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-06-paubr.jpg">
+              <img src="../img/galeria/planta-06-paubr.jpg" alt="Pau-branco em Barbosa, tronco pálido característico" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Pau-Branco</strong>
+              <span><em>Auxemma oncocalyx</em> · Barbosa e Patos</span>
+              <p>O nome vem do tronco pálido, quase branco-acinzentado, inconfundível na paisagem. Madeira dura, durável e valiosa para construção e estruturas rurais. Ter um pau-branco na propriedade é ter um patrimônio.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-07-bromelias.jpg">
+              <img src="../img/galeria/planta-07-bromelias.jpg" alt="Bromélias e cactos por toda a região" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Bromélias e Cactos</strong>
+              <span><em>Bromeliaceae / Cactaceae</em> · Por toda a região</span>
+              <p>As bromélias capturam água da chuva no centro, criando um microecossistema completo mesmo no auge da estiagem. Os cactos acumulam água nos tecidos e, quando a chuva chega, florescem com exuberância desproporcional à espera.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-09-batiputa.jpg">
+              <img src="../img/galeria/planta-09-batiputa.jpg" alt="Flores amarelas do batiputá na restinga" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Batiputá</strong>
+              <span><em>Ouratea fieldingiana</em> · Restinga litorânea</span>
+              <p>Pequena árvore com flores amarelas e folhas brilhantes. Estabiliza dunas, alimenta a fauna local e mantém a cadeia alimentar da restinga funcionando. Às vezes, as plantas mais importantes são as menos notadas.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-10-torem.jpg">
+              <img src="../img/galeria/planta-10-torem.jpg" alt="Torém em Mineiro Velho" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Torém</strong>
+              <span><em>Cecropia pachystachya</em> · Mineiro Velho</span>
+              <p>Pioneiro: a primeira planta a colonizar solos perturbados, abrindo caminho para que outras espécies se estabeleçam. De crescimento rápido, alimenta as aves com seus frutos e serve como forragem. É a espécie que regenera.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-11-murici.jpg">
+              <img src="../img/galeria/planta-11-murici.jpg" alt="Frutos amarelos do murici" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Murici</strong>
+              <span><em>Byrsonima sericea</em> · Patos e Mineiro Velho</span>
+              <p>Os frutos redondos e amarelos são sinônimo de verão nas comunidades. Polpa doce e levemente oleosa, comida direto do pé ou em sucos. Para as crianças de Patos e Mineiro Velho, murici é sinônimo de férias e liberdade.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-12-murta.jpg">
+              <img src="../img/galeria/planta-12-murta.jpg" alt="Frutos negros da murta" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Murta</strong>
+              <span><em>Myrcia spp.</em> · Barbosa e Patos</span>
+              <p>Pequena árvore com frutos negros e sabor refrescante. O chá das folhas é usado por moradores de Barbosa e Patos para problemas digestivos — um conhecimento que os mais velhos guardam com cuidado.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-13-araticum.jpg">
+              <img src="../img/galeria/planta-13-araticum.jpg" alt="Fruto do araticum-da-restinga" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Araticum-da-Restinga</strong>
+              <span><em>Annona maritima</em> · Morro dos Patos</span>
+              <p>Frutos grandes com polpa branca, doce e cremosa, rica em fibras e vitaminas. Comer araticum descalço, no quintal, ao entardecer — essa experiência simples é parte da infância de quem cresceu nessas comunidades.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-14-mangaba.jpg">
+              <img src="../img/galeria/planta-14-mangaba.jpg" alt="Frutos da mangaba" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Mangaba</strong>
+              <span><em>Hancornia speciosa</em> · Áreas de restinga</span>
+              <p>Documentada pelos jesuítas na chegada ao Brasil. Redonda, alaranjada, casca de papel, polpa branca e cremosa com aquela acidez que equilibra tudo. Hoje celebrada na gastronomia gourmet — aqui, é simplesmente comida de quintal.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-15-janaguba.jpg">
+              <img src="../img/galeria/planta-15-janaguba.jpg" alt="Flores brancas e fragrantes da janaguba" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Janaguba</strong>
+              <span><em>Himatanthus drasticus</em> · Toda a região</span>
+              <p>Árvore de tronco avermelhado e flores brancas fragrantes, famosa pelo látex leitoso medicinal. Moradores das comunidades o usam para tratar inflamações, verminoses e infecções de pele — rastreado em registros etnobotânicos de todo o Nordeste.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-16-juazeiro.jpg">
+              <img src="../img/galeria/planta-16-juazeiro.jpg" alt="Juazeiro com copa densa durante a seca" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Juazeiro</strong>
+              <span><em>Ziziphus joazeiro</em> · Interior das comunidades</span>
+              <p>Permanece verde quando tudo ao redor seca. Sua copa densa oferece sombra e seus frutos adocicados alimentam homens e animais nos meses mais duros. A casca e a raiz entram em preparos medicinais para higiene bucal e cicatrização.</p>
+            </div>
+          </div>
+
+          <div class="card-personagem">
+            <div class="card-personagem__foto" data-image-placeholder="../img/galeria/planta-17-umbu.jpg">
+              <img src="../img/galeria/planta-17-umbu.jpg" alt="Umbuzeiro em Patos, símbolo do semiárido" loading="lazy" data-fallback-hidden>
+            </div>
+            <div class="card-personagem__info">
+              <strong> Umbuzeiro</strong>
+              <span><em>Spondias tuberosa</em> · Patos e Mineiro Velho</span>
+              <p>Guarda água nas raízes tuberosas, sobrevivendo meses de seca intensa. Seus frutos ácidos e refrescantes alimentaram sertanejos por séculos. É impossível falar do semiárido sem falar do umbuzeiro — alimento e símbolo de resistência ao mesmo tempo.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- IMAGEM DESTAQUE (full-width) -->
+        <figure class="imagem-destaque" data-image-placeholder="../img/galeria/plantacao-panorama.jpg">
+          <img src="../img/galeria/plantacao-panorama.png" alt="Panorama da flora nativa nas comunidades do Assentamento Lagoa do Mineiro" loading="lazy" data-fallback-hidden>
+          <figcaption>Biodiversidade nativa nas comunidades do Assentamento Lagoa do Mineiro — Itarema, CE</figcaption>
+        </figure>
+
+        <!-- SEÇÃO 6: O QUE AS PLANTAS ENSINAM -->
+        <h2 class="artigo-titulo-secao">O que as plantas ensinam</h2>
+
+        <p>
+          Quando começamos este projeto, as plantas eram apenas paisagem. Quando terminamos, eram
+          ancestrais vivos — testemunhas de séculos, guardiãs do solo, alimentadoras de comunidades,
+          cúmplices de curas passadas de geração em geração.
+        </p>
+
+        <p>
+          O que descobrimos não está apenas nos herbários que montamos ou nos relatórios que
+          escrevemos. Está na conversa com uma avó que ainda faz geleia de guajiru, no cheiro da
+          casca de aroeira numa tarde de pesquisa em Mineiro Velho, na imagem das flores roxas da
+          ipomeia-da-praia abrindo ao amanhecer em Morro dos Patos.
+        </p>
+
+        <blockquote class="pullquote">
+          <p>"Conhecer as plantas do nosso território é conhecer quem somos. É saber de onde viemos e para onde podemos ir."</p>
+          <cite>— Reflexão dos alunos participantes do projeto</cite>
+        </blockquote>
+
+        <p>
+          A biodiversidade de Patos, Morro dos Patos, Mineiro Velho, Barbosa e todas as comunidades
+          ao redor não é um acidente geográfico. É resultado de milhares de anos de adaptação,
+          resistência e sabedoria acumulada. E merece ser documentada, celebrada e protegida —
+          agora, por nós.
+        </p>
+
+        <!-- ═══════════════════════════════════
+             CRÉDITOS DO INVENTÁRIO
+        ════════════════════════════════════ -->
+        <div class="creditos-reportagem" aria-label="Créditos do inventário">
+          <p class="creditos-reportagem__titulo">Créditos e ficha técnica</p>
+          <div class="creditos-grid">
+            <div class="credito-item">
+              <strong>Inventário e documentação</strong>
+              <span>Estudantes do Curso Técnico em Informática</span>
+              <p>EEMPC Francisco Araújo Barros · Itarema, CE</p>
+            </div>
+            <div class="credito-item">
+              <strong>Área de estudo</strong>
+              <span>Assentamento Lagoa do Mineiro</span>
+              <p>Comunidades de Patos, Morro dos Patos, Mineiro Velho, Barbosa e entorno</p>
+            </div>
+            <div class="credito-item">
+              <strong>Projeto</strong>
+              <span>Ceará Científico 2026</span>
+              <p>As Plantas que Guardam o Ceará — inventário de 17 espécies nativas</p>
+            </div>
+            <div class="credito-item">
+              <strong>Biomas documentados</strong>
+              <span>Caatinga · Restinga · Manguezal</span>
+              <p>Litoral oeste do Ceará · Município de Itarema</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referências bibliográficas -->
+        <details style="margin:1.5rem 0;border:1px solid var(--cor-borda);border-radius:var(--raio);padding:1rem 1.25rem;">
+          <summary style="font-size:0.85rem;font-weight:700;color:var(--cor-primaria-escura);cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.5rem;">
+            <span>▶</span> Referências bibliográficas
+          </summary>
+          <ul style="margin-top:1rem;font-size:0.82rem;color:var(--cor-texto-suave);line-height:2;padding-left:1.25rem;">
+            <li>ANDRADE-LIMA, Dárdano de. <em>The Caatinga dominium.</em> Revista Brasileira de Botânica, v. 4, 1981.</li>
+            <li>BRASIL. Ministério do Meio Ambiente. <em>Caatinga: o bioma exclusivamente brasileiro.</em> Brasília: MMA, 2010.</li>
+            <li>CRONQUIST, Arthur. <em>An Integrated System of Classification of Flowering Plants.</em> New York: Columbia University Press, 1981.</li>
+            <li>FERNANDES, Antônio. <em>Fitogeografia Brasileira.</em> 3. ed. Fortaleza: Multigraf, 2006.</li>
+            <li>FLORA DO BRASIL 2020. <em>Jardim Botânico do Rio de Janeiro.</em> Disponível em: http://floradobrasil.jbrj.gov.br. Acesso em: maio 2026.</li>
+            <li>IBGE. <em>Manual Técnico da Vegetação Brasileira.</em> 2. ed. Rio de Janeiro: IBGE, 2012.</li>
+            <li>LEAL, Inara R.; TABARELLI, Marcelo; SILVA, José Maria Cardoso da (Orgs.). <em>Ecologia e Conservação da Caatinga.</em> Recife: UFPE, 2003.</li>
+            <li>LORENZI, Harri. <em>Árvores Brasileiras: manual de identificação e cultivo de plantas arbóreas nativas do Brasil.</em> 5. ed. Nova Odessa: Instituto Plantarum, 2008.</li>
+            <li>PRANCE, Ghillean Tolmie; SILVA, Marlene Freitas da. <em>Árvores de Manaus.</em> Manaus: INPA, 1975.</li>
+            <li>RIZZINI, Carlos Toledo. <em>Tratado de Fitogeografia do Brasil.</em> 2. ed. Rio de Janeiro: Âmbito Cultural, 1997.</li>
+            <li>RODAL, Maria Jesus N.; SAMPAIO, Everardo V. S. B. <em>A vegetação do bioma Caatinga.</em> In: SAMPAIO, E. et al. (Orgs.). <em>Vegetação e Flora da Caatinga.</em> Recife: APNE/CNIP, 2002.</li>
+            <li>SAMPAIO, Everardo Valadares de Sá Barretto et al. <em>Vegetação e Flora da Caatinga.</em> Recife: APNE/CNIP, 2002.</li>
+          </ul>
+        </details>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="artigo-sidebar" aria-label="Informações complementares">
+
+        <div class="card-lateral destaque-lateral">
+          <h2 class="card-lateral__titulo" style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:12px;">Dados do inventário</h2>
+          <dl class="fatos-rapidos">
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Espécies</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">17 nativas</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Bioma</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Caatinga / Restinga</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Comunidades</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">4 pesquisadas</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cor-borda);font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Município</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Itarema – CE</dd>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:0.9rem;">
+              <dt style="color:var(--cor-texto-suave);">Projeto</dt>
+              <dd style="color:var(--cor-primaria-escura);font-weight:700;">Ceará Científico</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="card-lateral">
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.1rem;margin-bottom:4px;">Explore o portal</h2>
+          <ul class="card-lateral__lista">
+            <li><a href="historia.html">História do assentamento</a></li>
+            <li><a href="agricola.html">Produção Agrícola</a></li>
+            <li><a href="Plantas Medicinais.html">Plantas Medicinais</a></li>
+            <li><a href="memoria.html">Depoimentos de moradores</a></li>
+            <li><a href="../contato.html">Enviar fotos das plantas</a></li>
+          </ul>
+        </div>
+
+        <div class="card-lateral" style="background:linear-gradient(135deg,#eef7ef,#fff);border-color:rgba(36,107,58,0.2);">
+          <p class="selo" style="margin-bottom:8px;">Projeto escolar</p>
+          <h2 style="color:var(--cor-primaria-escura);font-size:1.05rem;">EEMPC Francisco Araújo Barros</h2>
+          <p style="margin-top:8px;color:var(--cor-texto-suave);font-size:0.88rem;line-height:1.6;">
+            Pesquisa realizada por estudantes do Curso Técnico em Informática como parte do projeto
+            Ceará Científico 2026. Atividades: pesquisa de campo, entrevistas com moradores,
+            mapeamento GPS e laboratório.
+          </p>
+          <a class="botao" href="../contato.html" style="margin-top:14px;font-size:0.88rem;min-height:38px;">Falar com o projeto</a>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- FAIXA DE CHAMADA PARA CONTRIBUIÇÃO -->
+    <section class="faixa-contribuir" aria-labelledby="titulo-contribuir-plantas">
+      <div class="container faixa-contribuir__conteudo">
+        <div>
+          <p class="selo">Preservação da biodiversidade</p>
+          <h2 id="titulo-contribuir-plantas">Você tem fotos das plantas da região?</h2>
+          <p>Ajude a enriquecer este inventário. Fotos de campo, nomes locais, usos tradicionais — cada registro fortalece a documentação da flora nativa do assentamento.</p>
+        </div>
+        <a class="botao botao--claro" href="../contato.html">Enviar meus registros</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>Portal Digital da Comunidade &copy; <span data-current-year>2026</span></p>
+      <p>Desenvolvido por estudantes do Curso Técnico em Informática</p>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script type="module" src="../js/app.js?v=20260608-2"></script>
+  <script src="../js/chat-standalone.js?v=20260526"></script>
+</body>
+</html>
+
+
+

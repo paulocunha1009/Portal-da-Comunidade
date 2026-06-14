@@ -1,0 +1,29 @@
+# ══════════════════════════════════════════════════════════════
+# ARQUIVOS QUE NUNCA DEVEM IR PARA O GITHUB
+# ══════════════════════════════════════════════════════════════
+
+# ── CHAVES DE API E SEGREDOS ──────────────────────────────────
+# O .env contém a GEMINI_API_KEY — NUNCA subir!
+backend/.env
+.env
+*.env
+!*.env.example
+
+# ── DEPENDÊNCIAS (geradas pelo npm install) ───────────────────
+node_modules/
+backend/node_modules/
+
+# ── ARQUIVOS DO SISTEMA ───────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# ── EDITORES ──────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+# ── SESSÃO DO ASSISTENTE DE DESENVOLVIMENTO ───────────────────
+.claude/

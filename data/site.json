@@ -1,0 +1,70 @@
+{
+  "noticias": [
+    {
+      "data": "2026-05-20",
+      "titulo": "Portal preparado para o Ceará Científico",
+      "resumo": "A plataforma agora tem áreas para notícias, eventos, memória local, agricultura e futura integração com inteligência artificial."
+    },
+    {
+      "data": "2026-05-22",
+      "titulo": "Estudantes podem alimentar a galeria",
+      "resumo": "As imagens já possuem locais definidos. Basta salvar os arquivos nas pastas indicadas e manter os nomes combinados."
+    },
+    {
+      "data": "2026-05-25",
+      "titulo": "Pesquisa de campo em destaque",
+      "resumo": "As páginas internas foram organizadas para receber entrevistas, dados agrícolas e registros sobre plantas da região."
+    }
+  ],
+  "eventos": [
+    {
+      "data": "2026-05-27",
+      "nome": "Coleta de fotos da comunidade",
+      "descricao": "Organizar imagens para o rolo de fotos e galerias internas."
+    },
+    {
+      "data": "2026-06-03",
+      "nome": "Oficina de entrevistas",
+      "descricao": "Preparar perguntas para registrar memórias dos moradores."
+    },
+    {
+      "data": "2026-06-10",
+      "nome": "Revisão dos dados científicos",
+      "descricao": "Conferir informações sobre agricultura, plantas nativas e plantas medicinais."
+    }
+  ],
+  "dicasAgricolas": [
+    "Registrar períodos de chuva, estiagem e preparo do solo.",
+    "Fotografar etapas do cultivo com autorização dos responsáveis.",
+    "Comparar práticas tradicionais com técnicas sustentáveis pesquisadas.",
+    "Guardar fontes das informações usadas no projeto científico."
+  ],
+  "plantasNativas": [
+    {
+      "nome": "Espécie nativa 1",
+      "descricao": "Substitua pelo nome popular, características e importância ambiental."
+    },
+    {
+      "nome": "Espécie nativa 2",
+      "descricao": "Registre local onde é encontrada, período de floração e cuidados de preservação."
+    },
+    {
+      "nome": "Espécie nativa 3",
+      "descricao": "Inclua informações pesquisadas com moradores, professores e fontes confiáveis."
+    }
+  ],
+  "plantasMedicinais": [
+    {
+      "nome": "Planta medicinal 1",
+      "descricao": "Informe uso tradicional, parte utilizada e cuidados necessários."
+    },
+    {
+      "nome": "Planta medicinal 2",
+      "descricao": "Adicione observações dos moradores e orientação de pesquisa responsável."
+    },
+    {
+      "nome": "Planta medicinal 3",
+      "descricao": "Reforce que o conteúdo é educativo e não substitui orientação profissional."
+    }
+  ]
+}

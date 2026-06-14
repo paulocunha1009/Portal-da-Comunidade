@@ -1,0 +1,9 @@
+Coloque aqui as imagens grandes do portal.
+
+Arquivos já esperados pelo HTML:
+- banner-principal.jpg
+
+Recomendação:
+- largura: 1600px ou mais
+- formato: .jpg ou .webp
+- imagem clara da escola, comunidade, campo, feira científica ou paisagem local
