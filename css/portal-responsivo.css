@@ -111,6 +111,12 @@
     min-width: 0;
   }
 
+  .logo__imagem {
+    width: auto;
+    height: 50px;
+    max-width: 235px;
+  }
+
   .logo__marca {
     width: 42px;
     height: 42px;
@@ -124,12 +130,50 @@
     min-height: 460px;
   }
 
+  .hero--banner-oficial {
+    min-height: clamp(320px, 58vw, 520px);
+  }
+
+  .logo strong {
+    font-size: 0.92rem;
+  }
+
+  .logo small {
+    font-size: 0.68rem;
+  }
+
   .hero__conteudo {
     padding-block: 64px 48px;
   }
 
+  .hero:not(.hero--banner-oficial) .hero__conteudo::before {
+    left: -14px;
+    top: 38px;
+    bottom: 28px;
+    width: calc(100% + 28px);
+    background: linear-gradient(90deg, rgba(4, 33, 19, 0.84), rgba(4, 33, 19, 0.7));
+  }
+
+  .hero:not(.hero--banner-oficial) .hero__imagem::before {
+    content: none;
+  }
+
+  .hero:not(.hero--banner-oficial)::after {
+    right: -8%;
+    width: min(48vw, 220px);
+    opacity: 0.2;
+  }
+
   .hero p:not(.selo) {
     font-size: 1rem;
+  }
+
+  .hero:not(.hero--banner-oficial) .artigo-meta-hero span {
+    font-size: 0.8rem;
+  }
+
+  .hero--banner-oficial .hero__imagem img {
+    object-position: 34% center;
   }
 
   .secao {
@@ -188,6 +232,12 @@
 }
 
 @media screen and (max-width: 520px) {
+  .logo__imagem {
+    width: auto;
+    height: 42px;
+    max-width: 196px;
+  }
+
   .menu > ul {
     grid-template-columns: 1fr;
   }
@@ -197,8 +247,20 @@
     width: 100%;
   }
 
+  .logo__texto {
+    max-width: 120px;
+  }
+
   .botao {
     text-align: center;
+  }
+
+  .hero--banner-oficial {
+    min-height: 310px;
+  }
+
+  .hero--banner-oficial .hero__imagem img {
+    object-position: 30% center;
   }
 
   .galeria-historica,

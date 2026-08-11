@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portal educacional do Ceará Científico com memória, agricultura, cultura regional e recursos interativos para estudantes e professores.">
   <title>Portal da Comunidade | Ceará Científico</title>
-  <link rel="stylesheet" href="css/portal.css?v=20260608-2">
-  <link rel="stylesheet" href="css/portal-responsivo.css?v=20260608-2">
+  <link rel="icon" type="image/png" href="img/logo/favicon-campo-digital.png">
+  <link rel="stylesheet" href="css/portal.css?v=20260810-4">
+  <link rel="stylesheet" href="css/portal-responsivo.css?v=20260810-4">
 </head>
 <body data-page="inicio">
   <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
@@ -14,8 +15,7 @@
   <header class="cabecalho">
     <div class="container cabecalho__conteudo">
       <a class="logo" href="index.html" aria-label="Ir para a página inicial">
-        <!-- LOGO ATUALIZADA -->
-        <img src="img/logo/logo-campo-digital.png" alt="Logo Campo Digital" class="logo__imagem">
+        <img src="img/logo/campo-digital-logo-header.png" alt="Campo Digital" class="logo__imagem">
       </a>
 
       <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal">
@@ -52,15 +52,18 @@
   </header>
 
   <main id="conteudo">
-    <section class="hero">
+    <section class="hero hero--banner-oficial">
       <!-- BANNER ATUALIZADO -->
-      <div class="hero__imagem" data-image-placeholder="img/banner/banner-campo-digital.jpg">
-        <img src="img/banner/banner-campo-digital.jpg" alt="Estudantes e comunidade em atividade científica no campo" data-fallback-hidden>
+      <div class="hero__imagem" data-image-placeholder="Imagem de capa do Campo Digital">
+        <picture>
+          <source srcset="img/banner/campo-digital-banner-oficial.webp" type="image/webp">
+          <img src="img/banner/campo-digital-banner-oficial.jpg" alt="Banner Campo Digital: Laboratório de Tecnologia, Memória e Território, Ceará Científico 2026, pesquisa, memória, território e inovação" data-fallback-hidden>
+        </picture>
       </div>
-      <div class="container hero__conteudo">
+      <div class="container hero__conteudo sr-only">
         <p class="selo">Educação, ciência e território</p>
-        <h1>Portal da Comunidade</h1>
-        <p>Um espaço digital para registrar memórias, valorizar saberes do campo e aproximar estudantes, professores e comunidade da inovação.</p>
+        <h1>Campo Digital</h1>
+        <p>Laboratório de tecnologia, memória e território desenvolvido por estudantes da EEMPC Francisco Araújo Barros para valorizar saberes do campo e fortalecer a comunidade.</p>
         <div class="hero__acoes" aria-label="Ações principais">
           <a class="botao" href="pages/historia.html">Conhecer a história</a>
           <a class="botao botao--secundario" href="#noticias">Ver notícias</a>
@@ -226,10 +229,9 @@
   </footer>
 
   <script src="js/config.js"></script>
-  <script type="module" src="js/app.js?v=20260608-2"></script>
+  <script type="module" src="js/app.js?v=20260810-1"></script>
   <script src="js/chat-standalone.js?v=20260526"></script>
   <script src="js/noticias.js?v=20260525"></script>
 </body>
 </html>
-
 
