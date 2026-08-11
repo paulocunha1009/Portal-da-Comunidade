@@ -1,16 +1,44 @@
 /**
- * Notícias ao vivo — Portal da Comunidade
- * Busca RSS via backend (Railway) — sem problema de CORS
- * Cache de 30 minutos no localStorage
+ * Notícias do portal
+ * Usa conteúdo local no GitHub Pages e atualiza pelo backend quando disponível.
  */
 (function () {
   'use strict';
 
   var CACHE_KEY = 'portal_noticias_v2';
   var CACHE_MIN = 30;
-  // Usa o mesmo endpoint configurado para a IA
-  var BACKEND   = (window.PORTAL_AI_ENDPOINT || 'http://localhost:3001/api/assistente')
-                    .replace('/api/assistente', '');
+  var BACKEND = (window.PORTAL_AI_ENDPOINT || 'http://localhost:3001/api/assistente')
+    .replace('/api/assistente', '');
+
+  var NOTICIAS_FIXAS = [
+    {
+      data: '2026-05-20',
+      titulo: 'Campo Digital valoriza memória, território e inovação',
+      resumo: 'O portal reúne história, saberes do campo, reportagens e recursos digitais criados para fortalecer a comunidade escolar.',
+      categoria: 'Portal',
+      icone: '📌',
+      classe: 'badge--portal',
+      link: 'pages/reportagem-educacao.html'
+    },
+    {
+      data: '2026-05-25',
+      titulo: 'IA educacional ganha espaço como próxima etapa do projeto',
+      resumo: 'A estrutura do site já prepara um assistente para apoiar pesquisas, quizzes e orientação de estudo dentro do próprio portal.',
+      categoria: 'Tecnologia',
+      icone: '🤖',
+      classe: 'badge--tech',
+      link: 'pages/materia_ia_educacao_v2.html'
+    },
+    {
+      data: '2026-06-10',
+      titulo: 'Saberes locais ajudam a documentar plantas e práticas agrícolas',
+      resumo: 'As páginas de agricultura, plantas nativas e plantas medicinais aproximam pesquisa escolar, cultura regional e sustentabilidade.',
+      categoria: 'Agroecologia',
+      icone: '🌱',
+      classe: 'badge--agro',
+      link: 'pages/agricola.html'
+    }
+  ];
 
   // ── Utilitários ─────────────────────────────────────────────────────────────
 
@@ -19,6 +47,34 @@
     var d = new Date(str + 'T12:00:00');
     if (isNaN(d)) return str;
     return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function escapar(texto) {
+    return String(texto || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function normalizar(noticia, indice) {
+    var padroes = [
+      { categoria: 'Portal', icone: '📌', classe: 'badge--portal', link: 'pages/reportagem-educacao.html' },
+      { categoria: 'Tecnologia', icone: '🤖', classe: 'badge--tech', link: 'pages/materia_ia_educacao_v2.html' },
+      { categoria: 'Agroecologia', icone: '🌱', classe: 'badge--agro', link: 'pages/agricola.html' }
+    ];
+    var padrao = padroes[indice % padroes.length];
+
+    return {
+      data: noticia.data || '',
+      titulo: noticia.titulo || 'Atualização do Campo Digital',
+      resumo: noticia.resumo || 'Conteúdo em organização pela equipe do projeto.',
+      categoria: noticia.categoria || padrao.categoria,
+      icone: noticia.icone || padrao.icone,
+      classe: noticia.classe || padrao.classe,
+      link: noticia.link || padrao.link
+    };
   }
 
   // ── Renderização ─────────────────────────────────────────────────────────────
@@ -33,17 +89,19 @@
       return;
     }
 
-    container.innerHTML = noticias.map(function (n) {
+    var lista = noticias.map(normalizar);
+
+    container.innerHTML = lista.map(function (n) {
       return [
         '<article class="card-noticia">',
         '  <div class="card-noticia__meta">',
-        '    <span class="card-noticia__badge ' + n.classe + '">' + n.icone + ' ' + n.categoria + '</span>',
-        '    <time datetime="' + n.data + '">' + formatarData(n.data) + '</time>',
+        '    <span class="card-noticia__badge ' + escapar(n.classe) + '">' + escapar(n.icone + ' ' + n.categoria) + '</span>',
+        '    <time datetime="' + escapar(n.data) + '">' + escapar(formatarData(n.data)) + '</time>',
         '  </div>',
         '  <h3 class="card-noticia__titulo">',
-        '    <a href="' + n.link + '" target="_blank" rel="noopener noreferrer">' + n.titulo + '</a>',
+        '    <a href="' + escapar(n.link) + '">' + escapar(n.titulo) + '</a>',
         '  </h3>',
-        '  <p class="card-noticia__resumo">' + n.resumo + '</p>',
+        '  <p class="card-noticia__resumo">' + escapar(n.resumo) + '</p>',
         '</article>'
       ].join('');
     }).join('');
@@ -66,37 +124,73 @@
 
   // ── Lógica principal ─────────────────────────────────────────────────────────
 
-  function carregar() {
-    // Tenta usar cache localStorage
+  function obterCache() {
     try {
       var raw = localStorage.getItem(CACHE_KEY);
       if (raw) {
         var cache = JSON.parse(raw);
         if (Date.now() - cache.ts < CACHE_MIN * 60 * 1000 && cache.dados && cache.dados.length) {
-          renderizar(cache.dados);
-          return;
+          return cache.dados;
         }
       }
     } catch (e) { /* ignora */ }
+    return null;
+  }
 
-    // Mostra skeleton enquanto carrega
-    renderizarSkeleton();
+  function salvarCache(noticias) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), dados: noticias }));
+    } catch (e) { /* ignora */ }
+  }
 
-    // Busca via backend (sem CORS)
-    fetch(BACKEND + '/api/noticias')
-      .then(function (r) { return r.json(); })
+  function carregarLocal() {
+    return fetch('data/site.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('Conteúdo local não encontrado.');
+        return r.json();
+      })
       .then(function (data) {
-        var noticias = data.noticias || [];
-        if (noticias.length) {
-          try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), dados: noticias }));
-          } catch (e) { /* ignora */ }
-        }
-        renderizar(noticias);
+        return data.noticias && data.noticias.length ? data.noticias : NOTICIAS_FIXAS;
       })
       .catch(function () {
-        renderizar([]);
+        return NOTICIAS_FIXAS;
       });
+  }
+
+  function carregarRemoto() {
+    var controle = window.AbortController ? new window.AbortController() : null;
+    var timeout = controle ? setTimeout(function () { controle.abort(); }, 3500) : null;
+
+    return fetch(BACKEND + '/api/noticias', controle ? { signal: controle.signal } : undefined)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (timeout) clearTimeout(timeout);
+        var noticias = data.noticias || [];
+        if (noticias.length) {
+          salvarCache(noticias);
+          renderizar(noticias);
+        }
+      })
+      .catch(function () {
+        if (timeout) clearTimeout(timeout);
+        /* Mantém as notícias locais já renderizadas. */
+      });
+  }
+
+  function carregar() {
+    var cache = obterCache();
+    if (cache) {
+      renderizar(cache);
+      carregarRemoto();
+      return;
+    }
+
+    renderizarSkeleton();
+
+    carregarLocal().then(function (noticias) {
+      renderizar(noticias);
+      carregarRemoto();
+    });
   }
 
   // Inicia após o DOM estar pronto

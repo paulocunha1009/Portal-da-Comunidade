@@ -20,13 +20,31 @@ function renderizarNoticias(noticias) {
   const destino = document.querySelector('[data-render="noticias"]');
   if (!destino) return;
 
-  destino.innerHTML = noticias.map((noticia) => `
-    <article>
-      <time datetime="${noticia.data}">${formatarData(noticia.data)}</time>
-      <h3>${escapar(noticia.titulo)}</h3>
-      <p>${escapar(noticia.resumo)}</p>
+  destino.innerHTML = noticias.map((noticia, indice) => {
+    const padroes = [
+      { categoria: 'Portal', icone: '📌', classe: 'badge--portal', link: 'pages/reportagem-educacao.html' },
+      { categoria: 'Tecnologia', icone: '🤖', classe: 'badge--tech', link: 'pages/materia_ia_educacao_v2.html' },
+      { categoria: 'Agroecologia', icone: '🌱', classe: 'badge--agro', link: 'pages/agricola.html' }
+    ];
+    const padrao = padroes[indice % padroes.length];
+    const categoria = noticia.categoria ?? padrao.categoria;
+    const icone = noticia.icone ?? padrao.icone;
+    const classe = noticia.classe ?? padrao.classe;
+    const link = noticia.link ?? padrao.link;
+
+    return `
+    <article class="card-noticia">
+      <div class="card-noticia__meta">
+        <span class="card-noticia__badge ${escapar(classe)}">${escapar(`${icone} ${categoria}`)}</span>
+        <time datetime="${escapar(noticia.data)}">${formatarData(noticia.data)}</time>
+      </div>
+      <h3 class="card-noticia__titulo">
+        <a href="${escapar(link)}">${escapar(noticia.titulo)}</a>
+      </h3>
+      <p class="card-noticia__resumo">${escapar(noticia.resumo)}</p>
     </article>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function renderizarEventos(eventos) {

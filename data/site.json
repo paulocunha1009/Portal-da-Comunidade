@@ -2,18 +2,30 @@
   "noticias": [
     {
       "data": "2026-05-20",
-      "titulo": "Portal preparado para o Ceará Científico",
-      "resumo": "A plataforma agora tem áreas para notícias, eventos, memória local, agricultura e futura integração com inteligência artificial."
+      "titulo": "Campo Digital valoriza memória, território e inovação",
+      "resumo": "A plataforma reúne história, saberes do campo, reportagens e recursos digitais criados para fortalecer a comunidade escolar.",
+      "categoria": "Portal",
+      "icone": "📌",
+      "classe": "badge--portal",
+      "link": "pages/reportagem-educacao.html"
     },
     {
       "data": "2026-05-22",
-      "titulo": "Estudantes podem alimentar a galeria",
-      "resumo": "As imagens já possuem locais definidos. Basta salvar os arquivos nas pastas indicadas e manter os nomes combinados."
+      "titulo": "IA educacional ganha espaço como próxima etapa do projeto",
+      "resumo": "A estrutura do site já prepara um assistente para apoiar pesquisas, quizzes e orientação de estudo dentro do próprio portal.",
+      "categoria": "Tecnologia",
+      "icone": "🤖",
+      "classe": "badge--tech",
+      "link": "pages/materia_ia_educacao_v2.html"
     },
     {
       "data": "2026-05-25",
-      "titulo": "Pesquisa de campo em destaque",
-      "resumo": "As páginas internas foram organizadas para receber entrevistas, dados agrícolas e registros sobre plantas da região."
+      "titulo": "Saberes locais ajudam a documentar plantas e práticas agrícolas",
+      "resumo": "As páginas de agricultura, plantas nativas e plantas medicinais aproximam pesquisa escolar, cultura regional e sustentabilidade.",
+      "categoria": "Agroecologia",
+      "icone": "🌱",
+      "classe": "badge--agro",
+      "link": "pages/agricola.html"
     }
   ],
   "eventos": [
