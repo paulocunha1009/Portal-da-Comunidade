@@ -1,10 +1,13 @@
 @media screen and (max-width: 980px) {
   .cabecalho__conteudo {
     flex-wrap: wrap;
+    gap: 10px 14px;
+    padding-block: 8px;
   }
 
   .botao-menu {
     display: inline-flex;
+    margin-left: auto;
   }
 
   .menu {
@@ -14,6 +17,9 @@
 
   .menu[data-open="true"] {
     display: block;
+    max-height: calc(100dvh - 86px);
+    overflow-y: auto;
+    padding-bottom: 10px;
   }
 
   .menu > ul {
@@ -28,6 +34,7 @@
     width: 100%;
     justify-content: center;
     background: rgba(255, 255, 255, 0.08);
+    min-height: 44px;
   }
 
   .menu__grupo {
@@ -96,6 +103,10 @@
   .grade-imagens {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .hero--banner-oficial {
+    aspect-ratio: 2 / 1;
+  }
 }
 
 @media screen and (max-width: 720px) {
@@ -105,6 +116,7 @@
 
   .cabecalho__conteudo {
     min-height: 68px;
+    align-items: center;
   }
 
   .logo {
@@ -113,8 +125,8 @@
 
   .logo__imagem {
     width: auto;
-    height: 50px;
-    max-width: 235px;
+    height: 44px;
+    max-width: 210px;
   }
 
   .logo__marca {
@@ -127,11 +139,12 @@
   }
 
   .hero {
-    min-height: 460px;
+    min-height: 420px;
   }
 
   .hero--banner-oficial {
-    min-height: clamp(320px, 58vw, 520px);
+    min-height: 0;
+    aspect-ratio: 2 / 1;
   }
 
   .logo strong {
@@ -143,7 +156,7 @@
   }
 
   .hero__conteudo {
-    padding-block: 64px 48px;
+    padding-block: 56px 44px;
   }
 
   .hero:not(.hero--banner-oficial) .hero__conteudo::before {
@@ -172,8 +185,12 @@
     font-size: 0.8rem;
   }
 
+  .hero h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
   .hero--banner-oficial .hero__imagem img {
-    object-position: 34% center;
+    object-position: center center;
   }
 
   .secao {
@@ -232,10 +249,19 @@
 }
 
 @media screen and (max-width: 520px) {
+  .cabecalho__conteudo {
+    gap: 8px;
+  }
+
+  .logo {
+    min-width: 0;
+    max-width: calc(100% - 92px);
+  }
+
   .logo__imagem {
     width: auto;
-    height: 42px;
-    max-width: 196px;
+    height: 36px;
+    max-width: 166px;
   }
 
   .menu > ul {
@@ -256,11 +282,30 @@
   }
 
   .hero--banner-oficial {
-    min-height: 310px;
+    min-height: 0;
+    aspect-ratio: 2 / 1;
   }
 
   .hero--banner-oficial .hero__imagem img {
-    object-position: 30% center;
+    object-position: center center;
+  }
+
+  .hero:not(.hero--banner-oficial) {
+    min-height: 390px;
+  }
+
+  .hero:not(.hero--banner-oficial)::after {
+    right: -18%;
+    width: min(58vw, 190px);
+    opacity: 0.16;
+  }
+
+  .hero:not(.hero--banner-oficial) .hero__conteudo::before {
+    border-left-width: 3px;
+  }
+
+  .artigo-meta-hero {
+    gap: 6px;
   }
 
   .galeria-historica,

@@ -108,6 +108,11 @@ textarea {
   backdrop-filter: blur(14px);
 }
 
+body.menu-aberto .cabecalho {
+  max-height: 100dvh;
+  overflow-y: auto;
+}
+
 .cabecalho__conteudo {
   display: flex;
   align-items: center;
@@ -273,7 +278,8 @@ textarea {
 }
 
 .hero--banner-oficial {
-  min-height: clamp(430px, 50vw, 760px);
+  min-height: 0;
+  aspect-ratio: 2 / 1;
   align-items: stretch;
   background: #f7faf4;
 }
@@ -375,8 +381,9 @@ textarea {
 }
 
 .hero--banner-oficial .hero__imagem img {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
+  background: #f7faf4;
 }
 
 .hero__conteudo {
