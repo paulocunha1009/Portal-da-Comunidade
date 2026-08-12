@@ -1493,16 +1493,69 @@ body.menu-aberto .cabecalho {
 }
 
 .rodape {
-  background: var(--cor-primaria-escura);
+  background:
+    linear-gradient(135deg, rgba(4, 40, 24, 0.98), rgba(8, 52, 34, 0.98)),
+    var(--cor-primaria-escura);
   color: rgba(255, 255, 255, 0.86);
-  padding-block: 28px;
+  padding-block: 42px 24px;
 }
 
-.rodape__conteudo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.rodape__grade {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.1fr) minmax(150px, 0.7fr) minmax(260px, 1fr);
+  gap: clamp(28px, 5vw, 84px);
+  align-items: start;
+}
+
+.rodape__marca img {
+  display: block;
+  width: min(190px, 100%);
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.rodape__marca p,
+.rodape__base p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.rodape__nav,
+.rodape__contato {
+  display: grid;
   gap: 12px;
+}
+
+.rodape__contato {
+  font-style: normal;
+}
+
+.rodape a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  color: #f4c542;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.rodape a:focus-visible {
+  outline: 3px solid #f4c542;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.rodape__base {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  margin-top: 38px;
+  padding-top: 22px;
+  font-size: 0.9rem;
 }
 
 /* ============================================================

@@ -243,8 +243,17 @@
     padding: 20px;
   }
 
-  .rodape__conteudo {
+  .rodape__grade,
+  .rodape__base {
+    grid-template-columns: 1fr;
+  }
+
+  .rodape__base {
     display: grid;
+  }
+
+  .rodape__contato a {
+    overflow-wrap: anywhere;
   }
 }
 
