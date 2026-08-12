@@ -6,7 +6,7 @@
   <meta name="description" content="Contato do Portal da Comunidade para sugestões, histórias e contribuições pedagógicas.">
   <title>Contato | Campo Digital</title>
   <link rel="icon" type="image/png" href="img/logo/favicon-campo-digital.png">
-  <link rel="stylesheet" href="css/portal.css?v=20260811-15">
+  <link rel="stylesheet" href="css/portal.css?v=20260811-16">
   <link rel="stylesheet" href="css/portal-responsivo.css?v=20260811-15">
   <style>
     /* Layout do formulário de contato */
@@ -110,44 +110,57 @@
           Compartilhe sugestões, histórias, fotos, dados agrícolas ou ideias para melhorar o portal.
         </p>
 
-        <form id="formContato" class="formulario" novalidate aria-labelledby="titulo-contato">
+        <form id="formContato" class="formulario" action="https://docs.google.com/forms/d/e/1FAIpQLSdwkVQk8KMuL-CXuO3aYsLjLmbnMaYDGTQ4bjTLmIgvXvXrvA/formResponse" method="post" target="_blank" novalidate aria-labelledby="titulo-contato" data-google-form-endpoint="https://docs.google.com/forms/d/e/1FAIpQLSdwkVQk8KMuL-CXuO3aYsLjLmbnMaYDGTQ4bjTLmIgvXvXrvA/formResponse">
           <div class="campo">
             <label for="nome">Seu nome</label>
-            <input type="text" id="nome" name="nome" autocomplete="name" required>
+            <input type="text" id="nome" name="entry.521927828" autocomplete="name" required>
             <small class="erro-campo" id="erro-nome"></small>
           </div>
 
           <div class="campo">
-            <label for="email">Seu e-mail</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
+            <label for="email">Seu e-mail ou telefone</label>
+            <input type="text" id="email" name="entry.512631370" autocomplete="email" required>
             <small class="erro-campo" id="erro-email"></small>
           </div>
 
           <div class="campo">
             <label for="assunto">Assunto</label>
-            <select id="assunto" name="assunto" required>
+            <select id="assunto" name="entry.333488770" required>
               <option value="">Selecione...</option>
-              <option value="historia">Contribuição para a história</option>
-              <option value="memoria">Compartilhar memória</option>
-              <option value="agricola">Dados agrícolas</option>
-              <option value="plantacao-nativa">Dados da plantação nativa</option>
-              <option value="plantas-medicinais">Plantas medicinais</option>
-              <option value="sugestao">Sugestão para o portal</option>
+              <option value="História e memória">História e memória</option>
+              <option value="Fotos da comunidade">Fotos da comunidade</option>
+              <option value="Plantas e saberes tradicionais">Plantas e saberes tradicionais</option>
+              <option value="Produção agrícola">Produção agrícola</option>
+              <option value="Sugestão para o portal">Sugestão para o portal</option>
+              <option value="Contato geral">Contato geral</option>
             </select>
             <small class="erro-campo" id="erro-assunto"></small>
           </div>
 
           <div class="campo">
             <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+            <textarea id="mensagem" name="entry.1149321668" rows="6" required></textarea>
             <small class="erro-campo" id="erro-mensagem"></small>
+          </div>
+
+          <div class="campo">
+            <label for="link-arquivos">Link para fotos ou documentos, se houver</label>
+            <input type="url" id="link-arquivos" name="entry.1798910881" placeholder="https://drive.google.com/..." inputmode="url">
+            <small class="erro-campo" id="erro-link-arquivos"></small>
+          </div>
+
+          <div class="campo campo--checkbox">
+            <input type="checkbox" id="autorizacao" name="entry.771210333" value="Autorizo a equipe do Campo Digital a analisar esta contribuição para uso educativo no portal." required>
+            <label for="autorizacao">Autorizo a equipe do Campo Digital a analisar esta contribuição para uso educativo no portal.</label>
+            <small class="erro-campo" id="erro-autorizacao"></small>
           </div>
 
           <button type="submit" class="botao">Enviar mensagem</button>
         </form>
 
         <div id="mensagemSucesso" class="mensagem-sucesso oculto" role="status" aria-live="polite">
-          Mensagem registrada com sucesso. Obrigado pela sua contribuição!
+          Contribuição enviada com sucesso para a equipe do Campo Digital. Obrigado por fortalecer a memória da comunidade!
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwkVQk8KMuL-CXuO3aYsLjLmbnMaYDGTQ4bjTLmIgvXvXrvA/viewform" target="_blank" rel="noopener noreferrer">Abrir formulário oficial</a>
         </div>
       </div>
 
@@ -222,7 +235,7 @@
   </footer>
 
   <script src="js/config.js"></script>
-  <script type="module" src="js/app.js?v=20260810-1"></script>
+  <script type="module" src="js/app.js?v=20260811-2"></script>
   <script src="js/chat-standalone.js?v=20260526"></script>
 </body>
 </html>
