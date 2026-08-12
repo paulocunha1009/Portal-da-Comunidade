@@ -499,6 +499,7 @@ body.menu-aberto .cabecalho {
 .secao__cabecalho h2,
 .eventos h2,
 .chamada-ia h2,
+.participe-home h2,
 .formulario-contato h2 {
   color: var(--cor-primaria-escura);
   font-size: clamp(1.7rem, 4vw, 2.5rem);
@@ -604,6 +605,7 @@ body.menu-aberto .cabecalho {
 }
 
 .card-link,
+.card-participacao,
 .card-lateral,
 .eventos,
 .lista-noticias article,
@@ -938,6 +940,50 @@ body.menu-aberto .cabecalho {
   top: 0;
   color: var(--cor-acento);
   font-weight: 900;
+}
+
+.participe-home {
+  margin-block: 56px;
+}
+
+.grade-participacao {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card-participacao {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 245px;
+  padding: 24px;
+}
+
+.card-participacao > span {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #e8f5ee;
+  font-size: 1.35rem;
+}
+
+.card-participacao h3 {
+  color: var(--cor-primaria-escura);
+  font-size: 1.25rem;
+}
+
+.card-participacao p {
+  color: var(--cor-texto-suave);
+  line-height: 1.65;
+}
+
+.card-participacao a {
+  align-self: end;
+  color: var(--cor-primaria);
+  font-weight: 800;
 }
 
 .titulo-pagina {

@@ -66,6 +66,7 @@
   }
 
   .grade-cards,
+  .grade-participacao,
   .grade-reportagens,
   .painel-home,
   .chamada-ia,
@@ -239,7 +240,8 @@
   }
 
   .formulario-contato,
-  .chamada-ia {
+  .chamada-ia,
+  .card-participacao {
     padding: 20px;
   }
 
