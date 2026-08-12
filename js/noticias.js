@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var CACHE_KEY = 'portal_noticias_v2';
+  var CACHE_KEY = 'portal_noticias_v3';
   var CACHE_MIN = 30;
   var BACKEND = (window.PORTAL_AI_ENDPOINT || 'http://localhost:3001/api/assistente')
     .replace('/api/assistente', '');
@@ -18,7 +18,8 @@
       categoria: 'Portal',
       icone: '📌',
       classe: 'badge--portal',
-      link: 'pages/reportagem-educacao.html'
+      link: 'pages/reportagem-educacao.html',
+      fonte: 'Campo Digital'
     },
     {
       data: '2026-05-25',
@@ -27,7 +28,8 @@
       categoria: 'Tecnologia',
       icone: '🤖',
       classe: 'badge--tech',
-      link: 'pages/materia_ia_educacao_v2.html'
+      link: 'pages/materia_ia_educacao_v2.html',
+      fonte: 'Campo Digital'
     },
     {
       data: '2026-06-10',
@@ -36,7 +38,8 @@
       categoria: 'Agroecologia',
       icone: '🌱',
       classe: 'badge--agro',
-      link: 'pages/agricola.html'
+      link: 'pages/agricola.html',
+      fonte: 'Campo Digital'
     }
   ];
 
@@ -73,7 +76,8 @@
       categoria: noticia.categoria || padrao.categoria,
       icone: noticia.icone || padrao.icone,
       classe: noticia.classe || padrao.classe,
-      link: noticia.link || padrao.link
+      link: noticia.link || padrao.link,
+      fonte: noticia.fonte || 'Campo Digital'
     };
   }
 
@@ -92,14 +96,17 @@
     var lista = noticias.map(normalizar);
 
     container.innerHTML = lista.map(function (n) {
+      var externo = /^https?:\/\//i.test(n.link);
+      var destino = externo ? ' target="_blank" rel="noopener noreferrer"' : '';
       return [
         '<article class="card-noticia">',
         '  <div class="card-noticia__meta">',
         '    <span class="card-noticia__badge ' + escapar(n.classe) + '">' + escapar(n.icone + ' ' + n.categoria) + '</span>',
+        '    <span class="card-noticia__fonte">' + escapar(n.fonte) + '</span>',
         '    <time datetime="' + escapar(n.data) + '">' + escapar(formatarData(n.data)) + '</time>',
         '  </div>',
         '  <h3 class="card-noticia__titulo">',
-        '    <a href="' + escapar(n.link) + '">' + escapar(n.titulo) + '</a>',
+        '    <a href="' + escapar(n.link) + '"' + destino + '>' + escapar(n.titulo) + '</a>',
         '  </h3>',
         '  <p class="card-noticia__resumo">' + escapar(n.resumo) + '</p>',
         '</article>'

@@ -31,15 +31,19 @@ function renderizarNoticias(noticias) {
     const icone = noticia.icone ?? padrao.icone;
     const classe = noticia.classe ?? padrao.classe;
     const link = noticia.link ?? padrao.link;
+    const fonte = noticia.fonte ?? 'Campo Digital';
+    const externo = /^https?:\/\//i.test(link);
+    const destino = externo ? ' target="_blank" rel="noopener noreferrer"' : '';
 
     return `
     <article class="card-noticia">
       <div class="card-noticia__meta">
         <span class="card-noticia__badge ${escapar(classe)}">${escapar(`${icone} ${categoria}`)}</span>
+        <span class="card-noticia__fonte">${escapar(fonte)}</span>
         <time datetime="${escapar(noticia.data)}">${formatarData(noticia.data)}</time>
       </div>
       <h3 class="card-noticia__titulo">
-        <a href="${escapar(link)}">${escapar(noticia.titulo)}</a>
+        <a href="${escapar(link)}"${destino}>${escapar(noticia.titulo)}</a>
       </h3>
       <p class="card-noticia__resumo">${escapar(noticia.resumo)}</p>
     </article>

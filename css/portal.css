@@ -806,6 +806,15 @@ body.menu-aberto .cabecalho {
 .badge--vestibular{ background: #fff4e0; color: #b8690a; }
 .badge--tecnologia{ background: #e8f0fe; color: #1a56a0; }
 .badge--inovacao  { background: #f0faf2; color: #1e7e4a; }
+.badge--portal    { background: #e8f5ee; color: #06451f; }
+.badge--tech      { background: #e8f0fe; color: #0f4d97; }
+.badge--agro      { background: #f0faf2; color: #1e7e4a; }
+
+.card-noticia__fonte {
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
 
 .card-noticia__meta time {
   color: var(--cor-texto-suave);

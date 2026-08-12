@@ -196,17 +196,24 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true, model: GEMINI_MODEL, timestamp: new Date().toISOString() });
 });
 
-// ── Notícias ao vivo (proxy RSS → JSON, sem CORS) ─────────────────────────────
+// ── Notícias externas confiáveis (proxy RSS → JSON, sem CORS) ────────────────
 const FEEDS = [
-  { url: 'https://g1.globo.com/dynamo/educacao/rss2.xml',                         categoria: 'Educação',  icone: '🎓', classe: 'badge--educacao'   },
-  { url: 'https://agenciabrasil.ebc.com.br/rss/educacao/feed.xml',                categoria: 'Vestibular',icone: '📝', classe: 'badge--vestibular' },
-  { url: 'https://canaltech.com.br/rss/',                                          categoria: 'Tecnologia',icone: '💻', classe: 'badge--tecnologia' },
-  { url: 'https://agenciabrasil.ebc.com.br/rss/ciencia-e-tecnologia/feed.xml',    categoria: 'Inovação',  icone: '🌱', classe: 'badge--inovacao'   },
+  { nome: 'G1 Educação', url: 'https://g1.globo.com/dynamo/educacao/rss2.xml', categoria: 'Educação', icone: '🎓', classe: 'badge--educacao' },
+  { nome: 'G1 Tecnologia', url: 'https://g1.globo.com/dynamo/tecnologia/rss2.xml', categoria: 'Tecnologia', icone: '💻', classe: 'badge--tecnologia' },
+  { nome: 'Agência Brasil', url: 'https://agenciabrasil.ebc.com.br/rss/educacao/feed.xml', categoria: 'Educação', icone: '📝', classe: 'badge--educacao' },
+  { nome: 'Olhar Digital', url: 'https://olhardigital.com.br/feed/', categoria: 'Tecnologia', icone: '🤖', classe: 'badge--tecnologia' },
+  { nome: 'Canaltech', url: 'https://canaltech.com.br/rss/', categoria: 'Inovação', icone: '🌱', classe: 'badge--inovacao' },
 ];
 
 let noticiasCache = null;
 let noticiasTs    = 0;
 const NOTICIAS_TTL = 30 * 60 * 1000; // 30 minutos
+const NOTICIAS_MAX = 6;
+const TERMOS_NOTICIAS = [
+  'educação', 'ensino', 'escola', 'estudante', 'enem', 'vestibular',
+  'tecnologia', 'inteligência artificial', 'chatgpt', 'inovação', 'ciência',
+  'agro', 'sustentabilidade', 'pesquisa'
+];
 
 function extrairItensRSS(xml) {
   const itens = [];
@@ -225,9 +232,47 @@ function extrairItensRSS(xml) {
 }
 
 function limparHtml(html) {
-  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&')
-             .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"')
-             .replace(/&#[0-9]+;/g,'').replace(/\s+/g,' ').trim();
+  return String(html || '')
+    .replace(/<!\[CDATA\[/g, '')
+    .replace(/\]\]>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&aacute;/g, 'á').replace(/&agrave;/g, 'à').replace(/&acirc;/g, 'â').replace(/&atilde;/g, 'ã')
+    .replace(/&eacute;/g, 'é').replace(/&ecirc;/g, 'ê')
+    .replace(/&iacute;/g, 'í')
+    .replace(/&oacute;/g, 'ó').replace(/&ocirc;/g, 'ô').replace(/&otilde;/g, 'õ')
+    .replace(/&uacute;/g, 'ú').replace(/&ccedil;/g, 'ç')
+    .replace(/&Aacute;/g, 'Á').replace(/&Agrave;/g, 'À').replace(/&Acirc;/g, 'Â').replace(/&Atilde;/g, 'Ã')
+    .replace(/&Eacute;/g, 'É').replace(/&Ecirc;/g, 'Ê')
+    .replace(/&Iacute;/g, 'Í')
+    .replace(/&Oacute;/g, 'Ó').replace(/&Ocirc;/g, 'Ô').replace(/&Otilde;/g, 'Õ')
+    .replace(/&Uacute;/g, 'Ú').replace(/&Ccedil;/g, 'Ç')
+    .replace(/&#[0-9]+;/g, '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function resumir(texto, limite = 145) {
+  const limpo = limparHtml(texto);
+  if (!limpo) return 'Leia a reportagem original para entender os principais pontos dessa atualização.';
+  if (limpo.length <= limite) return limpo;
+  return limpo.slice(0, limite).replace(/\s+\S*$/, '') + '…';
+}
+
+function ehTemaDoPortal(item) {
+  const texto = `${item.titulo} ${item.resumo}`.toLowerCase();
+  return TERMOS_NOTICIAS.some(termo => texto.includes(termo));
+}
+
+function dataISO(pub) {
+  const data = pub ? new Date(pub) : new Date();
+  if (Number.isNaN(data.getTime())) return new Date().toISOString().slice(0, 10);
+  return data.toISOString().slice(0, 10);
 }
 
 async function fetchFeed(feed) {
@@ -236,20 +281,20 @@ async function fetchFeed(feed) {
     signal: AbortSignal.timeout(8000),
   });
   const xml   = await resp.text();
-  const itens = extrairItensRSS(xml).slice(0, 2);
-  return itens.map(item => {
-    const resumo = limparHtml(item.resumo);
-    const data   = item.pub ? new Date(item.pub).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
-    return {
+  const itens = extrairItensRSS(xml).slice(0, 8);
+  return itens
+    .map(item => ({
       titulo:    limparHtml(item.titulo),
-      resumo:    resumo.length > 130 ? resumo.slice(0, 130).replace(/\s\S*$/, '') + '…' : resumo,
-      data,
+      resumo:    resumir(item.resumo),
+      data:      dataISO(item.pub),
       link:      item.link,
       categoria: feed.categoria,
       icone:     feed.icone,
       classe:    feed.classe,
-    };
-  });
+      fonte:     feed.nome,
+    }))
+    .filter(item => item.titulo && item.link && ehTemaDoPortal(item))
+    .slice(0, 2);
 }
 
 app.get('/api/noticias', async (_req, res) => {
@@ -260,16 +305,29 @@ app.get('/api/noticias', async (_req, res) => {
   try {
     const resultados = await Promise.allSettled(FEEDS.map(fetchFeed));
     const todas = resultados.flatMap(r => r.status === 'fulfilled' ? r.value : []);
-    const top4  = todas.sort((a, b) => new Date(b.data) - new Date(a.data)).slice(0, 4);
+    const vistas = new Set();
+    const topNoticias = todas
+      .sort((a, b) => new Date(b.data) - new Date(a.data))
+      .filter(noticia => {
+        const chave = noticia.link || noticia.titulo;
+        if (vistas.has(chave)) return false;
+        vistas.add(chave);
+        return true;
+      })
+      .slice(0, NOTICIAS_MAX);
 
-    if (top4.length > 0) {
-      noticiasCache = top4;
+    if (topNoticias.length > 0) {
+      noticiasCache = topNoticias;
       noticiasTs    = Date.now();
     }
-    res.json({ noticias: top4.length > 0 ? top4 : (noticiasCache || []) });
+    res.json({
+      noticias: topNoticias.length > 0 ? topNoticias : (noticiasCache || []),
+      fontes: FEEDS.map(feed => feed.nome),
+      cached: false,
+    });
   } catch (e) {
     console.error('Erro noticias:', e.message);
-    res.json({ noticias: noticiasCache || [] });
+    res.json({ noticias: noticiasCache || [], cached: Boolean(noticiasCache) });
   }
 });
 

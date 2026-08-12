@@ -7,7 +7,8 @@
       "categoria": "Portal",
       "icone": "📌",
       "classe": "badge--portal",
-      "link": "pages/reportagem-educacao.html"
+      "link": "pages/reportagem-educacao.html",
+      "fonte": "Campo Digital"
     },
     {
       "data": "2026-05-22",
@@ -16,7 +17,8 @@
       "categoria": "Tecnologia",
       "icone": "🤖",
       "classe": "badge--tech",
-      "link": "pages/materia_ia_educacao_v2.html"
+      "link": "pages/materia_ia_educacao_v2.html",
+      "fonte": "Campo Digital"
     },
     {
       "data": "2026-05-25",
@@ -25,7 +27,8 @@
       "categoria": "Agroecologia",
       "icone": "🌱",
       "classe": "badge--agro",
-      "link": "pages/agricola.html"
+      "link": "pages/agricola.html",
+      "fonte": "Campo Digital"
     }
   ],
   "eventos": [
