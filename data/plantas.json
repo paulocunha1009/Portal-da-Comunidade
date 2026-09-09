@@ -1,0 +1,137 @@
+{
+  "_leia_primeiro": {
+    "regra": "Só entra ficha com informação publicada no acervo do portal. Nada de nome científico ou uso vindo de memória ou de busca solta na internet.",
+    "origem_desta_versao": "Extraído de pages/Plantação Nativa.html do portal Campo Digital.",
+    "conferir": "Os campos 'usos' foram resumidos a partir do texto de vocês. Confiram se cada um está fiel ao que a página diz.",
+    "faltando": "8 fichas de nativas (o HTML enviado terminou no Torém) e as 12 medicinais."
+  },
+
+  "pendentes_nativas": [
+    "Torém", "Murici", "Murta", "Araticum-da-Restinga",
+    "Mangaba", "Janaguba", "Juazeiro", "Umbuzeiro"
+  ],
+
+  "pendentes_medicinais": "As 12 espécies da página Plantas Medicinais ainda não entraram.",
+
+  "especies": [
+    {
+      "id": "guajiru",
+      "nome": "Guajiru",
+      "cientifico": "Chrysobalanus icaco",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Restinga litorânea",
+      "comunidades": ["Morro dos Patos"],
+      "usos": ["Frutos em geleia", "Fixação do solo das dunas"],
+      "texto": "Árvore pequena das restingas com frutos negros, doces e levemente adstringentes. Suas raízes seguram o solo das dunas de Morro dos Patos evitando erosão. Frutos usados em geleias por moradores há gerações.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "ipomeia-da-praia",
+      "nome": "Ipomeia-da-Praia",
+      "cientifico": "Ipomoea pes-caprae",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Dunas e praias",
+      "comunidades": ["Morro dos Patos"],
+      "usos": ["Fixação de areia", "Proteção das casas contra o avanço das dunas"],
+      "texto": "Cresce na areia pura das dunas, sem solo fértil, com sal constante do mar — e exibe flores roxas ao amanhecer. Suas raízes rastejantes formam uma malha que prende a areia no lugar, protegendo as casas de Morro dos Patos.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "feijao-da-praia",
+      "nome": "Feijão-da-Praia",
+      "cientifico": "Canavalia rosea",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Dunas litorâneas",
+      "comunidades": [],
+      "usos": ["Fixação de nitrogênio no solo", "Sementes como alimento de emergência"],
+      "texto": "Parceira da ipomeia nas dunas, é uma leguminosa que fixa nitrogênio no solo — fertilizando a areia enquanto a segura. Para os povos originários, suas sementes também eram alimento de emergência.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "carnauba",
+      "nome": "Carnaúba",
+      "cientifico": "Copernicia prunifera",
+      "familia": "Arecaceae",
+      "nativa": true,
+      "medicinal": false,
+      "destaque": true,
+      "ambiente": "Toda a região",
+      "comunidades": ["Patos", "Mineiro Velho", "Barbosa"],
+      "usos": ["Cera das folhas", "Economia familiar"],
+      "texto": "Palmeira de folhas em leque, produz nas folhas uma cera branca que rendeu ao Ceará o apelido de Terra da Luz. A cera entra na composição de cosméticos, ceras de automóvel, revestimentos industriais e isolantes elétricos. Suas raízes vão fundo, alcançando lençóis de água que outras plantas não atingem: no pico da seca, permanece verde.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "aroeira",
+      "nome": "Aroeira",
+      "cientifico": "Myracrodruon urundeuva",
+      "familia": "",
+      "nativa": true,
+      "medicinal": true,
+      "ambiente": "Caatinga",
+      "comunidades": ["Mineiro Velho"],
+      "usos": ["Madeira para arcos e ferramentas", "Casca anti-inflamatória, antifúngica e cicatrizante"],
+      "texto": "Madeira extraordinariamente dura, usada por povos indígenas para arcos e ferramentas. A casca, rica em taninos, é anti-inflamatória, antifúngica e cicatrizante — um dos remédios mais citados pelos mais velhos das comunidades.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "pau-branco",
+      "nome": "Pau-Branco",
+      "cientifico": "Auxemma oncocalyx",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Caatinga",
+      "comunidades": ["Barbosa", "Patos"],
+      "usos": ["Madeira para construção e estruturas rurais"],
+      "texto": "O nome vem do tronco pálido, quase branco-acinzentado, inconfundível na paisagem. Madeira dura, durável e valiosa para construção e estruturas rurais. Ter um pau-branco na propriedade é ter um patrimônio.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "bromelias-cactos",
+      "nome": "Bromélias e Cactos",
+      "cientifico": "Bromeliaceae / Cactaceae",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Toda a região",
+      "comunidades": [],
+      "usos": ["Reserva de água no ecossistema"],
+      "texto": "As bromélias capturam água da chuva no centro, criando um microecossistema completo mesmo no auge da estiagem. Os cactos acumulam água nos tecidos e, quando a chuva chega, florescem com exuberância desproporcional à espera.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "mangue-vermelho",
+      "nome": "Mangue-Vermelho",
+      "cientifico": "Rhizophora mangle",
+      "familia": "Rhizophoraceae",
+      "nativa": true,
+      "medicinal": false,
+      "destaque": true,
+      "ambiente": "Manguezal — costa de Itarema",
+      "comunidades": ["Morro dos Patos"],
+      "usos": ["Berçário de peixes, camarões e moluscos", "Sustento da pesca local"],
+      "texto": "Suas raízes aéreas criam um labirinto úmido que é a maternidade do mar: larvas de peixes, camarões e moluscos crescem protegidas entre essas raízes antes de ganhar o oceano. Sobrevive em água salgada graças a glândulas nas folhas que expelem o sal ativamente.",
+      "fonte": "Plantação Nativa"
+    },
+    {
+      "id": "batiputa",
+      "nome": "Batiputá",
+      "cientifico": "Ouratea fieldingiana",
+      "familia": "",
+      "nativa": true,
+      "medicinal": false,
+      "ambiente": "Restinga litorânea",
+      "comunidades": [],
+      "usos": ["Estabilização de dunas", "Alimento para a fauna"],
+      "texto": "Pequena árvore com flores amarelas e folhas brilhantes. Estabiliza dunas, alimenta a fauna local e mantém a cadeia alimentar da restinga funcionando.",
+      "fonte": "Plantação Nativa"
+    }
+  ]
+}

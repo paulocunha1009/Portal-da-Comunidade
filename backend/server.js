@@ -331,6 +331,38 @@ app.get('/api/noticias', async (_req, res) => {
   }
 });
 
+// ── Atividades pedagógicas ancoradas no acervo ───────────────────────────────
+// Usado pela Expedição e pelo Catálogo. O navegador envia apenas instruções e
+// trechos públicos do próprio portal; a chave do Gemini continua no servidor.
+app.post('/api/atividade', rateLimit, async (req, res) => {
+  const { system, message } = req.body;
+
+  if (!system || typeof system !== 'string' || system.length > 5000) {
+    return res.status(400).json({ error: 'Campo "system" obrigatório (máximo de 5.000 caracteres).' });
+  }
+  if (!message || typeof message !== 'string' || message.length > 16000) {
+    return res.status(400).json({ error: 'Campo "message" obrigatório (máximo de 16.000 caracteres).' });
+  }
+
+  try {
+    const model = genAI.getGenerativeModel({
+      model: GEMINI_MODEL,
+      systemInstruction: system.trim(),
+      generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.7 },
+    });
+    const result = await model.generateContent(message.trim());
+    const text = result.response.text().trim();
+    if (!text) return res.status(502).json({ error: 'O assistente retornou uma resposta vazia.' });
+    return res.json({ text });
+  } catch (erro) {
+    console.error('Erro Gemini em /api/atividade:', erro.message);
+    if (erro.status === 429 || erro.message?.includes('quota')) {
+      return res.status(429).json({ error: 'Limite de uso atingido. Tente novamente em alguns minutos.' });
+    }
+    return res.status(500).json({ error: 'Não foi possível gerar a atividade agora.' });
+  }
+});
+
 // ── Endpoint principal ────────────────────────────────────────────────────────
 app.post('/api/assistente', rateLimit, async (req, res) => {
   const { message, history = [] } = req.body;

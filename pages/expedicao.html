@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expedição no Território | Campo Digital</title>
+<meta name="description" content="Trilha de estudo pelo Assentamento Lagoa do Mineiro, com desafios gerados a partir do acervo do portal Campo Digital.">
+<link rel="icon" type="image/png" href="../img/logo/favicon-campo-digital.png">
+<link rel="stylesheet" href="../css/portal.css?v=20260909-1">
+<link rel="stylesheet" href="../css/portal-responsivo.css?v=20260909-1">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#2d6a4f; --verde-esc:#1b5039; --verde-cl:#52b788; --verde-bg:#d8f3dc;
+  --terra:#6b4226; --terra-esc:#4a2c18; --creme:#fefae0; --creme-esc:#f4e6c8;
+  --borda:#c9b99a; --texto:#1b1b1b; --muted:#5a5a5a; --branco:#fff;
+  --erro:#b94040;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.6}
+main a{color:var(--terra)}
+.wrap{max-width:820px;margin:0 auto;padding:0 1.15rem}
+
+/* ---------- topo ---------- */
+.topo{background:linear-gradient(135deg,var(--verde) 0%,var(--verde-esc) 100%);color:#fff;border-bottom:6px solid var(--terra)}
+.topo-in{max-width:820px;margin:0 auto;padding:2.4rem 1.15rem 2rem}
+.topo h1{font-family:'Lora',serif;font-size:clamp(1.7rem,6vw,2.5rem);font-weight:600;line-height:1.15;margin-bottom:.5rem}
+.topo p{color:var(--verde-bg);max-width:56ch}
+.voltar{display:inline-block;color:var(--verde-bg);font-size:.85rem;font-weight:700;text-decoration:none;margin-bottom:1rem}
+.voltar:hover{color:#fff}
+
+/* ---------- painel de progresso ---------- */
+.painel{background:var(--branco);border:1px solid var(--borda);border-radius:16px;
+  margin:-1.6rem auto 2rem;position:relative;padding:1.1rem 1.25rem;
+  display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.medida{display:flex;flex-direction:column}
+.medida b{font-family:'Lora',serif;font-size:1.5rem;color:var(--verde);line-height:1}
+.medida span{font-size:.75rem;color:var(--muted);font-weight:700}
+.selos{display:flex;gap:6px;flex-wrap:wrap}
+.selo{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--creme-esc);border:1.5px dashed var(--borda);font-size:15px;filter:grayscale(1);opacity:.45}
+.selo.ganho{background:var(--verde-bg);border:2px solid var(--verde-cl);filter:none;opacity:1}
+
+/* ---------- trilha ---------- */
+.secao-titulo{font-family:'Lora',serif;font-size:1.35rem;color:var(--verde);margin:2rem 0 .3rem}
+.secao-apoio{color:var(--muted);font-size:.92rem;max-width:62ch;margin-bottom:1.2rem}
+.trilha{position:relative;padding-left:2.6rem}
+.trilha::before{content:"";position:absolute;left:14px;top:14px;bottom:40px;width:3px;
+  background:repeating-linear-gradient(to bottom,var(--verde-cl) 0 8px,transparent 8px 16px)}
+.parada{position:relative;margin-bottom:1rem}
+.parada::before{content:"";position:absolute;left:-2.6rem;top:1.35rem;width:31px;height:31px;
+  border-radius:50%;background:var(--creme);border:3px solid var(--verde-cl);
+  background-image:radial-gradient(var(--verde-cl) 30%,transparent 32%)}
+.parada.feita::before{background:var(--verde);border-color:var(--verde);
+  background-image:none;box-shadow:0 0 0 4px var(--verde-bg)}
+.cartao{width:100%;text-align:left;background:var(--branco);border:1px solid var(--borda);
+  border-left:6px solid var(--verde);border-radius:14px;padding:1.1rem 1.25rem;cursor:pointer;
+  font-family:inherit;font-size:1rem;display:block;transition:box-shadow .15s}
+.cartao:hover,.cartao:focus-visible{box-shadow:0 6px 18px rgba(45,106,79,.14);outline-offset:3px}
+.cartao.chegada{border-left-color:var(--terra);background:var(--creme-esc)}
+.cartao h3{font-family:'Lora',serif;font-size:1.12rem;font-weight:600;margin-bottom:.15rem}
+.local{font-size:.8rem;font-weight:700;color:var(--terra);letter-spacing:.02em}
+.cartao p{font-size:.88rem;color:var(--muted);margin-top:.4rem;max-width:60ch}
+.marca{display:inline-block;margin-top:.6rem;font-size:.72rem;font-weight:700;
+  padding:3px 9px;border-radius:20px;background:var(--verde-bg);color:var(--verde-esc)}
+.marca.estudo{background:var(--creme-esc);color:var(--terra);border:1px solid var(--borda)}
+.marca.ok{background:var(--verde);color:#fff}
+
+/* ---------- tela de estação ---------- */
+.tela{display:none}
+.tela.on{display:block}
+.btn{font-family:inherit;font-weight:900;font-size:.92rem;border:none;border-radius:12px;
+  padding:.8rem 1.6rem;cursor:pointer;background:var(--verde);color:#fff}
+.btn:hover{background:var(--verde-esc)}
+.btn:disabled{background:#b6c9bd;cursor:not-allowed}
+.btn.sec{background:transparent;color:var(--terra);border:2px solid var(--borda);font-weight:700}
+.btn.sec:hover{background:var(--creme-esc)}
+.btn.terra{background:var(--terra)}
+.btn.terra:hover{background:var(--terra-esc)}
+.linha-btn{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.1rem}
+.bloco{background:var(--branco);border:1px solid var(--borda);border-radius:16px;padding:1.5rem;margin-bottom:1.1rem}
+.bloco h2{font-family:'Lora',serif;font-size:1.3rem;color:var(--verde);margin-bottom:.4rem}
+.aviso{background:var(--creme-esc);border-left:4px solid var(--terra);padding:.85rem 1rem;
+  border-radius:10px;font-size:.88rem;color:var(--terra-esc);margin-top:.9rem}
+.erro{background:#fff0f0;border:1.5px solid #f0bcbc;color:var(--erro);padding:.9rem 1.1rem;
+  border-radius:12px;font-weight:700;font-size:.9rem;margin-top:1rem}
+
+/* ---------- desafio ---------- */
+.barra{height:5px;background:var(--creme-esc);border-radius:5px;overflow:hidden;margin-bottom:1.2rem}
+.barra i{display:block;height:100%;background:var(--verde-cl);width:0;transition:width .35s}
+.contagem{font-size:.78rem;font-weight:700;color:var(--verde);margin-bottom:.5rem}
+.pergunta{font-family:'Lora',serif;font-size:1.15rem;font-weight:600;line-height:1.45;margin-bottom:1.1rem}
+.alt{width:100%;text-align:left;font-family:inherit;font-size:.92rem;font-weight:700;
+  background:var(--creme);border:2px solid var(--borda);border-radius:12px;
+  padding:.85rem 1rem;margin-bottom:.6rem;cursor:pointer;display:flex;gap:.7rem;align-items:center}
+.alt:hover:not(:disabled){border-color:var(--verde-cl);background:var(--verde-bg)}
+.alt .let{width:25px;height:25px;flex:none;border-radius:7px;background:var(--creme-esc);
+  border:1.5px solid var(--borda);display:grid;place-items:center;font-size:.78rem;font-weight:900}
+.alt.certa{background:var(--verde-bg);border-color:var(--verde-cl)}
+.alt.certa .let{background:var(--verde);border-color:var(--verde);color:#fff}
+.alt.errada{background:#fdeaea;border-color:#e08a8a}
+.alt.errada .let{background:#c0392b;border-color:#c0392b;color:#fff}
+.devolutiva{background:var(--creme-esc);border-left:4px solid var(--verde-cl);border-radius:10px;
+  padding:1rem 1.1rem;margin-top:.5rem;font-size:.9rem;line-height:1.65}
+textarea{width:100%;min-height:120px;font-family:inherit;font-size:.95rem;line-height:1.6;
+  padding:.9rem 1rem;border:1.5px solid var(--borda);border-radius:12px;background:var(--creme);resize:vertical}
+textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
+
+/* ---------- guia (chat) ---------- */
+.guia-abrir{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--terra);color:#fff;
+  border:none;border-radius:30px;padding:.85rem 1.2rem;font-family:inherit;font-weight:900;
+  font-size:.88rem;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.guia{position:fixed;inset:auto 0 0 0;z-index:70;background:var(--branco);border-top:5px solid var(--verde);
+  border-radius:18px 18px 0 0;max-height:82vh;display:none;flex-direction:column;box-shadow:0 -8px 30px rgba(0,0,0,.2)}
+.guia.on{display:flex}
+.guia-topo{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.1rem;border-bottom:1px solid var(--borda)}
+.guia-topo b{font-family:'Lora',serif;color:var(--verde)}
+.guia-topo button{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);line-height:1}
+.guia-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.8rem}
+.fala{max-width:88%;padding:.7rem .95rem;border-radius:16px;font-size:.9rem;line-height:1.6}
+.fala.ia{background:var(--creme-esc);border:1px solid var(--borda);border-top-left-radius:4px;align-self:flex-start}
+.fala.eu{background:var(--verde);color:#fff;border-top-right-radius:4px;align-self:flex-end}
+.guia-baixo{display:flex;gap:.6rem;padding:.85rem 1rem;border-top:1px solid var(--borda)}
+.guia-baixo input{flex:1;font-family:inherit;font-size:.92rem;padding:.7rem .9rem;
+  border:1.5px solid var(--borda);border-radius:12px;background:var(--creme)}
+
+/* ---------- certificado ---------- */
+.fim{text-align:center;padding:2.5rem 1.5rem;background:var(--verde-bg);border:2px solid var(--verde-cl);border-radius:18px}
+.fim h2{font-family:'Lora',serif;font-size:1.6rem;color:var(--verde-esc);margin-bottom:.4rem}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:520px){.painel{gap:1rem}.trilha{padding-left:2.3rem}.parada::before{left:-2.3rem}}
+</style>
+</head>
+<body data-page="expedicao">
+<a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cabecalho">
+  <div class="container cabecalho__conteudo">
+    <a class="logo" href="../index.html" aria-label="Ir para a página inicial"><img src="../img/logo/campo-digital-logo-header.png" alt="Campo Digital" class="logo__imagem"></a>
+    <button class="botao-menu" type="button" aria-expanded="false" aria-controls="menu-principal"><span aria-hidden="true">☰</span><span>Menu</span></button>
+    <nav class="menu" id="menu-principal" aria-label="Navegação principal"><ul>
+      <li><a href="../index.html" data-page-link="inicio">Início</a></li><li><a href="historia.html" data-page-link="historia">História</a></li><li><a href="memoria.html" data-page-link="memoria">Memória</a></li><li><a href="agricola.html" data-page-link="agricola">Produção Agrícola</a></li>
+      <li class="menu__grupo"><button class="menu__botao-submenu" type="button" aria-expanded="false">Plantas</button><ul class="submenu"><li><a href="Plantação Nativa.html" data-page-link="plantacao-nativa">Plantação Nativa</a></li><li><a href="Plantas Medicinais.html" data-page-link="plantas-medicinais">Plantas Medicinais</a></li><li><a href="mudas.html" data-page-link="mudas">Cultivando Vida</a></li><li><a href="catalogo.html" data-page-link="catalogo">Catálogo do Território</a></li></ul></li>
+      <li class="menu__grupo"><button class="menu__botao-submenu" type="button" aria-expanded="false">Reportagens</button><ul class="submenu"><li><a href="reportagem-educacao.html" data-page-link="reportagem-educacao">Educação do Campo</a></li><li><a href="reportagem-clima.html" data-page-link="reportagem-clima">Clima e Campo</a></li><li><a href="materia_ia_educacao_v2.html" data-page-link="materia-ia">IA na Educação</a></li></ul></li>
+      <li><a href="expedicao.html" data-page-link="expedicao">Expedição</a></li><li><a href="../contato.html" data-page-link="contato">Contato</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<!-- =====================================================================
+     EXPEDIÇÃO NO TERRITÓRIO — Campo Digital / Ceará Científico 2026
+     EEMPC Francisco Araújo Barros — Assentamento Lagoa do Mineiro
+
+     COMO ESTA PÁGINA FUNCIONA
+     A IA não tem conteúdo escrito dentro dela. A cada estação, a página
+     BUSCA a página real do portal (fetch), lê o texto e manda esse texto
+     como contexto para a IA gerar os desafios. Ou seja: o assistente só
+     sabe o que o portal publica. Se o acervo muda, o desafio muda junto.
+
+     ANTES DE PUBLICAR, AJUSTE 2 COISAS (marcadas com >>> AJUSTAR):
+     1. O endereço do proxy da API (Railway)
+     2. O formato da chamada, se o proxy de vocês usar outro
+
+     REGRA DA TRILHA: só entra marco com documento (decreto, portaria, lei,
+     ata). A ordem é cronológica, então não depende de interpretação.
+     Para crescer a trilha, some um objeto na lista ESTACOES.
+===================================================================== -->
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="voltar" href="../index.html">&larr; Voltar ao portal</a>
+    <h1>Expedição no Território</h1>
+    <p>Sete marcos da história do Assentamento Lagoa do Mineiro, de 1986 a hoje.
+       Em cada um, você lê uma reportagem do nosso acervo e enfrenta desafios que
+       o assistente monta a partir daquele texto — nunca os mesmos duas vezes.</p>
+  </div>
+</header>
+
+<main class="wrap" id="conteudo">
+
+  <div class="painel">
+    <div class="medida"><b id="m-sementes">0</b><span>sementes</span></div>
+    <div class="medida"><b id="m-paradas">0/7</b><span>paradas</span></div>
+    <div class="selos" id="m-selos" aria-label="Selos conquistados"></div>
+  </div>
+
+  <!-- ======== TELA: TRILHA ======== -->
+  <section class="tela on" id="tela-trilha">
+    <h2 class="secao-titulo">A linha do tempo</h2>
+    <p class="secao-apoio">Cada parada é um marco com documento: decreto, portaria,
+       ata de fundação ou lei. A trilha segue três fios que se cruzam — a conquista
+       da terra, a cooperativa e a escola. O marco de 1987 não tem pontuação: é
+       leitura e registro.</p>
+    <div class="trilha" id="trilha"></div>
+  </section>
+
+  <!-- ======== TELA: ESTAÇÃO ======== -->
+  <section class="tela" id="tela-estacao"></section>
+
+  <!-- ======== TELA: DESAFIO ======== -->
+  <section class="tela" id="tela-desafio"></section>
+
+</main>
+
+<button class="guia-abrir" id="guia-abrir">Perguntar ao guia</button>
+
+<aside class="guia" id="guia" aria-label="Guia do acervo">
+  <div class="guia-topo">
+    <b>Guia do acervo</b>
+    <button id="guia-fechar" aria-label="Fechar guia">&times;</button>
+  </div>
+  <div class="guia-msgs" id="guia-msgs"></div>
+  <div class="guia-baixo">
+    <input id="guia-input" placeholder="Pergunte sobre o território..." autocomplete="off">
+    <button class="btn" id="guia-enviar">Enviar</button>
+  </div>
+</aside>
+
+<footer class="rodape">
+  <div class="container rodape__grade"><div class="rodape__marca"><img src="../img/logo/campo-digital-logo-header.png" alt="Campo Digital" loading="lazy"><p>Memória, território e inovação a serviço da educação do campo.</p></div><nav class="rodape__nav" aria-label="Links do rodapé"><a href="../index.html">Início</a><a href="historia.html">História</a><a href="memoria.html">Memória</a><a href="agricola.html">Produção Agrícola</a><a href="catalogo.html">Catálogo</a><a href="../contato.html">Contato</a></nav><address class="rodape__contato"><a href="https://www.instagram.com/francisco_barros_escola/" target="_blank" rel="noopener noreferrer">Instagram @francisco_barros_escola</a><a href="tel:+5588993241011">Telefone (88) 99324-1011</a><a href="mailto:franciscoaraujo@escola.ce.gov.br">franciscoaraujo@escola.ce.gov.br</a></address></div>
+  <div class="container rodape__base"><p>&copy; <span data-current-year>2026</span> Campo Digital · EEMPC Francisco Araújo Barros</p><p>Desenvolvido por estudantes do Curso Técnico em Informática.</p></div>
+</footer>
+
+<script src="../js/config.js"></script>
+<script>
+/* =====================================================================
+   1. CONFIGURAÇÃO
+===================================================================== */
+
+/* >>> AJUSTAR 1: endereço do proxy de vocês no Railway.
+   A chave da API fica no servidor, nunca aqui. */
+const API_URL = (window.PORTAL_AI_ENDPOINT || 'http://localhost:3001/api/assistente').replace(/\/api\/assistente$/, '/api/atividade');
+
+/* AS PARADAS
+   Regra do projeto: só entra marco com documento. Cada parada abaixo tem
+   decreto, portaria, lei ou registro publicado no portal. Quando a equipe
+   documentar um marco novo (uma comunidade, uma prática, um mestre da
+   cultura), acrescente um objeto aqui — a trilha cresce sozinha.
+
+   O campo "eixo" serve só para o estudante enxergar os três fios da
+   história: a terra, a cooperativa e a escola. */
+const ESTACOES = [
+  { id:'m1986', local:'1986', eixo:'Terra', titulo:'A conquista da terra',
+    pagina:'historia.html', selo:'🏳️', nomeSelo:'Guardião da Conquista',
+    ancora:'Decreto nº 92.826 determina a desapropriação. Em 19 de setembro, os trabalhadores tomam posse do assentamento.' },
+
+  { id:'m1987', local:'1987', eixo:'Memória', titulo:'Francisco Araújo Barros',
+    pagina:'historia.html', selo:'🕯️', nomeSelo:'Registro de Memória',
+    ancora:'A Portaria nº 573/MIRAD cria oficialmente o Projeto de Assentamento. Em 12 de agosto, Francisco Araújo Barros é assassinado.',
+    memoriaViva:true },
+
+  { id:'m1991', local:'1991', eixo:'Cooperativa', titulo:'A COPAGLAM',
+    pagina:'agricola.html', selo:'🌾', nomeSelo:'Semeador',
+    ancora:'Em 14 de abril de 1991 é fundada a Cooperativa dos Produtores Agrícolas do Assentamento Lagoa do Mineiro, com 204 membros.' },
+
+  { id:'m1998', local:'1998', eixo:'Terra', titulo:'O Açude Corrente',
+    pagina:'reportagem-clima.html', selo:'💧', nomeSelo:'Vigia das Águas',
+    ancora:'Construção do açude, com capacidade de 731.250 m³, garantindo irrigação na estiagem.' },
+
+  { id:'m2005', local:'2005', eixo:'Cultura', titulo:'Ponto de Cultura',
+    pagina:'memoria.html', selo:'🎭', nomeSelo:'Guardião da Memória',
+    ancora:'O Projeto Lagoa das Artes é contemplado pelo Programa BNB de Cultura e nasce o coletivo "Nós: Artistas da Vida".' },
+
+  { id:'m2011', local:'2011', eixo:'Escola', titulo:'A escola do assentamento',
+    pagina:'reportagem-educacao.html', selo:'📚', nomeSelo:'Voz da Alternância',
+    ancora:'O Decreto nº 30.493 autoriza o funcionamento da EEMPC Francisco Araújo Barros, com Pedagogia da Alternância.' },
+
+  { id:'m2026', local:'2023 · 2026', eixo:'Escola', titulo:'O curso técnico e este portal',
+    pagina:'materia_ia_educacao_v2.html', selo:'💻', nomeSelo:'Técnico do Campo',
+    ancora:'Em 2023 chegam os cursos integrados de Agroecologia e Informática. Em 2026, estudantes do curso constroem este portal.' }
+];
+
+const CHAVE = 'campo-digital-expedicao-v1';
+function escaparHTML(valor){
+  return String(valor ?? '').replace(/[&<>"']/g, function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+
+/* =====================================================================
+   2. ESTADO
+===================================================================== */
+let estado = carregar();
+let atual = null;
+let desafio = null;
+let indice = 0;
+
+function carregar(){
+  try { return JSON.parse(localStorage.getItem(CHAVE)) || { sementes:0, feitas:[], registro:'' }; }
+  catch(e){ return { sementes:0, feitas:[], registro:'' }; }
+}
+function salvar(){
+  try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch(e){}
+}
+
+/* =====================================================================
+   3. LIGAÇÃO COM A IA
+   Uma função só. Se o proxy de vocês usar outro formato, mude aqui —
+   e só aqui.
+===================================================================== */
+async function chamarIA(instrucao, pergunta){
+  /* >>> AJUSTAR 2: formato do corpo da requisição.
+     O proxy de vocês provavelmente já recebe algo assim. Se receber
+     diferente (ex.: { prompt: "..." }), altere as duas linhas abaixo
+     e a leitura da resposta no final. */
+  const resposta = await fetch(API_URL, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body: JSON.stringify({ system: instrucao, message: pergunta })
+  });
+  if(!resposta.ok) throw new Error('O servidor do assistente respondeu com erro ' + resposta.status);
+  const dados = await resposta.json();
+  const texto = dados.text || dados.texto || dados.reply || dados.resposta || dados.message || '';
+  if(!texto) throw new Error('A resposta do assistente veio vazia.');
+  return texto;
+}
+
+/* Lê uma página do próprio portal e devolve o texto dela. */
+async function lerAcervo(arquivo){
+  const r = await fetch(arquivo);
+  if(!r.ok) throw new Error('Não encontrei a página ' + arquivo + ' no portal.');
+  const html = await r.text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  doc.querySelectorAll('script,style,nav,header,footer').forEach(function(n){ n.remove(); });
+  const alvo = doc.querySelector('main') || doc.body;
+  return alvo.textContent.replace(/\s+/g,' ').trim().slice(0, 7000);
+}
+
+/* =====================================================================
+   4. TRILHA
+===================================================================== */
+function pintarPainel(){
+  document.getElementById('m-sementes').textContent = estado.sementes;
+  document.getElementById('m-paradas').textContent = estado.feitas.length + '/' + ESTACOES.length;
+  document.getElementById('m-selos').innerHTML = ESTACOES.map(function(e){
+    const ok = estado.feitas.indexOf(e.id) >= 0;
+    return '<span class="selo ' + (ok?'ganho':'') + '" title="' + e.nomeSelo + '">' + e.selo + '</span>';
+  }).join('');
+}
+
+function pintarTrilha(){
+  document.getElementById('trilha').innerHTML = ESTACOES.map(function(e, i){
+    const ok = estado.feitas.indexOf(e.id) >= 0;
+    let marca;
+    if(ok)                 marca = '<span class="marca ok">' + e.nomeSelo + ' conquistado</span>';
+    else if(e.memoriaViva) marca = '<span class="marca estudo">Marco de memória &middot; sem pontuação</span>';
+    else                   marca = '<span class="marca">Eixo ' + e.eixo + '</span>';
+    return '<div class="parada ' + (ok?'feita':'') + '">' +
+      '<button class="cartao ' + (e.memoriaViva?'chegada':'') + '" data-id="' + e.id + '">' +
+        '<span class="local">' + e.local + '</span>' +
+        '<h3>' + e.titulo + '</h3>' +
+        '<p>' + e.ancora + '</p>' + marca +
+      '</button></div>';
+  }).join('');
+  if(estado.feitas.length === ESTACOES.length){
+    document.getElementById('trilha').insertAdjacentHTML('afterend',
+      '<div class="fim" style="margin-top:1.5rem"><h2>Linha do tempo percorrida</h2>' +
+      '<p>Você reuniu ' + estado.sementes + ' sementes e os sete selos. ' +
+      'O próximo marco desta trilha ainda não existe: ele depende de alguém ' +
+      'da escola documentar. Pode ser você.</p></div>');
+  }
+  document.querySelectorAll('.cartao').forEach(function(b){
+    b.addEventListener('click', function(){ abrirEstacao(b.dataset.id); });
+  });
+}
+
+function mostrar(tela){
+  document.querySelectorAll('.tela').forEach(function(t){ t.classList.remove('on'); });
+  document.getElementById(tela).classList.add('on');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* =====================================================================
+   5. ESTAÇÃO
+===================================================================== */
+function abrirEstacao(id){
+  atual = ESTACOES.filter(function(e){ return e.id === id; })[0];
+  const alvo = document.getElementById('tela-estacao');
+
+  if(atual.memoriaViva){
+    alvo.innerHTML =
+      '<button class="btn sec" id="v1">&larr; Voltar à trilha</button>' +
+      '<div class="bloco" style="margin-top:1rem">' +
+        '<span class="local">' + atual.local + '</span>' +
+        '<h2>' + atual.titulo + '</h2>' +
+        '<p>' + atual.ancora + ' Ele tinha 42 anos, era agricultor e pai de oito filhos. ' +
+        'A escola onde você estuda leva o nome dele. Desde 2002, a comunidade faz a ' +
+        'Caminhada dos Mártires todo 12 de agosto.</p>' +
+        '<div class="aviso">Este marco não tem quiz, pontuação nem selo de acerto. ' +
+        'Morte de trabalhador não vira jogo. Aqui você lê e escreve o seu registro — ' +
+        'e ele não é corrigido por máquina.</div>' +
+        '<div class="linha-btn"><a class="btn sec" href="' + atual.pagina + '">Ler a História</a></div>' +
+      '</div>' +
+      '<div class="bloco">' +
+        '<h2>Meu registro</h2>' +
+        '<p class="secao-apoio">O que você quer que fique guardado sobre a luta pela terra ' +
+        'nesse território? Escreva com as suas palavras.</p>' +
+        '<textarea id="registro" placeholder="Escreva aqui...">' + (estado.registro || '') + '</textarea>' +
+        '<div class="linha-btn">' +
+          '<button class="btn terra" id="salvar-registro">Guardar registro</button>' +
+          '<a class="btn sec" href="../contato.html">Enviar ao portal</a>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('v1').addEventListener('click', voltarTrilha);
+    document.getElementById('salvar-registro').addEventListener('click', function(){
+      const t = document.getElementById('registro').value.trim();
+      if(!t){ return; }
+      estado.registro = t;
+      if(estado.feitas.indexOf(atual.id) < 0) estado.feitas.push(atual.id);
+      salvar(); pintarPainel(); pintarTrilha(); voltarTrilha();
+    });
+    mostrar('tela-estacao');
+    return;
+  }
+
+  alvo.innerHTML =
+    '<button class="btn sec" id="v2">&larr; Voltar à trilha</button>' +
+    '<div class="bloco" style="margin-top:1rem">' +
+      '<span class="local">' + atual.local + ' &middot; eixo ' + atual.eixo + '</span>' +
+      '<h2>' + atual.titulo + '</h2>' +
+      '<p>' + atual.ancora + '</p>' +
+      '<p class="secao-apoio" style="margin-top:.7rem">Leia a reportagem primeiro. Os desafios ' +
+      'saem daquele texto — o assistente não usa nenhuma outra fonte.</p>' +
+      '<div class="linha-btn">' +
+        '<a class="btn sec" href="' + atual.pagina + '">Abrir a reportagem</a>' +
+        '<button class="btn" id="comecar">Começar o desafio</button>' +
+      '</div>' +
+      '<div id="aviso-erro"></div>' +
+    '</div>';
+  document.getElementById('v2').addEventListener('click', voltarTrilha);
+  document.getElementById('comecar').addEventListener('click', prepararDesafio);
+  mostrar('tela-estacao');
+}
+
+function voltarTrilha(){ pintarTrilha(); mostrar('tela-trilha'); }
+
+/* =====================================================================
+   6. DESAFIO GERADO A PARTIR DO ACERVO
+===================================================================== */
+const REGRA = 'Você é o guia da Expedição no Território, do portal Campo Digital, ' +
+  'feito por estudantes da EEMPC Francisco Araújo Barros, no Assentamento Lagoa do Mineiro, ' +
+  'Itarema, Ceará. Você fala com estudantes de 14 a 17 anos, em português brasileiro, ' +
+  'de forma simples e respeitosa. REGRA ABSOLUTA: use exclusivamente o TEXTO DO ACERVO ' +
+  'que vem abaixo. Não use conhecimento geral, não complete lacunas, não invente nome, ' +
+  'data nem número. Se a informação não estiver no texto, diga que o acervo ainda não ' +
+  'registra isso e sugira que o estudante pesquise na comunidade.';
+
+async function prepararDesafio(){
+  const botao = document.getElementById('comecar');
+  const caixa = document.getElementById('aviso-erro');
+  botao.disabled = true; botao.textContent = 'Lendo o acervo...';
+  caixa.innerHTML = '';
+  try{
+    const acervo = await lerAcervo(atual.pagina);
+    botao.textContent = 'Montando os desafios...';
+    const pedido =
+      'TEXTO DO ACERVO:\n' + acervo + '\n\n' +
+      'Monte 3 questões de múltipla escolha e 1 pergunta aberta sobre esse texto. ' +
+      'As questões devem cobrar compreensão, não decoreba de número solto. ' +
+      'A pergunta aberta deve ligar o texto à vida do estudante no assentamento. ' +
+      'Responda SOMENTE com JSON válido, sem markdown, neste formato: ' +
+      '{"questoes":[{"pergunta":"","opcoes":["","","",""],"correta":0,"porque":""}],"aberta":""}';
+    const bruto = await chamarIA(REGRA, pedido);
+    desafio = JSON.parse(bruto.replace(/```json|```/g,'').trim());
+    indice = 0;
+    pintarQuestao();
+    mostrar('tela-desafio');
+  }catch(e){
+    caixa.innerHTML = '<div class="erro">Não deu para montar o desafio agora.<br>' +
+      e.message + '<br><br>Se você abriu este arquivo direto do computador, ' +
+      'publique no site primeiro: a expedição precisa ler as páginas do portal.</div>';
+  }finally{
+    botao.disabled = false; botao.textContent = 'Começar o desafio';
+  }
+}
+
+function pintarQuestao(){
+  const q = desafio.questoes[indice];
+  const total = desafio.questoes.length;
+  document.getElementById('tela-desafio').innerHTML =
+    '<button class="btn sec" id="v3">&larr; Sair do desafio</button>' +
+    '<div class="bloco" style="margin-top:1rem">' +
+      '<div class="barra"><i style="width:' + (indice/total*100) + '%"></i></div>' +
+      '<p class="contagem">' + atual.local + ' &middot; questão ' + (indice+1) + ' de ' + total + '</p>' +
+      '<p class="pergunta">' + escaparHTML(q.pergunta) + '</p>' +
+      '<div id="alts">' + q.opcoes.map(function(o,i){
+        return '<button class="alt" data-i="' + i + '">' +
+          '<span class="let">' + String.fromCharCode(65+i) + '</span><span>' + escaparHTML(o) + '</span></button>';
+      }).join('') + '</div>' +
+      '<div id="pos"></div>' +
+    '</div>';
+  document.getElementById('v3').addEventListener('click', voltarTrilha);
+  document.querySelectorAll('.alt').forEach(function(b){
+    b.addEventListener('click', function(){ responder(parseInt(b.dataset.i,10)); });
+  });
+}
+
+function responder(escolha){
+  const q = desafio.questoes[indice];
+  const acertou = escolha === q.correta;
+  if(acertou){ estado.sementes += 5; salvar(); pintarPainel(); }
+  document.querySelectorAll('.alt').forEach(function(b,i){
+    b.disabled = true;
+    if(i === q.correta) b.classList.add('certa');
+    else if(i === escolha) b.classList.add('errada');
+  });
+  const ultima = indice >= desafio.questoes.length - 1;
+  document.getElementById('pos').innerHTML =
+    '<div class="devolutiva"><b>' + (acertou ? 'Isso mesmo.' : 'Não é essa.') + '</b> ' + escaparHTML(q.porque) + '</div>' +
+    '<div class="linha-btn"><button class="btn" id="seguir">' +
+      (ultima ? 'Ir para a pergunta aberta' : 'Próxima questão') + '</button></div>';
+  document.getElementById('seguir').addEventListener('click', function(){
+    if(ultima){ pintarAberta(); } else { indice++; pintarQuestao(); }
+  });
+}
+
+function pintarAberta(){
+  document.getElementById('tela-desafio').innerHTML =
+    '<button class="btn sec" id="v4">&larr; Sair do desafio</button>' +
+    '<div class="bloco" style="margin-top:1rem">' +
+      '<p class="contagem">' + atual.local + ' &middot; pergunta aberta</p>' +
+      '<p class="pergunta">' + escaparHTML(desafio.aberta) + '</p>' +
+      '<textarea id="resp-aberta" placeholder="Responda com as suas palavras..."></textarea>' +
+      '<div class="linha-btn"><button class="btn" id="enviar-aberta">Enviar resposta</button></div>' +
+      '<div id="retorno"></div>' +
+    '</div>';
+  document.getElementById('v4').addEventListener('click', voltarTrilha);
+  document.getElementById('enviar-aberta').addEventListener('click', avaliarAberta);
+}
+
+async function avaliarAberta(){
+  const texto = document.getElementById('resp-aberta').value.trim();
+  const retorno = document.getElementById('retorno');
+  if(texto.length < 15){
+    retorno.innerHTML = '<div class="erro">Escreva um pouco mais — pelo menos duas ou três linhas.</div>';
+    return;
+  }
+  const botao = document.getElementById('enviar-aberta');
+  botao.disabled = true; botao.textContent = 'Lendo sua resposta...';
+  retorno.innerHTML = '';
+  try{
+    const acervo = await lerAcervo(atual.pagina);
+    const pedido =
+      'TEXTO DO ACERVO:\n' + acervo + '\n\n' +
+      'PERGUNTA: ' + desafio.aberta + '\n' +
+      'RESPOSTA DO ESTUDANTE: ' + texto + '\n\n' +
+      'Dê uma devolutiva curta, em no máximo 4 frases: primeiro diga o que a resposta ' +
+      'acertou, depois aponte um ponto do acervo que ela poderia ter usado e não usou. ' +
+      'Fale direto com o estudante, sem nota e sem elogio vazio.';
+    const devolutiva = await chamarIA(REGRA, pedido);
+    estado.sementes += 10;
+    if(estado.feitas.indexOf(atual.id) < 0) estado.feitas.push(atual.id);
+    salvar(); pintarPainel();
+    retorno.innerHTML =
+      '<div class="devolutiva">' + escaparHTML(devolutiva) + '</div>' +
+      '<div class="fim" style="margin-top:1.2rem">' +
+        '<h2>' + atual.selo + ' ' + atual.nomeSelo + '</h2>' +
+        '<p>Parada de ' + atual.local + ' concluída. Você tem ' + estado.sementes + ' sementes.</p>' +
+        '<div class="linha-btn" style="justify-content:center"><button class="btn" id="v5">Voltar à trilha</button></div>' +
+      '</div>';
+    document.getElementById('v5').addEventListener('click', voltarTrilha);
+  }catch(e){
+    retorno.innerHTML = '<div class="erro">Não consegui enviar sua resposta agora: ' + e.message + '</div>';
+  }finally{
+    botao.disabled = false; botao.textContent = 'Enviar resposta';
+  }
+}
+
+/* =====================================================================
+   7. GUIA DO ACERVO (o chat ancorado)
+===================================================================== */
+const guia = document.getElementById('guia');
+const msgs = document.getElementById('guia-msgs');
+let guiaOcupado = false;
+
+document.getElementById('guia-abrir').addEventListener('click', function(){
+  guia.classList.add('on');
+  if(!msgs.children.length){
+    falar('ia', 'Eu respondo a partir do acervo deste portal — história, memória, ' +
+      'plantas, produção agrícola e educação do campo do Assentamento Lagoa do Mineiro. ' +
+      'Se a pergunta sair daqui, eu vou dizer que não sei. O que você quer saber?');
+  }
+  document.getElementById('guia-input').focus();
+});
+document.getElementById('guia-fechar').addEventListener('click', function(){ guia.classList.remove('on'); });
+document.getElementById('guia-enviar').addEventListener('click', perguntarGuia);
+document.getElementById('guia-input').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') perguntarGuia();
+});
+
+function falar(quem, texto){
+  const d = document.createElement('div');
+  d.className = 'fala ' + quem;
+  d.textContent = texto;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+async function perguntarGuia(){
+  if(guiaOcupado) return;
+  const campo = document.getElementById('guia-input');
+  const texto = campo.value.trim();
+  if(!texto) return;
+  campo.value = '';
+  falar('eu', texto);
+  const esperando = falar('ia', 'Consultando o acervo...');
+  guiaOcupado = true;
+  try{
+    /* Busca nas páginas do acervo. Para ficar leve, lê a página da estação
+       aberta (se houver) e sempre a História, que é a base do território. */
+    const paginas = atual ? [atual.pagina, 'historia.html'] : ['historia.html', 'memoria.html'];
+    const partes = [];
+    for(let i = 0; i < paginas.length; i++){
+      try { partes.push(await lerAcervo(paginas[i])); } catch(e){}
+    }
+    if(!partes.length) throw new Error('não consegui abrir as páginas do portal.');
+    const resposta = await chamarIA(
+      REGRA,
+      'TEXTO DO ACERVO:\n' + partes.join('\n\n').slice(0, 12000) +
+      '\n\nPERGUNTA DO ESTUDANTE: ' + texto +
+      '\n\nResponda em no máximo 5 frases e diga em qual página do portal está a informação.'
+    );
+    esperando.textContent = resposta;
+  }catch(e){
+    esperando.textContent = 'Não consegui responder agora: ' + e.message;
+  }finally{
+    guiaOcupado = false;
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+}
+
+/* =====================================================================
+   8. INICIAR
+===================================================================== */
+pintarPainel();
+pintarTrilha();
+</script>
+<script type="module" src="../js/app.js?v=20260909-1"></script>
+</body>
+</html>
