@@ -12,8 +12,7 @@ export function prepararImagens() {
 
     imagem.addEventListener('error', () => {
       imagem.closest('[data-image-placeholder]')?.classList.remove('imagem-carregada');
-      const bloco = imagem.closest('figure') || imagem.parentElement;
-      if (bloco) bloco.hidden = true;
+      imagem.hidden = true;
     });
   });
 }
