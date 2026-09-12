@@ -32,7 +32,7 @@ test('health informa serviço, modelo e limites sem expor segredos', async () =>
   assert.equal(response.headers.get('access-control-allow-origin'), 'https://fabcampo.com.br');
   const body = await response.json();
   assert.equal(body.ok, true);
-  assert.equal(body.service, 'portal-comunidade-api');
+  assert.equal(body.service, 'fabcampo-api');
   assert.equal(body.limits.globalDay, 200);
   assert.equal('apiKey' in body, false);
 });

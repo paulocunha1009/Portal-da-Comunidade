@@ -181,7 +181,7 @@ app.get('/health', (_req, res) => {
   res.json({
     ok: true,
     aiConfigured: hasGeminiKey,
-    service: 'portal-comunidade-api',
+    service: 'fabcampo-api',
     model: GEMINI_MODEL,
     limiter: limiter.storage,
     limits: limiter.limits,

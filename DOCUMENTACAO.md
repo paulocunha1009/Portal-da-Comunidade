@@ -63,7 +63,7 @@ Criar uma plataforma digital escolar para:
 ## 3. Estrutura de Pastas
 
 ```text
-Portal-da-Comunidade2-main/
+fabcampo/
 ├── index.html
 ├── contato.html
 ├── DOCUMENTACAO.md

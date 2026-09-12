@@ -9,13 +9,13 @@ fabcampo.com.br
 Repositório:
 
 ```text
-https://github.com/paulocunha1009/Portal-da-Comunidade
+https://github.com/paulocunha1009/fabcampo
 ```
 
 Site atual do GitHub Pages:
 
 ```text
-https://paulocunha1009.github.io/Portal-da-Comunidade/
+https://paulocunha1009.github.io/fabcampo/
 ```
 
 ---
@@ -38,7 +38,7 @@ Esse arquivo já foi criado na raiz do projeto.
 
 No GitHub:
 
-1. Acesse o repositório `paulocunha1009/Portal-da-Comunidade`.
+1. Acesse o repositório `paulocunha1009/fabcampo`.
 2. Entre em **Settings**.
 3. Clique em **Pages**.
 4. Em **Custom domain**, coloque:
@@ -76,7 +76,7 @@ Crie um registro do tipo `CNAME`:
 www.fabcampo.com.br -> paulocunha1009.github.io
 ```
 
-Não coloque `/Portal-da-Comunidade` no DNS. O CNAME do `www` deve apontar apenas para `paulocunha1009.github.io`.
+Não coloque `/fabcampo` no DNS. O CNAME do `www` deve apontar apenas para `paulocunha1009.github.io`.
 
 ---
 

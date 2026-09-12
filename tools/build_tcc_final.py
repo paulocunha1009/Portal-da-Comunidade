@@ -162,7 +162,7 @@ REFERENCIAS = [
     "UNESCO. Convenção para a Salvaguarda do Patrimônio Cultural Imaterial. Paris, 2003.",
     "W3C. Web Content Accessibility Guidelines (WCAG). World Wide Web Consortium.",
     "GITHUB. GitHub Pages Documentation. Disponível em: https://docs.github.com/pages.",
-    "PORTAL DA COMUNIDADE. Site público do projeto. Disponível em: https://paulocunha1009.github.io/Portal-da-Comunidade/index.html."
+    "FAB CAMPO. Site público do projeto. Disponível em: https://fabcampo.com.br/."
 ]
 
 
@@ -294,7 +294,7 @@ def build():
         "Área de pesquisa: Robótica, Automação e Aplicação das TIC",
         "Eixos sugeridos: Educação para a Cidadania; Comunicação, Mídia e Democracia",
         "Produto: portal web educacional publicado no GitHub Pages",
-        "URL: https://paulocunha1009.github.io/Portal-da-Comunidade/index.html",
+        "URL: https://fabcampo.com.br/",
     ]:
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -436,8 +436,8 @@ def build():
         p.add_run(ref)
 
     add_heading(doc, "Apêndice A — Link e evidências do produto", 1)
-    add_labelled(doc, "Portal publicado:", "https://paulocunha1009.github.io/Portal-da-Comunidade/index.html")
-    add_labelled(doc, "Repositório:", "github.com/paulocunha1009/Portal-da-Comunidade")
+    add_labelled(doc, "Portal publicado:", "https://fabcampo.com.br/")
+    add_labelled(doc, "Repositório:", "github.com/paulocunha1009/fabcampo")
     add_labelled(doc, "Tecnologias:", "HTML5, CSS3, JavaScript, JSON, GitHub Pages, Node.js e backend opcional para IA.")
     add_labelled(doc, "Documentação técnica:", "DOCUMENTACAO_UNIFICADA.md e documentação do repositório local.")
 

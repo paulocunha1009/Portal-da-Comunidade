@@ -12,7 +12,7 @@ O site público está funcionando em:
 
 - `https://fabcampo.com.br`
 - Hospedagem do frontend: GitHub Pages
-- Repositório: `paulocunha1009/Portal-da-Comunidade`
+- Repositório atual: `paulocunha1009/fabcampo`
 
 O frontend tenta acessar o assistente pelo endereço:
 
@@ -86,7 +86,7 @@ Não compartilhar senhas ou chaves em grupos de mensagens. Os acessos devem ser 
 1. Entrar no Railway.
 2. Criar um projeto ou abrir o projeto existente.
 3. Escolher **Deploy from GitHub repo**.
-4. Selecionar `paulocunha1009/Portal-da-Comunidade`.
+4. Selecionar `paulocunha1009/fabcampo`.
 5. Configurar o diretório raiz do serviço como `backend`.
 6. Confirmar o comando de inicialização `npm start`.
 7. Configurar a branch de produção usada pela equipe.

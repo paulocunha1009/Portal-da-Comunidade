@@ -5,8 +5,8 @@ Este procedimento cria a API de teste sem alterar o endereço usado pelo portal 
 ## Decisões registradas
 
 - frontend permanece no GitHub Pages;
-- novo projeto Vercel: `portal-comunidade-api`;
-- repositório: `paulocunha1009/Portal-da-Comunidade`;
+- projeto Vercel: `fabcampo-api`;
+- repositório: `paulocunha1009/fabcampo`;
 - diretório raiz na Vercel: `backend`;
 - branch de produção da API: `main`;
 - modelo inicial: `gemini-2.5-flash-lite`;
@@ -18,8 +18,8 @@ Este procedimento cria a API de teste sem alterar o endereço usado pelo portal 
 ## 1. Importar o projeto
 
 1. Na Vercel, escolha **Add New > Project**.
-2. Importe `paulocunha1009/Portal-da-Comunidade`.
-3. Use o nome `portal-comunidade-api`.
+2. Importe `paulocunha1009/fabcampo`.
+3. Use o nome `fabcampo-api`.
 4. Configure **Root Directory** como `backend`.
 5. Configure **Production Branch** como `main`.
 6. Não altere os dois projetos Vercel já existentes.

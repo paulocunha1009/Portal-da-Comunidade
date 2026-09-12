@@ -3,7 +3,7 @@
 Registro das decisões tomadas com a equipe em 12 de setembro de 2026.
 
 1. O frontend permanece no GitHub Pages e o backend será implantado na Vercel.
-2. Será criado um terceiro projeto Vercel, `portal-comunidade-api`, sem alterar os dois projetos existentes.
+2. Foi criado um terceiro projeto Vercel, inicialmente chamado `portal-comunidade-api` e posteriormente padronizado como `fabcampo-api`, sem alterar os dois projetos existentes.
 3. O provedor inicial de IA será o Google Gemini, usando primeiro a chave já existente.
 4. Catálogo, Expedição e Assistente terão contingência local automática.
 5. Upstash Redis será usado para controle persistente; outra solução poderá substituí-lo se necessário.
