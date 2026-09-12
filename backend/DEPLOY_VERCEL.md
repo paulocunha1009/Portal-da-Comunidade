@@ -7,6 +7,7 @@ Este procedimento cria a API de teste sem alterar o endereço usado pelo portal 
 - frontend permanece no GitHub Pages;
 - projeto Vercel: `fabcampo-api`;
 - repositório: `paulocunha1009/fabcampo`;
+- endpoint público: `https://fabcampo-api.vercel.app`;
 - diretório raiz na Vercel: `backend`;
 - branch de produção da API: `main`;
 - modelo inicial: `gemini-2.5-flash-lite`;
