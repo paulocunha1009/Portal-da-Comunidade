@@ -26,12 +26,14 @@ Este procedimento cria a API de teste sem alterar o endereço usado pelo portal 
 
 ## 2. Criar o banco gratuito Upstash
 
-Crie ou conecte um banco Redis gratuito pelo Marketplace/Integrações da Vercel. Confirme que as variáveis abaixo foram adicionadas ao projeto:
+Crie ou conecte um banco Redis gratuito pelo Marketplace/Integrações da Vercel. Com o prefixo usado neste projeto, a integração cria:
 
 ```text
-UPSTASH_REDIS_REST_URL
-UPSTASH_REDIS_REST_TOKEN
+UPSTASH_REDIS_REST_KV_REST_API_URL
+UPSTASH_REDIS_REST_KV_REST_API_TOKEN
 ```
+
+O backend também aceita os nomes padrão `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN`.
 
 Não copie esses valores para o GitHub, documentos ou mensagens.
 
