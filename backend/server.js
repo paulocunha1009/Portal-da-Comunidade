@@ -136,8 +136,8 @@ Tipos: Abertura, Encerramento, Luta (datas históricas), Temática (ligada ao co
 - "reportagem-educacao.html" — Educação do Campo, Alternância, Místicas
 - "agricola.html" — Produção agrícola, COPAGLAM
 - "reportagem-clima.html" — Mudanças climáticas e agricultura familiar
-- "Plantação Nativa.html" — 17 espécies nativas
-- "Plantas Medicinais.html" — 12 plantas medicinais
+- "Plantação-Nativa.html" — 17 espécies nativas
+- "Plantas-Medicinaisv2.html" — 12 plantas medicinais
 - "memoria.html" — Memória e depoimentos
 - "../contato.html" — Contato
 

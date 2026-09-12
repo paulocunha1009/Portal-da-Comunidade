@@ -1,7 +1,7 @@
 {
   "_leia_primeiro": {
     "regra": "Só entra ficha com informação publicada no acervo do portal. Nada de nome científico ou uso vindo de memória ou de busca solta na internet.",
-    "origem_desta_versao": "Extraído de pages/Plantação Nativa.html do portal Campo Digital.",
+    "origem_desta_versao": "Extraído de pages/Plantação-Nativa.html do portal Campo Digital.",
     "conferir": "Os campos 'usos' foram resumidos a partir do texto de vocês. Confiram se cada um está fiel ao que a página diz.",
     "faltando": "8 fichas de nativas (o HTML enviado terminou no Torém) e as 12 medicinais."
   },

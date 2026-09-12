@@ -66,3 +66,7 @@ O widget de IA já aparece no portal como protótipo. Para conectar IA real, nã
 Use um backend seguro como o exemplo em `backend/exemplo-openai-proxy.js`, publique em uma plataforma serverless e configure o endpoint conforme `js/config.example.js`.
 
 Referência oficial usada: Responses API da OpenAI.
+
+## Plano do backend de IA
+
+O diagnóstico do serviço atual, a arquitetura proposta com `api.fabcampo.com.br`, os passos de implantação, testes e plano de reversão estão documentados em [PLANO_BACKEND_RAILWAY.md](PLANO_BACKEND_RAILWAY.md).

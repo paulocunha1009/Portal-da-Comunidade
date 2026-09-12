@@ -280,14 +280,14 @@
     return {
       type: 'recommendations',
       content: 'Veja as 12 plantas medicinais documentadas pela Turma Manoel Louvado:',
-      pages: [{ title: 'Plantas Medicinais', url: resolverUrl('Plantas Medicinais.html'), reason: '12 espécies da Caatinga com receitas, usos e alertas de saúde' }]
+      pages: [{ title: 'Plantas Medicinais', url: resolverUrl('Plantas-Medicinaisv2.html'), reason: '12 espécies da Caatinga com receitas, usos e alertas de saúde' }]
     };
   }
   function recNativas() {
     return {
       type: 'recommendations',
       content: 'Conheça o inventário de espécies nativas do assentamento:',
-      pages: [{ title: 'Plantação Nativa', url: resolverUrl('Plantação Nativa.html'), reason: '17 espécies dos biomas Caatinga, Restinga e Manguezal' }]
+      pages: [{ title: 'Plantação Nativa', url: resolverUrl('Plantação-Nativa.html'), reason: '17 espécies dos biomas Caatinga, Restinga e Manguezal' }]
     };
   }
   function recAgricola() {

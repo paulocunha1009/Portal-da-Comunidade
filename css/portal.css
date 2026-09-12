@@ -2230,3 +2230,9 @@ body.menu-aberto .cabecalho {
     transition-duration: 0.01ms !important;
   }
 }
+
+.bbl {
+  color: var(--cor-primaria-escura);
+  border-left: 4px solid var(--cor-secundaria);
+  padding: 5px 10px;
+}

@@ -54,7 +54,7 @@ function respostaLocal(pergunta) {
     return {
       type: 'recommendations',
       content: 'Veja as 12 plantas medicinais documentadas pelos estudantes da turma Manoel Louvado:',
-      pages: [{ title: 'Plantas Medicinais', url: 'pages/Plantas Medicinais.html', reason: '12 espécies da Caatinga com receitas tradicionais, usos e alertas de saúde' }],
+      pages: [{ title: 'Plantas Medicinais', url: 'pages/Plantas-Medicinaisv2.html', reason: '12 espécies da Caatinga com receitas tradicionais, usos e alertas de saúde' }],
     };
   }
 
@@ -62,7 +62,7 @@ function respostaLocal(pergunta) {
     return {
       type: 'recommendations',
       content: 'Conheça o inventário de espécies nativas do assentamento:',
-      pages: [{ title: 'Plantação Nativa', url: 'pages/Plantação Nativa.html', reason: '17 espécies dos biomas Caatinga, Restinga e Manguezal' }],
+      pages: [{ title: 'Plantação Nativa', url: 'pages/Plantação-Nativa.html', reason: '17 espécies dos biomas Caatinga, Restinga e Manguezal' }],
     };
   }
 

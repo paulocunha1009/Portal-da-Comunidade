@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   iniciarFormularioContato();
   iniciarCarrosseis();
   carregarConteudo();
-  iniciarChatEducacional();
+  if (document.body.dataset.page !== 'expedicao') iniciarChatEducacional();
   atualizarAno();
 });
 
