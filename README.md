@@ -11,8 +11,8 @@ Portal educacional estático feito com HTML, CSS e JavaScript para GitHub Pages.
 │   ├── historia.html
 │   ├── memoria.html
 │   ├── agricola.html
-│   ├── Plantação Nativa.html
-│   └── Plantas Medicinais.html
+│   ├── Plantação-Nativa.html
+│   └── Plantas-Medicinaisv2.html
 ├── css/
 │   ├── estilo.css
 │   └── responsivo.css

@@ -96,8 +96,8 @@ fabcampo/
 │   ├── historia.html
 │   ├── memoria.html
 │   ├── agricola.html
-│   ├── Plantação Nativa.html
-│   ├── Plantas Medicinais.html
+│   ├── Plantação-Nativa.html
+│   ├── Plantas-Medicinaisv2.html
 │   ├── mudas.html
 │   ├── reportagem-educacao.html
 │   ├── reportagem-clima.html
@@ -137,8 +137,8 @@ fabcampo/
 | `pages/historia.html` | História da comunidade, linha do tempo e registros históricos. |
 | `pages/memoria.html` | Memória oral, depoimentos, saberes e relatos da comunidade. |
 | `pages/agricola.html` | Produção agrícola, cultivos, práticas sustentáveis e dados do campo. |
-| `pages/Plantação Nativa.html` | Plantas nativas, preservação ambiental e biodiversidade regional. |
-| `pages/Plantas Medicinais.html` | Plantas medicinais, usos tradicionais e pesquisa escolar responsável. |
+| `pages/Plantação-Nativa.html` | Página oficial de plantas nativas, preservação ambiental e biodiversidade regional. |
+| `pages/Plantas-Medicinaisv2.html` | Página oficial de plantas medicinais, usos tradicionais e pesquisa escolar responsável. |
 | `pages/mudas.html` | Produção de mudas, cultivo, sustentabilidade e educação ambiental. |
 | `pages/reportagem-educacao.html` | Reportagem sobre Educação do Campo e Pedagogia da Alternância. |
 | `pages/reportagem-clima.html` | Reportagem sobre mudanças climáticas, campo e agricultura. |
@@ -148,9 +148,12 @@ fabcampo/
 
 | Arquivo | Função |
 |---|---|
-| `pages/plantas-do-ceara.html` | Redireciona para `Plantação Nativa.html`. |
-| `pages/plantasdoceara.html` | Redireciona para `Plantação Nativa.html`. |
-| `pages/Plantas-Medicinais.html` | Redireciona para a página oficial `Plantas Medicinais.html`. |
+| `pages/Plantação Nativa.html` | Redireciona para `Plantação-Nativa.html`. |
+| `pages/plantas-do-ceara.html` | Redireciona para `Plantação-Nativa.html`. |
+| `pages/plantasdoceara.html` | Redireciona para `Plantação-Nativa.html`. |
+| `pages/Plantas Medicinais.html` | Redireciona para `Plantas-Medicinaisv2.html`. |
+| `pages/Plantas-Medicinais-02.html` | Redireciona para `Plantas-Medicinaisv2.html`. |
+| `pages/Plantas-Medicinais.html` | Redireciona para `Plantas-Medicinaisv2.html`. |
 
 Essas páginas existem para evitar erro 404 caso algum visitante acesse um link antigo.
 
