@@ -18,31 +18,38 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Segoe UI",Arial,sans-serif;background:var(--cor-fundo);color:var(--texto);line-height:1.6}
 main a{color:var(--terra)}
-.wrap{width:min(100% - 32px,980px);margin-inline:auto;padding:0}
+.wrap{width:min(100% - 32px,var(--largura));margin-inline:auto;padding:0}
 
 /* ---------- topo ---------- */
 .topo{position:relative;overflow:hidden;background:linear-gradient(120deg,#0f3f25 0%,#185f37 55%,#0b5d88 100%);color:#fff}
 .topo::after{content:"";position:absolute;width:360px;height:360px;right:-100px;top:-190px;border-radius:50%;border:70px solid rgba(255,255,255,.055)}
-.topo-in{position:relative;z-index:1;width:min(100% - 32px,980px);margin-inline:auto;padding:3.6rem 0 4.5rem}
+.topo-in{position:relative;z-index:1;width:min(100% - 32px,var(--largura));margin-inline:auto;padding:3.6rem 0 4.5rem}
+.topo__grade{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:3rem;align-items:end}
+.topo__texto{min-width:0}
 .topo__kicker{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.9rem;color:#f3c64e;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .topo__kicker::before{content:"";width:26px;height:2px;background:currentColor}
 .topo h1{font-family:inherit;font-size:clamp(2.15rem,5vw,3.5rem);font-weight:800;letter-spacing:-.035em;line-height:1.06;margin-bottom:1rem}
 .topo p{color:rgba(255,255,255,.86);font-size:1.05rem;max-width:66ch}
 .topo__chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.35rem}
 .topo__chips span{padding:.4rem .75rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-size:.76rem;font-weight:700;backdrop-filter:blur(6px)}
+.topo__roteiro{border:1px solid rgba(255,255,255,.18);border-radius:var(--raio);background:rgba(4,33,19,.24);padding:1.15rem 1.2rem;box-shadow:0 18px 45px rgba(0,0,0,.12);backdrop-filter:blur(10px)}
+.topo__roteiro strong{display:block;margin-bottom:.65rem;color:#fff;font-size:.86rem}
+.topo__roteiro ol{display:grid;gap:.55rem;list-style:none;counter-reset:passo}
+.topo__roteiro li{display:flex;align-items:center;gap:.65rem;color:rgba(255,255,255,.82);font-size:.78rem;counter-increment:passo}
+.topo__roteiro li::before{content:counter(passo);display:grid;flex:0 0 24px;height:24px;place-items:center;border-radius:50%;background:#f3c64e;color:#173f28;font-size:.7rem;font-weight:900}
 .voltar{display:inline-block;color:rgba(255,255,255,.82);font-size:.85rem;font-weight:700;text-decoration:none;margin-bottom:1.5rem}
 .voltar:hover{color:#fff}
 
 /* ---------- painel de progresso ---------- */
-.painel{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);
+.painel{background:var(--branco);border:1px solid var(--borda);border-radius:calc(var(--raio) + 4px);
   margin:-2rem auto 2.8rem;position:relative;padding:1.25rem 1.5rem;box-shadow:var(--sombra);
-  display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  display:grid;grid-template-columns:120px 120px minmax(0,1fr);gap:1.5rem;align-items:center}
 .medida{display:flex;flex-direction:column}
 .medida b{font-family:inherit;font-size:1.7rem;color:var(--verde);line-height:1;font-weight:800}
 .medida span{font-size:.75rem;color:var(--muted);font-weight:700}
-.selos{display:flex;gap:6px;flex-wrap:wrap}
+.selos{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .selo{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
-  background:var(--creme-esc);border:1.5px dashed var(--borda);font-size:15px;filter:grayscale(1);opacity:.45}
+  background:#f7f8f4;border:1.5px dashed #bdc9bf;font-size:15px;filter:grayscale(1);opacity:.68}
 .selo.ganho{background:var(--verde-bg);border:2px solid var(--verde-cl);filter:none;opacity:1}
 
 /* ---------- trilha ---------- */
@@ -56,10 +63,12 @@ main a{color:var(--terra)}
   background-image:radial-gradient(var(--verde) 28%,transparent 31%)}
 .parada.feita::before{background:var(--verde);border-color:var(--verde);
   background-image:none;box-shadow:0 0 0 4px var(--verde-bg)}
-.cartao{width:100%;text-align:left;background:var(--branco);border:1px solid var(--borda);
-  border-left:4px solid var(--verde);border-radius:var(--raio);padding:1.35rem 1.45rem;cursor:pointer;
+.cartao{position:relative;width:100%;text-align:left;background:var(--branco);border:1px solid var(--borda);
+  border-left:4px solid var(--verde);border-radius:var(--raio);padding:1.35rem 4rem 1.35rem 1.45rem;cursor:pointer;
   font-family:inherit;font-size:1rem;display:block;box-shadow:var(--sombra-suave);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.cartao::after{content:"→";position:absolute;right:1.35rem;top:50%;display:grid;width:32px;height:32px;place-items:center;border-radius:50%;background:var(--verde-bg);color:var(--verde);font-size:1.1rem;font-weight:900;transform:translateY(-50%);transition:transform .18s ease,background .18s ease}
 .cartao:hover,.cartao:focus-visible{transform:translateY(-2px);box-shadow:var(--sombra);border-color:#b9d2bf;outline-offset:3px}
+.cartao:hover::after,.cartao:focus-visible::after{background:var(--verde);color:#fff;transform:translate(3px,-50%)}
 .cartao.chegada{border-left-color:var(--terra);background:var(--creme-esc)}
 .cartao h3{font-family:inherit;font-size:1.16rem;font-weight:800;color:var(--verde-esc);margin-bottom:.2rem}
 .local{display:inline-block;font-size:.72rem;font-weight:800;color:var(--cor-acento);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem}
@@ -113,8 +122,8 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
 .guia-abrir{position:fixed;right:18px;bottom:18px;z-index:90;background:linear-gradient(135deg,var(--verde),var(--cor-acento));color:#fff;
   border:none;border-radius:30px;padding:.85rem 1.2rem;font-family:inherit;font-weight:900;
   font-size:.88rem;cursor:pointer;box-shadow:0 10px 28px rgba(15,63,37,.28)}
-.guia{position:fixed;inset:auto 0 0 0;z-index:70;background:var(--branco);border-top:5px solid var(--verde);
-  border-radius:18px 18px 0 0;max-height:82vh;display:none;flex-direction:column;box-shadow:0 -8px 30px rgba(0,0,0,.2)}
+.guia{position:fixed;right:18px;bottom:76px;z-index:95;width:min(400px,calc(100% - 36px));height:min(590px,calc(100dvh - 180px));background:var(--branco);border:1px solid var(--borda);border-top:5px solid var(--verde);
+  border-radius:18px;display:none;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.24);overflow:hidden}
 .guia.on{display:flex}
 .guia-topo{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.1rem;border-bottom:1px solid var(--borda)}
 .guia-topo b{font-family:inherit;color:var(--verde);font-weight:800}
@@ -132,7 +141,8 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
 .fim h2{font-family:inherit;font-size:1.6rem;font-weight:800;color:var(--verde-esc);margin-bottom:.4rem}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-@media(max-width:520px){.topo-in{padding:2.6rem 0 3.8rem}.topo__chips{gap:.45rem}.painel{gap:1rem;padding:1rem}.selos{width:100%}.trilha{padding-left:2.3rem}.parada::before{left:-2.3rem}.cartao{padding:1.1rem}.guia-abrir{right:12px;bottom:12px}}
+@media(max-width:760px){.topo__grade{grid-template-columns:1fr;gap:1.4rem}.topo__roteiro{max-width:34rem}.painel{grid-template-columns:1fr 1fr}.selos{grid-column:1/-1;justify-content:flex-start;padding-top:.9rem;border-top:1px solid var(--borda)}}
+@media(max-width:520px){.topo-in{padding:2.6rem 0 3.8rem}.topo__chips{gap:.45rem}.painel{gap:1rem;padding:1rem}.trilha{padding-left:2.3rem}.parada::before{left:-2.3rem}.cartao{padding:1.1rem 3.5rem 1.1rem 1.1rem}.cartao::after{right:1rem}.guia-abrir{right:12px;bottom:12px}.guia{inset:auto 0 0;width:100%;height:min(78dvh,620px);border-radius:18px 18px 0 0}}
 </style>
 </head>
 <body data-page="expedicao">
@@ -161,9 +171,8 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
      como contexto para a IA gerar os desafios. Ou seja: o assistente só
      sabe o que o portal publica. Se o acervo muda, o desafio muda junto.
 
-     ANTES DE PUBLICAR, AJUSTE 2 COISAS (marcadas com >>> AJUSTAR):
-     1. O endereço do proxy da API (Railway)
-     2. O formato da chamada, se o proxy de vocês usar outro
+     A API é configurada centralmente em js/config.js. Se ela estiver
+     indisponível, a experiência mantém os desafios locais de contingência.
 
      REGRA DA TRILHA: só entra marco com documento (decreto, portaria, lei,
      ata). A ordem é cronológica, então não depende de interpretação.
@@ -173,22 +182,30 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
 <header class="topo">
   <div class="topo-in">
     <a class="voltar" href="../index.html">&larr; Voltar ao portal</a>
-    <span class="topo__kicker">Aprendizagem pelo território</span>
-    <h1>Expedição no Território</h1>
-    <p>Sete marcos da história do Assentamento Lagoa do Mineiro, de 1986 a hoje.
-       Em cada um, você lê uma reportagem do nosso acervo e enfrenta desafios que
-       o assistente monta a partir daquele texto — nunca os mesmos duas vezes.</p>
-    <div class="topo__chips" aria-label="Características da experiência">
-      <span>7 marcos históricos</span>
-      <span>Acervo da comunidade</span>
-      <span>Progresso salvo neste aparelho</span>
+    <div class="topo__grade">
+      <div class="topo__texto">
+        <span class="topo__kicker">Aprendizagem pelo território</span>
+        <h1>Expedição no Território</h1>
+        <p>Sete marcos da história do Assentamento Lagoa do Mineiro, de 1986 a hoje.
+           Em cada um, você lê uma reportagem do nosso acervo e enfrenta desafios que
+           o assistente monta a partir daquele texto — nunca os mesmos duas vezes.</p>
+        <div class="topo__chips" aria-label="Características da experiência">
+          <span>7 marcos históricos</span>
+          <span>Acervo da comunidade</span>
+          <span>Progresso salvo neste aparelho</span>
+        </div>
+      </div>
+      <aside class="topo__roteiro" aria-label="Como participar da expedição">
+        <strong>Como funciona</strong>
+        <ol><li>Escolha uma parada</li><li>Leia o conteúdo do acervo</li><li>Complete o desafio</li></ol>
+      </aside>
     </div>
   </div>
 </header>
 
 <main class="wrap" id="conteudo">
 
-  <div class="painel">
+  <div class="painel" aria-label="Seu progresso na expedição" aria-live="polite">
     <div class="medida"><b id="m-sementes">0</b><span>sementes</span></div>
     <div class="medida"><b id="m-paradas">0/7</b><span>paradas</span></div>
     <div class="selos" id="m-selos" aria-label="Selos conquistados"></div>
@@ -212,7 +229,7 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
 
 </main>
 
-<button class="guia-abrir" id="guia-abrir">Perguntar ao guia</button>
+<button class="guia-abrir" id="guia-abrir"><span aria-hidden="true">✦</span> Perguntar ao guia</button>
 
 <aside class="guia" id="guia" aria-label="Guia do acervo">
   <div class="guia-topo">
@@ -237,7 +254,7 @@ textarea:focus{outline:2px solid var(--verde-cl);outline-offset:1px}
    1. CONFIGURAÇÃO
 ===================================================================== */
 
-/* >>> AJUSTAR 1: endereço do proxy de vocês no Railway.
+/* O endpoint é derivado da configuração central do portal.
    A chave da API fica no servidor, nunca aqui. */
 const API_URL = (window.PORTAL_AI_ENDPOINT || 'http://localhost:3001/api/assistente').replace(/\/api\/assistente$/, '/api/atividade');
 
