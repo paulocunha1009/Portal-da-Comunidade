@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Imagem em documentação</title>
+  <desc id="desc">Marcador visual do Campo Digital para registros fotográficos que ainda serão incorporados ao acervo.</desc>
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f3f25"/>
+      <stop offset="0.58" stop-color="#1f6f3b"/>
+      <stop offset="1" stop-color="#0b5d88"/>
+    </linearGradient>
+    <pattern id="pontos" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2" fill="#fff" opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#fundo)"/>
+  <rect width="1200" height="720" fill="url(#pontos)"/>
+  <circle cx="1050" cy="80" r="190" fill="none" stroke="#fff" stroke-width="54" opacity=".06"/>
+  <g transform="translate(600 300)" fill="none" stroke="#f3b51b" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-82" y="-66" width="164" height="126" rx="18" stroke-width="10"/>
+    <circle cx="42" cy="-25" r="17" fill="#f3b51b" stroke="none"/>
+    <path d="M-60 38l42-42 30 28 24-22 44 42" stroke-width="10"/>
+  </g>
+  <text x="600" y="430" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700" text-anchor="middle">Imagem em documentação</text>
+  <text x="600" y="482" fill="#fff" opacity=".78" font-family="Segoe UI, Arial, sans-serif" font-size="24" text-anchor="middle">Este registro será incorporado ao acervo da comunidade.</text>
+  <text x="600" y="620" fill="#f3b51b" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" text-anchor="middle">CAMPO DIGITAL</text>
+</svg>
