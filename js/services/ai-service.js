@@ -18,25 +18,23 @@ export async function perguntarAssistente(mensagem, historico = []) {
     return respostaLocal(mensagem);
   }
 
-  const resposta = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: mensagem, history: historico }),
-  });
+  try {
+    const resposta = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: mensagem, history: historico }),
+    });
 
-  if (!resposta.ok) {
-    const erro = await resposta.json().catch(() => ({}));
-    throw new Error(erro.error || `Erro ${resposta.status} do servidor.`);
+    if (!resposta.ok) throw new Error(`API indisponível (${resposta.status})`);
+    const dados = await resposta.json();
+
+    if (typeof dados.answer === 'string') {
+      return { type: 'message', content: dados.answer };
+    }
+    return dados.answer || respostaLocal(mensagem);
+  } catch {
+    return respostaLocal(mensagem);
   }
-
-  const dados = await resposta.json();
-
-  // Normaliza: se vier string bruta, encapsula
-  if (typeof dados.answer === 'string') {
-    return { type: 'message', content: dados.answer };
-  }
-
-  return dados.answer || { type: 'message', content: 'Resposta não reconhecida.' };
 }
 
 // ── Fallback local (sem backend) ─────────────────────────────────────────────
@@ -46,7 +44,7 @@ function respostaLocal(pergunta) {
   if (t.includes('quiz') || t.includes('me test') || t.includes('pergunta sobre')) {
     return {
       type: 'message',
-      content: 'Para gerar quizzes interativos, inicie o backend: abra o terminal na pasta /backend, rode "npm install" e depois "npm start". Com o servidor rodando, os quizzes funcionam automaticamente! 🧠',
+      content: 'A IA está temporariamente indisponível, então continuaremos com os conteúdos e atividades locais do portal. Escolha História, Plantas Medicinais, Produção Agrícola, Educação ou Plantas Nativas. 🧠',
     };
   }
 
@@ -98,6 +96,6 @@ function respostaLocal(pergunta) {
 
   return {
     type: 'message',
-    content: 'Olá! Para usar a IA real, inicie o backend (pasta /backend → npm install → npm start). Posso orientar sobre: História, Plantas Medicinais, Plantas Nativas, Produção Agrícola e Educação do Campo. O que você gostaria de explorar? 🌱',
+    content: 'A IA está temporariamente indisponível, mas o portal continua funcionando. Posso orientar localmente sobre História, Plantas Medicinais, Plantas Nativas, Produção Agrícola e Educação do Campo. O que você gostaria de explorar? 🌱',
   };
 }

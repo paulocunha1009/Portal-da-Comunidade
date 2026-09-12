@@ -15,6 +15,23 @@ let historico    = [];   // [{ role: 'user'|'assistant', content: string }]
 let modoAtivo    = 'chat';
 let aguardando   = false;
 
+function escaparHTML(valor) {
+  return String(valor ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
+function urlInternaSegura(valor) {
+  try {
+    const url = new URL(String(valor || ''), window.location.href);
+    return url.origin === window.location.origin && /\.html$/i.test(url.pathname)
+      ? url.href
+      : window.location.href;
+  } catch {
+    return window.location.href;
+  }
+}
+
 // ── Bootstrap ────────────────────────────────────────────────────────────────
 export function iniciarChatEducacional() {
   if (document.querySelector('.ai-chat')) return;
@@ -91,6 +108,7 @@ function criarElemento() {
                autocomplete="off" placeholder="Digite sua dúvida..." required>
         <button class="botao" type="submit" aria-label="Enviar mensagem">↑</button>
       </form>
+      <p class="ai-chat__privacidade">Não informe nome, endereço, telefone ou outros dados pessoais. As conversas não são armazenadas pelo portal.</p>
     </div>
   `;
 
@@ -206,7 +224,7 @@ async function enviar(mensagemReal, container, campo, textoExibido) {
 function adicionarMensagem(container, texto, tipo) {
   const el = document.createElement('div');
   el.className = `ai-msg ai-msg--${tipo}`;
-  el.innerHTML = texto.replace(/\n/g, '<br>');
+  el.textContent = texto;
   container.appendChild(el);
   container.scrollTop = container.scrollHeight;
   return el;
@@ -237,7 +255,7 @@ function renderizarQuiz(container, quiz) {
   // Cabeçalho do quiz
   const cabecalho = document.createElement('div');
   cabecalho.className = 'ai-msg ai-msg--bot ai-quiz__cabecalho';
-  cabecalho.innerHTML = `<strong>🧠 Quiz: ${quiz.topic || 'Conhecimentos do Portal'}</strong><br>
+  cabecalho.innerHTML = `<strong>🧠 Quiz: ${escaparHTML(quiz.topic || 'Conhecimentos do Portal')}</strong><br>
     <small style="color:var(--cor-texto-suave)">${total} ${total === 1 ? 'questão' : 'questões'} — clique na resposta correta</small>`;
   container.appendChild(cabecalho);
 
@@ -248,13 +266,13 @@ function renderizarQuiz(container, quiz) {
 
     card.innerHTML = `
       <p class="ai-quiz__numero">Questão ${idx + 1} de ${total}</p>
-      <p class="ai-quiz__pergunta">${q.q}</p>
+      <p class="ai-quiz__pergunta">${escaparHTML(q.q)}</p>
       <div class="ai-quiz__opcoes">
         ${(q.opts || []).map((opt, i) =>
-          `<button class="ai-quiz__opcao" type="button" data-i="${i}">${opt}</button>`
+          `<button class="ai-quiz__opcao" type="button" data-i="${i}">${escaparHTML(opt)}</button>`
         ).join('')}
       </div>
-      <p class="ai-quiz__explicacao">💡 ${q.explanation || ''}</p>
+      <p class="ai-quiz__explicacao">💡 ${escaparHTML(q.explanation || '')}</p>
     `;
 
     const botoes     = card.querySelectorAll('.ai-quiz__opcao');
@@ -311,19 +329,19 @@ function renderizarRecomendacoes(container, rec) {
   (rec.pages || []).forEach(page => {
     const a = document.createElement('a');
     a.className = 'ai-rec-card';
-    a.href      = page.url;
+    a.href      = urlInternaSegura(page.url);
 
     // Ajusta o caminho relativo conforme a página atual
     const emPastaPages = window.location.pathname.includes('/pages/');
     if (!emPastaPages && !page.url.startsWith('../') && page.url.startsWith('pages/')) {
-      a.href = page.url;
+      a.href = urlInternaSegura(page.url);
     } else if (emPastaPages && !page.url.startsWith('../') && !page.url.startsWith('http')) {
-      a.href = page.url.replace(/^pages\//, '');
+      a.href = urlInternaSegura(page.url.replace(/^pages\//, ''));
     }
 
     a.innerHTML = `
-      <span class="ai-rec-card__titulo">📄 ${page.title}</span>
-      <span class="ai-rec-card__motivo">${page.reason}</span>
+      <span class="ai-rec-card__titulo">📄 ${escaparHTML(page.title)}</span>
+      <span class="ai-rec-card__motivo">${escaparHTML(page.reason)}</span>
     `;
     wrapper.appendChild(a);
   });

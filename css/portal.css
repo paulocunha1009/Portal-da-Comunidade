@@ -1371,6 +1371,7 @@ body.menu-aberto .cabecalho {
 .ai-msg {
   border-radius: var(--raio);
   padding: 10px 12px;
+  white-space: pre-wrap;
 }
 
 .ai-msg--bot {
@@ -1396,6 +1397,15 @@ body.menu-aberto .cabecalho {
   border-radius: var(--raio-pequeno);
   padding: 10px;
   font-size: 0.88rem;
+}
+
+.ai-chat__privacidade {
+  margin: 0;
+  border-top: 1px solid var(--cor-borda);
+  padding: 8px 12px 10px;
+  color: var(--cor-texto-suave);
+  font-size: 0.68rem;
+  line-height: 1.35;
 }
 
 /* ── Botão fechar ─────────────────────────────────────────────────────────── */

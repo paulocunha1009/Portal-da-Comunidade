@@ -70,3 +70,5 @@ Referência oficial usada: Responses API da OpenAI.
 ## Plano do backend de IA
 
 O diagnóstico do serviço atual, a arquitetura proposta com `api.fabcampo.com.br`, os passos de implantação, testes e plano de reversão estão documentados em [PLANO_BACKEND_RAILWAY.md](PLANO_BACKEND_RAILWAY.md).
+
+As decisões mais recentes substituem a proposta de continuar no Railway: consulte [DECISOES_IMPLANTACAO_VERCEL.md](DECISOES_IMPLANTACAO_VERCEL.md) e [backend/DEPLOY_VERCEL.md](backend/DEPLOY_VERCEL.md).

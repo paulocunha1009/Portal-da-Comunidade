@@ -16,29 +16,28 @@
 
 import express from 'express';
 import cors from 'cors';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
+import { createRateLimiter } from './lib/rate-limit.js';
 
 dotenv.config();
 
 // ── Configuração ─────────────────────────────────────────────────────────────
 const PORT         = parseInt(process.env.PORT        || '3001', 10);
-const GEMINI_MODEL = process.env.GEMINI_MODEL         || 'gemini-2.0-flash';
-const MAX_TOKENS   = parseInt(process.env.MAX_TOKENS  || '1500', 10);
-const RATE_LIMIT   = parseInt(process.env.RATE_LIMIT_PER_MIN || '20', 10);
+const GEMINI_MODEL = process.env.GEMINI_MODEL         || 'gemini-2.5-flash-lite';
+const MAX_TOKENS   = parseInt(process.env.MAX_TOKENS  || '1000', 10);
 
 // Origens permitidas: localhost (dev) + domínio público do site
 const ALLOWED_ORIGINS = (
   process.env.ALLOWED_ORIGINS ||
-  'http://localhost,http://127.0.0.1,null'
+  'https://fabcampo.com.br,https://www.fabcampo.com.br,http://localhost,http://127.0.0.1,null'
 ).split(',').map(s => s.trim());
 
-if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY.includes('COLOQUE')) {
-  console.error('\n❌ GEMINI_API_KEY não configurada. Copie .env.example para .env e preencha a chave.\n');
-  process.exit(1);
-}
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const hasGeminiKey = Boolean(
+  process.env.GEMINI_API_KEY && !process.env.GEMINI_API_KEY.includes('COLOQUE')
+);
+const ai = hasGeminiKey ? new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY }) : null;
+const limiter = createRateLimiter();
 
 // ── System prompt ─────────────────────────────────────────────────────────────
 const SYSTEM_PROMPT = `Você é o Assistente Educacional do Portal da Comunidade — projeto da EEMPC Francisco Araújo Barros, Ceará Científico 2026, que documenta a história, biodiversidade e saberes do Assentamento Lagoa do Mineiro, em Itarema, CE.
@@ -151,31 +150,17 @@ DIRETRIZES
 - Para dúvidas fora do portal (matemática, informática, ciências, etc.): responda com conhecimento geral e, quando possível, relacione ao contexto da comunidade
 - Seja encorajador — celebre o interesse dos estudantes pela própria comunidade`;
 
-// ── Rate limiting simples ─────────────────────────────────────────────────────
-const requestMap = new Map();
-
-function rateLimit(req, res, next) {
-  const ip  = req.ip || req.socket?.remoteAddress || 'unknown';
-  const now = Date.now();
-  const win = 60_000;
-  const ts  = (requestMap.get(ip) || []).filter(t => now - t < win);
-
-  if (ts.length >= RATE_LIMIT) {
-    return res.status(429).json({ error: 'Muitas requisições. Aguarde um momento.' });
-  }
-  ts.push(now);
-  requestMap.set(ip, ts);
-
-  if (requestMap.size > 1000) {
-    for (const [k, v] of requestMap) {
-      if (v.every(t => now - t > win)) requestMap.delete(k);
-    }
-  }
-  next();
-}
-
 // ── Express ───────────────────────────────────────────────────────────────────
 const app = express();
+
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Cache-Control', 'no-store');
+  next();
+});
 
 app.use(cors({
   origin(origin, cb) {
@@ -193,7 +178,15 @@ app.use(express.json({ limit: '20kb' }));
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => {
-  res.json({ ok: true, model: GEMINI_MODEL, timestamp: new Date().toISOString() });
+  res.json({
+    ok: true,
+    aiConfigured: hasGeminiKey,
+    service: 'portal-comunidade-api',
+    model: GEMINI_MODEL,
+    limiter: limiter.storage,
+    limits: limiter.limits,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // ── Notícias externas confiáveis (proxy RSS → JSON, sem CORS) ────────────────
@@ -334,7 +327,7 @@ app.get('/api/noticias', async (_req, res) => {
 // ── Atividades pedagógicas ancoradas no acervo ───────────────────────────────
 // Usado pela Expedição e pelo Catálogo. O navegador envia apenas instruções e
 // trechos públicos do próprio portal; a chave do Gemini continua no servidor.
-app.post('/api/atividade', rateLimit, async (req, res) => {
+app.post('/api/atividade', limiter.middleware, async (req, res) => {
   const { system, message } = req.body;
 
   if (!system || typeof system !== 'string' || system.length > 5000) {
@@ -344,14 +337,24 @@ app.post('/api/atividade', rateLimit, async (req, res) => {
     return res.status(400).json({ error: 'Campo "message" obrigatório (máximo de 16.000 caracteres).' });
   }
 
-  try {
-    const model = genAI.getGenerativeModel({
-      model: GEMINI_MODEL,
-      systemInstruction: system.trim(),
-      generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.7 },
+  if (!ai) {
+    return res.status(503).json({
+      error: 'A IA ainda não foi configurada. Use a atividade local disponível no portal.',
+      code: 'AI_NOT_CONFIGURED',
     });
-    const result = await model.generateContent(message.trim());
-    const text = result.response.text().trim();
+  }
+
+  try {
+    const result = await ai.models.generateContent({
+      model: GEMINI_MODEL,
+      contents: message.trim(),
+      config: {
+        systemInstruction: system.trim(),
+        maxOutputTokens: MAX_TOKENS,
+        temperature: 0.7,
+      },
+    });
+    const text = String(result.text || '').trim();
     if (!text) return res.status(502).json({ error: 'O assistente retornou uma resposta vazia.' });
     return res.json({ text });
   } catch (erro) {
@@ -364,7 +367,7 @@ app.post('/api/atividade', rateLimit, async (req, res) => {
 });
 
 // ── Endpoint principal ────────────────────────────────────────────────────────
-app.post('/api/assistente', rateLimit, async (req, res) => {
+app.post('/api/assistente', limiter.middleware, async (req, res) => {
   const { message, history = [] } = req.body;
 
   if (!message || typeof message !== 'string') {
@@ -377,6 +380,13 @@ app.post('/api/assistente', rateLimit, async (req, res) => {
     return res.status(400).json({ error: 'Campo "history" deve ser um array.' });
   }
 
+  if (!ai) {
+    return res.status(503).json({
+      error: 'A IA ainda não foi configurada. O assistente local continuará disponível.',
+      code: 'AI_NOT_CONFIGURED',
+    });
+  }
+
   try {
     // Converte histórico: Gemini usa "model" em vez de "assistant"
     const geminiHistory = history
@@ -387,19 +397,21 @@ app.post('/api/assistente', rateLimit, async (req, res) => {
         parts: [{ text: h.content }],
       }));
 
-    const model = genAI.getGenerativeModel({
+    const contents = [
+      ...geminiHistory,
+      { role: 'user', parts: [{ text: message.trim() }] },
+    ];
+    const result = await ai.models.generateContent({
       model: GEMINI_MODEL,
-      systemInstruction: SYSTEM_PROMPT,
-      generationConfig: {
+      contents,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
         maxOutputTokens: MAX_TOKENS,
         temperature: 0.7,
-        responseMimeType: 'application/json', // Força JSON válido e bem formatado
+        responseMimeType: 'application/json',
       },
     });
-
-    const chat = model.startChat({ history: geminiHistory });
-    const result = await chat.sendMessage(message.trim());
-    const rawText = result.response.text() || '';
+    const rawText = result.text || '';
 
     // Extrai e normaliza JSON da resposta
     let parsed;
@@ -457,10 +469,25 @@ app.post('/api/assistente', rateLimit, async (req, res) => {
   }
 });
 
-// ── Inicia servidor ───────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🌱 Portal da Comunidade — Assistente Educacional (Gemini)`);
-  console.log(`   Backend rodando em: http://localhost:${PORT}`);
-  console.log(`   Modelo: ${GEMINI_MODEL}  |  Rate limit: ${RATE_LIMIT} req/min`);
-  console.log(`   Health check: http://localhost:${PORT}/health\n`);
+app.use((error, _req, res, _next) => {
+  if (error?.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'Solicitação muito grande.', code: 'PAYLOAD_TOO_LARGE' });
+  }
+  if (error?.message?.startsWith('Origem bloqueada:')) {
+    return res.status(403).json({ error: 'Origem não autorizada.', code: 'ORIGIN_BLOCKED' });
+  }
+  console.error('Erro não tratado:', error?.message || 'erro desconhecido');
+  return res.status(500).json({ error: 'Erro interno. Tente novamente.', code: 'INTERNAL_ERROR' });
 });
+
+// A Vercel importa o app; em desenvolvimento local o servidor abre a porta.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n🌱 Portal da Comunidade — Assistente Educacional (Gemini)`);
+    console.log(`   Backend rodando em: http://localhost:${PORT}`);
+    console.log(`   Modelo: ${GEMINI_MODEL} | Limites: ${JSON.stringify(limiter.limits)}`);
+    console.log(`   Health check: http://localhost:${PORT}/health\n`);
+  });
+}
+
+export default app;

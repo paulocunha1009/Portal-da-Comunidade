@@ -455,6 +455,30 @@ const REGRA = 'Você é o guia da Expedição no Território, do portal Campo Di
   'data nem número. Se a informação não estiver no texto, diga que o acervo ainda não ' +
   'registra isso e sugira que o estudante pesquise na comunidade.';
 
+function montarOpcoes(correta, candidatas){
+  const opcoes = [correta].concat(candidatas.filter(function(v){ return v !== correta; }).slice(0, 3));
+  opcoes.sort(function(a, b){ return String(a).localeCompare(String(b), 'pt-BR'); });
+  return { opcoes: opcoes, correta: opcoes.indexOf(correta) };
+}
+
+function desafioLocal(estacao){
+  const anos = montarOpcoes(estacao.local, ESTACOES.map(function(e){ return e.local; }));
+  const titulos = montarOpcoes(estacao.titulo, ESTACOES.map(function(e){ return e.titulo; }));
+  const eixos = montarOpcoes(estacao.eixo, ['Terra', 'Cooperativa', 'Escola', 'Cultura', 'Memória']);
+  return {
+    local: true,
+    questoes: [
+      { pergunta: 'Em qual marco da linha do tempo acontece este registro?', opcoes: anos.opcoes, correta: anos.correta,
+        porque: 'O próprio marco da Expedição identifica este acontecimento como ' + estacao.local + '.' },
+      { pergunta: 'Qual título corresponde ao registro apresentado nesta parada?', opcoes: titulos.opcoes, correta: titulos.correta,
+        porque: 'Esta parada foi documentada no portal como “' + estacao.titulo + '”.' },
+      { pergunta: 'A qual eixo da Expedição esta parada pertence?', opcoes: eixos.opcoes, correta: eixos.correta,
+        porque: 'O eixo informado no acervo para esta parada é “' + estacao.eixo + '”.' }
+    ],
+    aberta: 'Por que o marco de ' + estacao.local + ' é importante para a história e para o presente da comunidade?'
+  };
+}
+
 async function prepararDesafio(){
   const botao = document.getElementById('comecar');
   const caixa = document.getElementById('aviso-erro');
@@ -476,9 +500,10 @@ async function prepararDesafio(){
     pintarQuestao();
     mostrar('tela-desafio');
   }catch(e){
-    caixa.innerHTML = '<div class="erro">Não deu para montar o desafio agora.<br>' +
-      e.message + '<br><br>Se você abriu este arquivo direto do computador, ' +
-      'publique no site primeiro: a expedição precisa ler as páginas do portal.</div>';
+    desafio = desafioLocal(atual);
+    indice = 0;
+    pintarQuestao();
+    mostrar('tela-desafio');
   }finally{
     botao.disabled = false; botao.textContent = 'Começar o desafio';
   }
@@ -490,6 +515,7 @@ function pintarQuestao(){
   document.getElementById('tela-desafio').innerHTML =
     '<button class="btn sec" id="v3">&larr; Sair do desafio</button>' +
     '<div class="bloco" style="margin-top:1rem">' +
+      (desafio.local ? '<div class="aviso">Modo local: a IA está indisponível, mas o desafio continua com dados do próprio portal.</div>' : '') +
       '<div class="barra"><i style="width:' + (indice/total*100) + '%"></i></div>' +
       '<p class="contagem">' + atual.local + ' &middot; questão ' + (indice+1) + ' de ' + total + '</p>' +
       '<p class="pergunta">' + escaparHTML(q.pergunta) + '</p>' +
@@ -548,6 +574,18 @@ async function avaliarAberta(){
   const botao = document.getElementById('enviar-aberta');
   botao.disabled = true; botao.textContent = 'Lendo sua resposta...';
   retorno.innerHTML = '';
+  if(desafio.local){
+    estado.sementes += 10;
+    if(estado.feitas.indexOf(atual.id) < 0) estado.feitas.push(atual.id);
+    salvar(); pintarPainel();
+    retorno.innerHTML = '<div class="devolutiva"><b>Registro recebido.</b> Sua resposta foi guardada neste navegador. Compare suas ideias com o texto da reportagem e converse com alguém da comunidade para ampliar esse registro.</div>' +
+      '<div class="fim" style="margin-top:1.2rem"><h2>' + atual.selo + ' ' + atual.nomeSelo + '</h2>' +
+      '<p>Parada de ' + atual.local + ' concluída no modo local. Você tem ' + estado.sementes + ' sementes.</p>' +
+      '<div class="linha-btn" style="justify-content:center"><button class="btn" id="v5">Voltar à trilha</button></div></div>';
+    document.getElementById('v5').addEventListener('click', voltarTrilha);
+    botao.disabled = false; botao.textContent = 'Enviar resposta';
+    return;
+  }
   try{
     const acervo = await lerAcervo(atual.pagina);
     const pedido =

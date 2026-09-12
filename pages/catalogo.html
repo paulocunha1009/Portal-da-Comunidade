@@ -272,9 +272,12 @@ document.getElementById('btn-desafio').addEventListener('click', async function(
   }
   botao.disabled = true; botao.textContent = 'Preparando o enigma...';
   area.innerHTML = '';
+  const sorteada = BASE.especies[Math.floor(Math.random() * BASE.especies.length)];
   try{
-    const sorteada = BASE.especies[Math.floor(Math.random() * BASE.especies.length)];
-    const enigma = await chamarIA(
+    let enigma;
+    let modoLocal = false;
+    try {
+      enigma = await chamarIA(
       'Você é o guia do Catálogo do Território do portal Campo Digital, feito por estudantes ' +
       'da EEMPC Francisco Araújo Barros, no Assentamento Lagoa do Mineiro, Itarema, Ceará. ' +
       'REGRA ABSOLUTA: use apenas a ficha abaixo. Não acrescente informação de fora, ' +
@@ -284,12 +287,20 @@ document.getElementById('btn-desafio').addEventListener('click', async function(
       }) +
       '\n\nEscreva 3 frases em primeira pessoa, como se a planta se apresentasse, ' +
       'para um estudante adivinhar qual é. Não diga o nome.'
-    );
+      );
+    } catch (erroIA) {
+      modoLocal = true;
+      const usos = (sorteada.usos || []).slice(0, 2).join(' e ');
+      enigma = 'Eu vivo em ' + (sorteada.ambiente || 'um ambiente registrado no território') + '. ' +
+        (usos ? 'Sou lembrada na comunidade por ' + usos + '. ' : '') +
+        'Minha história está guardada em uma das fichas deste catálogo.';
+    }
     /* as alternativas saem do próprio catálogo, nunca da IA */
     const outras = BASE.especies.filter(function(p){ return p.id !== sorteada.id; })
       .sort(function(){ return Math.random() - 0.5; }).slice(0,3);
     const opcoes = outras.concat([sorteada]).sort(function(){ return Math.random() - 0.5; });
-    area.innerHTML = '<div class="enigma">' + escaparHTML(enigma) + '</div>' +
+    area.innerHTML = (modoLocal ? '<div class="nota-med">Modo local: a IA está indisponível, mas o desafio continua com a ficha do catálogo.</div>' : '') +
+      '<div class="enigma">' + escaparHTML(enigma) + '</div>' +
       opcoes.map(function(p){
         return '<button class="palpite" data-id="' + escaparHTML(p.id) + '">' + escaparHTML(p.nome) + '</button>';
       }).join('');

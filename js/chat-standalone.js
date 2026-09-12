@@ -16,6 +16,23 @@
   var modoAtivo  = 'chat';
   var aguardando = false;
 
+  function escaparHTML(valor) {
+    return String(valor == null ? '' : valor).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+
+  function urlInternaSegura(valor) {
+    try {
+      var url = new URL(String(valor || ''), window.location.href);
+      return url.origin === window.location.origin && /\.html$/i.test(url.pathname)
+        ? url.href
+        : window.location.href;
+    } catch (_) {
+      return window.location.href;
+    }
+  }
+
   // ── Bootstrap ────────────────────────────────────────────────────────────────
   function iniciar() {
     if (document.querySelector('.ai-chat')) return;
@@ -78,6 +95,7 @@
       '           autocomplete="off" placeholder="Digite sua dúvida..." required>',
       '    <button class="botao" type="submit" aria-label="Enviar mensagem">↑</button>',
       '  </form>',
+      '  <p class="ai-chat__privacidade">Não informe nome, endereço, telefone ou outros dados pessoais. As conversas não são armazenadas pelo portal.</p>',
       '</div>'
     ].join('\n');
 
@@ -506,7 +524,7 @@
   function adicionarMensagem(container, texto, tipo) {
     var el = document.createElement('div');
     el.className = 'ai-msg ai-msg--' + tipo;
-    el.innerHTML = texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    el.textContent = texto;
     container.appendChild(el);
     container.scrollTop = container.scrollHeight;
     return el;
@@ -534,21 +552,26 @@
 
     var cabecalho = document.createElement('div');
     cabecalho.className = 'ai-msg ai-msg--bot ai-quiz__cabecalho';
-    cabecalho.innerHTML = '<strong>🧠 Quiz: ' + (quiz.topic || 'Conhecimentos do Portal') + '</strong><br>'
-      + '<small style="color:rgba(255,255,255,0.78)">' + total + ' ' + (total === 1 ? 'questão' : 'questões') + ' — clique na resposta correta</small>';
+    var tituloQuiz = document.createElement('strong');
+    tituloQuiz.textContent = '🧠 Quiz: ' + (quiz.topic || 'Conhecimentos do Portal');
+    var ajudaQuiz = document.createElement('small');
+    ajudaQuiz.textContent = total + ' ' + (total === 1 ? 'questão' : 'questões') + ' — clique na resposta correta';
+    cabecalho.appendChild(tituloQuiz);
+    cabecalho.appendChild(document.createElement('br'));
+    cabecalho.appendChild(ajudaQuiz);
     container.appendChild(cabecalho);
 
     quiz.questions.forEach(function (q, idx) {
       var card = document.createElement('div');
       card.className = 'ai-quiz__card';
       card.innerHTML = '<p class="ai-quiz__numero">Questão ' + (idx + 1) + ' de ' + total + '</p>'
-        + '<p class="ai-quiz__pergunta">' + q.q + '</p>'
+        + '<p class="ai-quiz__pergunta">' + escaparHTML(q.q) + '</p>'
         + '<div class="ai-quiz__opcoes">'
         + (q.opts || []).map(function (opt, i) {
-            return '<button class="ai-quiz__opcao" type="button" data-i="' + i + '">' + opt + '</button>';
+            return '<button class="ai-quiz__opcao" type="button" data-i="' + i + '">' + escaparHTML(opt) + '</button>';
           }).join('')
         + '</div>'
-        + '<p class="ai-quiz__explicacao">💡 ' + (q.explanation || '') + '</p>';
+        + '<p class="ai-quiz__explicacao">💡 ' + escaparHTML(q.explanation || '') + '</p>';
 
       var botoes     = card.querySelectorAll('.ai-quiz__opcao');
       var explicacao = card.querySelector('.ai-quiz__explicacao');
@@ -601,9 +624,9 @@
     (rec.pages || []).forEach(function (page) {
       var a = document.createElement('a');
       a.className = 'ai-rec-card';
-      a.href = page.url;
-      a.innerHTML = '<span class="ai-rec-card__titulo">📄 ' + page.title + '</span>'
-        + '<span class="ai-rec-card__motivo">' + page.reason + '</span>';
+      a.href = urlInternaSegura(page.url);
+      a.innerHTML = '<span class="ai-rec-card__titulo">📄 ' + escaparHTML(page.title) + '</span>'
+        + '<span class="ai-rec-card__motivo">' + escaparHTML(page.reason) + '</span>';
       wrapper.appendChild(a);
     });
 
